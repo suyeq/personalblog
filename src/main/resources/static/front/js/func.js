@@ -105,14 +105,23 @@ function pageReadMore() {
                     console.log($result.length)
                     $('#main-content').append($result.fadeIn(1000));
                     var nexthref = $(data).find("#index-pagination a").attr("href");
-                    if (nexthref != undefined) {
-                      $("#index-pagination a").show();
-                      $("#index-pagination a").text('(｡・`ω´･)点我查看更多！');
-                      $("#index-pagination a").attr("href", nexthref);
-                    } else {
-                      $("#index-pagination a").remove();
-                      $("#index-pagination").html('<p>你已到达了世界的尽头(｡・`ω´･)！</p>');
-                    }
+                   if ($result.length>=1){
+                       $("#index-pagination a").show();
+                       $("#index-pagination a").text('(｡・`ω´･)点我查看更多！');
+                       $("#index-pagination a").attr("href", nexthref);
+                   } else {
+                       $("#index-pagination a").remove();
+                       $("#index-pagination").html('<p>你已到达了世界的尽头(｡・`ω´･)！</p>');
+                   }
+
+                    // if (nexthref != undefined) {
+                    //   $("#index-pagination a").show();
+                    //   $("#index-pagination a").text('(｡・`ω´･)点我查看更多！');
+                    //   $("#index-pagination a").attr("href", nexthref);
+                    // } else {
+                    //   $("#index-pagination a").remove();
+                    //   $("#index-pagination").html('<p>你已到达了世界的尽头(｡・`ω´･)！</p>');
+                    // }
                     removeTouch();
                 }
           	});

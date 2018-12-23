@@ -43,7 +43,9 @@ public class MainController {
     @Autowired
     private BlogMessageConversion blogMessageConversion;
     //加载更多的索引
-    private int loadMore=0;
+    private int loadMoreAll=1;
+    private int loadMoreBlog=1;
+    private int loadMoreShuoShuo=1;
 
     @RequestMapping("/")
     public String root(){
@@ -95,5 +97,40 @@ public class MainController {
 
     }
 
+    @GetMapping("/loadMoreAll")
+    public ModelAndView loadMoreAll(Model model){
+        System.out.println("loadMoreAll");
+        loadMoreBlog=1;
+        loadMoreShuoShuo=1;
+        List<BlogMessageConversion.BlogMessage> recentBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.loadMoreRecentBlogs(loadMoreAll*7));
+        loadMoreAll++;
+        model.addAttribute("recentBlogList",recentBlogList);
+        return new ModelAndView("index","allMessge",model);
+    }
+
+    @GetMapping("/loadMoreBlog")
+    public ModelAndView loadMoreBlog(Model model){
+        System.out.println("loadMoreBlog");
+        loadMoreAll=1;
+        loadMoreShuoShuo=1;
+        List<BlogMessageConversion.BlogMessage> recentBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.loadMoreRecentNotShuoShuo(loadMoreBlog*7));
+        loadMoreBlog++;
+        model.addAttribute("recentBlogList",recentBlogList);
+        return new ModelAndView("front/indexblog","allMessge",model);
+    }
+
+    @GetMapping("/loadMoreShuoShuo")
+    public ModelAndView loadMoreShuoShuo(Model model){
+        System.out.println("loadMoreShuoShuo");
+        loadMoreAll=1;
+        loadMoreBlog=1;
+        List<BlogMessageConversion.BlogMessage> recentBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.loadMoreRecentIsShuoShuo(loadMoreShuoShuo*7));
+        loadMoreShuoShuo++;
+        model.addAttribute("recentBlogList",recentBlogList);
+        return new ModelAndView("front/indexshuoshuo","allMessge",model);
+    }
 
 }
