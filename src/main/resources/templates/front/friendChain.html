@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="description" content="一个爱鼓捣前端的产品汪"/>
+    <meta name="keywords" content="产品,前端,文艺,二次元"/>
+    <!--[if lt IE 9]-->
+    <script src="//cdn.bootcss.com/html5shiv/r29/html5.js"></script>
+    <!--[endif]-->
+    <link rel="icon" href="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-32x32.png" sizes="32x32"/>
+    <link rel="icon" href="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-192x192.png" sizes="192x192"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-180x180.png"/>
+    <meta name="msapplication-TileImage"
+          content="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-270x270.png"/>
+    <link href="css/Column.css" rel="stylesheet">
+    <link type="text/css" media="all" href="css/allPage.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="tagcloud/tagcloud.min.css">
+    <link rel="stylesheet" href="live2d/css/live2d.css" />
+    <title>一两清风，半盏明月</title></head>
+<body>
+<header id="header">
+    <div id="menu-blur-bg"></div>
+    <div id="menu-blur"></div>
+    <div id="menu-pc"><h1 id="logo"><a href="https://shawnzeng.com/">阑珊处</a></h1> <span id="mobile-menu"> <i
+            class="giligili giligili-menu"></i> </span>
+        <div id="menu-main" class="menu-main">
+            <ul>
+                <li id="menu-item-1404"
+                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
+                    <a href="https://shawnzeng.com"><i class="giligili giligili-home"></i> 首页</a></li>
+                <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
+                    <a href="https://shawnzeng.com/%e5%bd%92%e6%a1%a3"><i class="giligili giligili-timeline"></i> 归档</a>
+                </li>
+                <li id="menu-item-1418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418">
+                    <a href="https://shawnzeng.com/friends"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                <li id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419">
+                    <a href="https://shawnzeng.com/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
+            </ul>
+        </div>
+        <span id="menu-search"> <i class="giligili giligili-search"></i> </span>
+        <form action="https://shawnzeng.com/" method="get" id="content-search">
+            <div class="search-header"><span>请输入你想搜索的内容：</span> <i class="giligili giligili-close"></i></div>
+            <input type="text" name="s" id="search" value=""/></form>
+    </div>
+    <div id="header-bg"></div>
+</header>
+<header id="mobile-header">
+    <div class="mobile-user-info"><img alt=''
+                                       src='img/lem6.jpg'
+                                       srcset='img/lem6.jpg'
+                                       class='avatar avatar-100 photo mobile-user-avatar' height='100' width='100'/>
+        <h3 class="mobile-user-name">Shawn</h3>
+        <div class="mobile-menu-container">
+            <ul>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
+                    <a href="https://shawnzeng.com"><i class="giligili giligili-home"></i> 首页</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
+                        href="https://shawnzeng.com/%e5%bd%92%e6%a1%a3"><i class="giligili giligili-timeline"></i>
+                    归档</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418"><a
+                        href="https://shawnzeng.com/friends"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a
+                        href="https://shawnzeng.com/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mobile-menu-plur"></div>
+</header>
+<div class="mobile-shade"></div>
+<div id="main">
+    <div id="sidebar-left" class="giligili-left">
+        <div id="user-card" class="giligili-item">
+            <div id="user-card-bg"></div>
+            <a id="user-card-name">
+                <i class="giligili giligili-at"></i>Suyeq
+            </a>
+            <div id="user-card-info">
+                <a id="user-card-article" class="giligili-left" href="#">
+                    <p class="num">35</p>
+                    <p class="text">博客</p>
+                </a>
+                <a id="user-card-like" class="giligili-left" href="#">
+                    <p class="num">37</p>
+                    <p class="text">分享</p>
+                </a>
+            </div>
+            <img alt=''
+                 src='img/lem6.jpg'
+                 srcset='img/lem6.jpg 2x'
+                 class='avatar avatar-56 photo user-card-avatar' height='56' width='56' /> <i
+                class="giligili giligili-certify-3"></i>
+        </div>
+        <div id="user-info" class="giligili-item">
+            <div class="row"><i class="giligili giligili-qq"></i>&nbsp;&nbsp;&nbsp;<a
+                    href="#">473721601</a></div>
+            <div class="row"><i class="giligili giligili-email"></i>&nbsp;&nbsp;&nbsp;<a
+                    href="https://blog.csdn.net/hackersuye">Suyeq233</a></div>
+            <!--<div class="row"><i class="giligili giligili-qqqun"></i>&nbsp;&nbsp;&nbsp;<a-->
+            <!--href="https://jq.qq.com/?_wv=1027&amp;k=44nyJOX">面向博客编程</a></div>-->
+            <!--<div class="row"><i class="giligili giligili-weibo"></i>&nbsp;&nbsp;&nbsp;<a-->
+            <!--href="https://weibo.com/shawnzeng1996">ShawnZeng1996</a></div>-->
+            <div class="row"><i class="giligili giligili-github"></i>&nbsp;&nbsp;&nbsp;<a
+                    href="https://github.com/suyeq">Suyeq233</a></div>
+            <div class="row"><i class="csdn giligili-csdn"></i>&nbsp;&nbsp;&nbsp;<a
+                    href="https://blog.csdn.net/hackersuye">Suyeq233</a></div>
+            <!--<div class="row"><i class="giligili giligili-zhihu"></i>&nbsp;&nbsp;&nbsp;<a-->
+            <!--href="https://www.zhihu.com/people/shawn_zeng/activities">ShawnZeng</a></div>-->
+            <!--<div class="row"><i class="giligili giligili-bilibili"></i>&nbsp;&nbsp;&nbsp;<a-->
+            <!--href="https://space.bilibili.com/9317943/#/dynamic">Shawn1996</a></div>-->
+            <div class="intro">一杯敬明天，一杯敬过往</div>
+        </div>
+
+        <!--<div class="widget_text giligili-item">-->
+        <!--<div class="textwidget custom-html-widget">-->
+        <!--<div style="text-align: center;"><img-->
+        <!--src="https://shawnzeng.com/wp-content/uploads/2018/07/IMG_1974.jpg"-->
+        <!--style="width: 50px;height: 50px;vertical-align: -20px;border-radius: 50%;margin-right: 5px;margin-bottom: 5px;"/><i-->
+        <!--class="giligili giligili-heart-o throb" style="color:red"></i><img-->
+        <!--src="https://shawnzeng.com/wp-content/uploads/2018/07/IMG_1970.jpg"-->
+        <!--style="width: 50px;height: 50px;vertical-align: -20px;border-radius: 50%;margin-left: 5px;margin-bottom: 5px;"/><br/>-->
+        <!--<span id="htmer_time"></span></div>-->
+        <!--<script type="text/javascript" language="javascript">function setTime() {-->
+        <!--var create_time = Math.round(new Date(Date.UTC(2018, 03, 08, 9, 21, 0)).getTime() / 1000);-->
+        <!--var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);-->
+        <!--currentTime = secondToDate((timestamp - create_time));-->
+        <!--currentTimeHtml = currentTime[0] + ' 年 ' + currentTime[1] + ' 天 '-->
+        <!--+ currentTime[2] + ' 时 ' + currentTime[3] + ' 分 ' + currentTime[4]-->
+        <!--+ ' 秒';-->
+        <!--document.getElementById("htmer_time").innerHTML = currentTimeHtml;-->
+        <!--}-->
+
+        <!--function secondToDate(second) {-->
+        <!--if (!second) {-->
+        <!--return 0;-->
+        <!--}-->
+        <!--var time = new Array(0, 0, 0, 0, 0);-->
+        <!--if (second >= 365 * 24 * 3600) {-->
+        <!--time[0] = parseInt(second / (365 * 24 * 3600));-->
+        <!--second %= 365 * 24 * 3600;-->
+        <!--}-->
+        <!--if (second >= 24 * 3600) {-->
+        <!--time[1] = parseInt(second / (24 * 3600));-->
+        <!--second %= 24 * 3600;-->
+        <!--}-->
+        <!--if (second >= 3600) {-->
+        <!--time[2] = parseInt(second / 3600);-->
+        <!--second %= 3600;-->
+        <!--}-->
+        <!--if (second >= 60) {-->
+        <!--time[3] = parseInt(second / 60);-->
+        <!--second %= 60;-->
+        <!--}-->
+        <!--if (second > 0) {-->
+        <!--time[4] = second;-->
+        <!--}-->
+        <!--return time;-->
+        <!--}-->
+
+        <!--setInterval(setTime, 1000);</script>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="widget_text giligili-item">
+            <div class="textwidget custom-html-widget">
+                <script src="//cdn.bootcss.com/aplayer/1.5.8/APlayer.min.js"></script>
+                <div id="aplayer1" class="aplayer"></div>
+                <script>var ap = new APlayer({
+                    element: document.getElementById('aplayer1'),
+                    autoplay:false,
+                    music: [{
+                        title: '風の住む街',
+                        author: '磯村由纪子',
+                        url: 'music/磯村由纪子 - 風の住む街.mp3',
+                        pic: 'img/风.jpg'
+                    },
+                        {
+                            title: 'ヨスガノソラ メインテーマ -記憶',
+                            author: '三輪学',
+                            url: 'music/三輪学 - ヨスガノソラ メインテーマ -記憶-.mp3',
+                            pic: 'img/穹.jpg'
+                        },
+//                        {
+//                            title: 'Promise',
+//                            author: '山岡晃',
+//                            url: 'music/山岡晃 - Promise.mp3',
+//                            pic: 'img/风.jpg'
+//                        },
+                        {
+                            title: '蝶恋',
+                            author: '林坤信',
+                            url: 'music/林坤信 - 蝶恋(钢琴版).mp3',
+                            pic: 'img/古剑.jpg'
+                        },
+                        {
+                            title: '月光の雲海',
+                            author: '久石譲',
+                            url: 'music/久石譲 - 月光の雲海.mp3',
+                            pic: 'img/轻语.jpg'
+                        }
+                    ]
+                });</script>
+            </div>
+        </div>
+        <div class="giligili-item">
+            <header class="giligili-item-header"><h3 class="giligili-item-title"><i
+                    class="giligili giligili-postlist"></i> 最受欢迎</h3></header>
+            <ul class="sidebar-posts-list">
+                <li><p class="post-title"><a href="https://shawnzeng.com/wordpress-theme-memory.html"
+                                             title="WordPress响应式主题Memory" rel="bookmark">WordPress响应式主题Memory</a></p>
+                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;33.62k</span><span><i
+                            class="giligili giligili-time"></i>&nbsp;1年前</span><span><i
+                            class="giligili giligili-comment"></i>&nbsp;<a
+                            href="https://shawnzeng.com/wordpress-theme-memory.html#comments">206</a></span></p></li>
+                <li><p class="post-title"><a href="https://shawnzeng.com/after-ddos.html" title="经历过一波DDos攻击过后…"
+                                             rel="bookmark">经历过一波DDos攻击过后…</a></p>
+                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;10.02k</span><span><i
+                            class="giligili giligili-time"></i>&nbsp;2年前</span><span><i
+                            class="giligili giligili-comment"></i>&nbsp;<a
+                            href="https://shawnzeng.com/after-ddos.html#comments">38</a></span></p></li>
+                <li><p class="post-title"><a href="https://shawnzeng.com/wordpress-add-desc.html"
+                                             title="WordPress给来访的盆友们添加评论头衔" rel="bookmark">WordPress给来访的盆友们添加评论头衔</a>
+                </p>
+                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;8.94k</span><span><i
+                            class="giligili giligili-time"></i>&nbsp;2年前</span><span><i
+                            class="giligili giligili-comment"></i>&nbsp;<a
+                            href="https://shawnzeng.com/wordpress-add-desc.html#comments">21</a></span></p></li>
+            </ul>
+        </div>
+        <div class="giligili-item">
+            <header class="giligili-item-header"><h3 class="giligili-item-title"><i
+                    class="giligili giligili-comments"></i> 最近评论</h3></header>
+            <ul class="recentcomments">
+                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
+                       title="suye"> <img alt=''
+                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                          class='avatar avatar-36 photo' height='36' width='36'/>
+                    <div class="right-box"><span class="author">suye</span>于<span>3分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
+                        <br/><span class="recent-comment">OωO</span></div>
+                </a></li>
+                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1589"
+                       title="suye"> <img alt=''
+                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                          class='avatar avatar-36 photo' height='36' width='36'/>
+                    <div class="right-box"><span class="author">suye</span>于<span>3分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
+                        <br/><span class="recent-comment">大佬，那个验证的计算不会实时刷新，需要重新刷新后才会显示，不刷新再次提交会提示验证错误</span></div>
+                </a></li>
+                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1586"
+                       title="suye"> <img alt=''
+                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                          class='avatar avatar-36 photo' height='36' width='36'/>
+                    <div class="right-box"><span class="author">suye</span>于<span>7分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
+                        <br/><span class="recent-comment">已给start</span></div>
+                </a></li>
+                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-9#comment-1585"
+                       title="suye"> <img alt=''
+                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                          class='avatar avatar-36 photo' height='36' width='36'/>
+                    <div class="right-box"><span class="author">suye</span>于<span>8分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
+                        <br/><span class="recent-comment">php写的|´・ω・)ノ，准备改成Java进行二次开发φ(￣∇￣o)</span></div>
+                </a></li>
+                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-9#comment-1584"
+                       title="suye"> <img alt=''
+                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                          class='avatar avatar-36 photo' height='36' width='36'/>
+                    <div class="right-box"><span class="author">suye</span>于<span>13分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
+                        <br/><span class="recent-comment">感谢大佬的分享，哈哈哈</span></div>
+                </a></li>
+            </ul>
+        </div>
+        <div class="giligili-item">
+            <div id="calendar_wrap" class="calendar_wrap">
+                <table id="wp-calendar">
+                    <caption>2018年十一月</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" title="星期一">一</th>
+                        <th scope="col" title="星期二">二</th>
+                        <th scope="col" title="星期三">三</th>
+                        <th scope="col" title="星期四">四</th>
+                        <th scope="col" title="星期五">五</th>
+                        <th scope="col" title="星期六">六</th>
+                        <th scope="col" title="星期日">日</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3" id="prev"><a href="https://shawnzeng.com/2018/10">&laquo; 10月</a></td>
+                        <td class="pad">&nbsp;</td>
+                        <td colspan="3" id="next" class="pad">&nbsp;</td>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    <tr>
+                        <td colspan="3" class="pad">&nbsp;</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td id="today">6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td class="pad" colspan="2">&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-part" class="giligili-left">
+        <div class="giligili-item breadcrumbs">当前位置：
+            <div itemscope itemtype="http://schema.org/WebPage" id="crumbs"><a itemprop="breadcrumb"
+                                                                               href="https://shawnzeng.com">首页</a> >
+                <span class="current">友情链接</span></div>
+        </div>
+        <div id="main-content">
+            <div><h3 class="friend-post-title">友情链接</h3>
+                <div class="content">
+                    <div class="frient-link-intro giligili-item"><p>由于友链众多，即日起暂不再接收友链交换，谢谢大家~</p>
+                        <p><strong>PS：对于无任何通知就删除本站友链的行为，我会同样直接删除友链并不予通知。</strong></p>
+                        <p>友链最后一次检查时间：2018年7月13日。<br/> 友链最后一次检查备注：删除了一些删除本站友链的网站，另外不显示已经挂了的小伙伴，如果需要恢复请联系我。
+                        </p>
+                    </div>
+                    <h4>后宫</h4>
+
+                    <div style="display: flex;flex-direction: row">
+                        <div class="friend-link">
+                            <div><img src="https://shawnzeng.com/wp-content/uploads/2017/08/lanling.jpg" alt="兰陵"
+                                      class="avatar">
+                                <span class="link-title">兰陵</span>
+                                <a href="https://blog.thkira.com/" class="link-href no-touch" target="_blank" title="兰陵">访问</a>
+                            </div>
+                            <p class="link-description">Tech Otakus Save The World</p>
+                        </div>
+
+                        <div class="friend-link">
+                            <div><img src="https://shawnzeng.com/wp-content/uploads/2017/08/lanling.jpg" alt="兰陵"
+                                      class="avatar">
+                                <span class="link-title">兰陵</span>
+                                <a href="https://blog.thkira.com/" class="link-href no-touch" target="_blank" title="兰陵">访问</a>
+                            </div>
+                            <p class="link-description">Tech Otakus Save The World</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex;flex-direction: row">
+                        <div class="friend-link">
+                            <div><img src="https://shawnzeng.com/wp-content/uploads/2017/08/lanling.jpg" alt="兰陵"
+                                      class="avatar">
+                                <span class="link-title">兰陵</span>
+                                <a href="https://blog.thkira.com/" class="link-href no-touch" target="_blank" title="兰陵">访问</a>
+                            </div>
+                            <p class="link-description">Tech Otakus Save The World</p>
+                        </div>
+
+                        <div class="friend-link">
+                            <div><img src="https://shawnzeng.com/wp-content/uploads/2017/08/lanling.jpg" alt="兰陵"
+                                      class="avatar">
+                                <span class="link-title">兰陵</span>
+                                <a href="https://blog.thkira.com/" class="link-href no-touch" target="_blank" title="兰陵">访问</a>
+                            </div>
+                            <p class="link-description">Tech Otakus Save The World</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex;flex-direction: row">
+                        <div class="friend-link">
+                            <div><img src="https://shawnzeng.com/wp-content/uploads/2017/08/lanling.jpg" alt="兰陵"
+                                      class="avatar">
+                                <span class="link-title">兰陵</span>
+                                <a href="https://blog.thkira.com/" class="link-href no-touch" target="_blank" title="兰陵">访问</a>
+                            </div>
+                            <p class="link-description">Tech Otakus Save The World</p>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="giligili-post-extra giligili-item">
+                <div><span class="post-like"><a href="javascript:;" data-action="post_zan" data-id="66" class=""> <i
+                        class="giligili giligili-zan"></i> 点赞 <span class="count">21 </span> </a> </span></div>
+                <div class="giligili-pay-box"><i class="giligili giligili-Bbi"></i> 打赏
+                    <div class="pay-box">
+                        <div class="pay-header"><span>请作者吃个鸡腿！</span> <i class="giligili giligili-close"></i></div>
+                        <div class="pay-body">
+                            <h4>扫一扫支付</h4> <img class="alipay chosen"
+                                                src="https://shawnzeng.com/wp-content/uploads/2017/10/zhifubaodonate.png"/>
+                                <img class="wechatpay"
+                                     src="https://shawnzeng.com/wp-content/uploads/2017/10/weixindonate.png"/>
+                                <div class="pay-chose"><a class="alibutton chosen"><img
+                                        src="https://shawnzeng.com/wp-content/themes/Giligili/img/alipay.png"/></a> <a
+                                        class="wechatbutton"><img
+                                        src="https://shawnzeng.com/wp-content/themes/Giligili/img/wechat.png"/></a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="giligili-share-box"><i class="giligili giligili-share"></i> 分享
+                    <div class="social-share-box">
+                        <div class="social-share-header"><span>分享到站外</span> <i class="giligili giligili-close"></i>
+                        </div>
+                        <div class="social-share"><a href="javascript:;" class="social-share-icon giligili-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-part giligili-item">
+                <div class="comment-respond" id="respond"><h3 id="reply-title"
+                                                              class="comment-title comment-reply-title"> 评论 <a
+                        rel="nofollow" id="cancel-comment-reply-link" href="/friends#respond"
+                        style="display:none;">放弃治疗</a></h3>
+                    <form name="comment-form" class="comment-form" id="comment-form" method="post"
+                          action="https://shawnzeng.com/wp-comments-post.php">
+                        <div id="comment-info">
+                            <div class="commentator"><img alt=''
+                                                          src='https://secure.gravatar.com/avatar/f66752e228a2878da78cc02a7aa00863?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                                          srcset='https://secure.gravatar.com/avatar/f66752e228a2878da78cc02a7aa00863?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                                          class='avatar avatar-48 photo' height='48' width='48'/></div>
+                            <div class="comment-text">
+                                <div class="comment-input"><input type="text" name="author" value="suye"
+                                                                  class="text-input" id="comment-author"
+                                                                  placeholder="昵称 *"> <input type="text" name="email"
+                                                                                             value="cangmingfeng@gmail.com"
+                                                                                             class="text-input"
+                                                                                             id="comment-email"
+                                                                                             placeholder="邮箱 *"> <input
+                                        type="text" name="url" value="http://suyeq.com" class="text-input"
+                                        id="comment-url" placeholder="网址"> <input type='text' name='sum'
+                                                                                  class='text-input sum'
+                                                                                  id='comment-validate' value=''
+                                                                                  placeholder='3 + 3 = ?'><input
+                                        type='hidden' name='num1' value='3'><input type='hidden' name='num2' value='3'>
+                                </div>
+                                <div class="comment-s"><textarea class="text-input error" id="comment" name="comment"
+                                                                 rows="8" cols="45" aria-required="true"
+                                                                 placeholder="一言：魔非魔，道非道，善恶在人心。欲非欲，情非情，姻缘由天定。"></textarea>
+                                    <div class="OwO no-touch"></div>
+                                    <button type="submit" name="submit" class="comment-submit push-status">发表评论</button>
+                                </div>
+                            </div>
+                        </div>
+                        <input type='hidden' name='comment_post_ID' value='66' id='comment_post_ID'/> <input
+                            type='hidden' name='comment_parent' id='comment_parent' value='0'/></form>
+                </div>
+                <div id="comments">
+                    <ol class="giligili-comments">
+                        <li class="comment-item" id="li-comment-1512">
+                            <div class="commentator-avatar"><a href="http://tea9.github.io" target="_blank"> <img alt=''
+                                                                                                                  src='https://secure.gravatar.com/avatar/b946825c6b9edc6597309dde6bb8f03c?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                                                                                                  srcset='https://secure.gravatar.com/avatar/b946825c6b9edc6597309dde6bb8f03c?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                                                                                                  class='avatar avatar-48 photo'
+                                                                                                                  height='48'
+                                                                                                                  width='48'/>
+                            </a></div>
+                            <div class="commentator-comment" id="comment-1512"><span class="commentator-name"><strong
+                                    class="author-name"><a target='_blank' href='http://tea9.github.io'
+                                                           rel='external nofollow' class='url'>tea9</a></strong></span>
+                                <span class="giligili giligili-userlevel-1"></span>
+                                <div class="comment-chat">
+                                    <div class="comment-comment"><p>网站名称：tea9<br/> 网站链接：https://tea9.github.io<br/>
+                                        个人邮箱：shaomiaojava@163.com<br/> 网站描述：安全圈的萌新<br/> 头像链接： <a
+                                                href="https://tea9.xyz/assets/img/profile.png" rel="nofollow">https://tea9.xyz/assets/img/profile.png</a>
+                                    </p>
+                                        <div class="comment-info"><span class="floor">#90</span"></span> <span
+                                                class="comment-time">1月前</span> <span class="post-like"><a
+                                                href="javascript:;" data-action="comment_zan" data-id="1512" class=""><i
+                                                class="giligili giligili-zan"></i> <span
+                                                class="count">0</span></a></span> <span class="post-like"><a
+                                                href="javascript:;" data-action="comment_cai" data-id="1512" class=""><i
+                                                class="giligili giligili-cai"></i> <span
+                                                class="count">0</span></a></span> <a rel='nofollow'
+                                                                                     class='comment-reply-link'
+                                                                                     href='https://shawnzeng.com/friends?replytocom=1512#respond'
+                                                                                     onclick='return addComment.moveForm( "comment-1512", "1512", "respond", "66" )'
+                                                                                     aria-label='回复给tea9'>回复</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li><!-- #comment-## -->
+                        <li class="comment-item" id="li-comment-1492">
+                            <div class="commentator-avatar"><a href="http://blog.cnqs.me" target="_blank"> <img alt=''
+                                                                                                                src='https://secure.gravatar.com/avatar/3365947a0b243cd8712eeb93a135ed4c?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                                                                                                srcset='https://secure.gravatar.com/avatar/3365947a0b243cd8712eeb93a135ed4c?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                                                                                                class='avatar avatar-48 photo'
+                                                                                                                height='48'
+                                                                                                                width='48'/>
+                            </a></div>
+                            <div class="commentator-comment" id="comment-1492"><span class="commentator-name"><strong
+                                    class="author-name"><a target='_blank' href='http://blog.cnqs.me'
+                                                           rel='external nofollow' class='url'>CN千石</a></strong></span>
+                                <span class="giligili giligili-userlevel-1"></span>
+                                <div class="comment-chat">
+                                    <div class="comment-comment"><p>网站名称：CN千石<br/> 网站链接：http://blog.cnqs.me/<br/>
+                                        个人邮箱：Fan_Ge90333@outlook.com（使用gravatar头像）<br/> 网站描述：一个IT与ACGN爱好者</p>
+                                        <div class="comment-info"><span class="floor">#89</span"></span> <span
+                                                class="comment-time">1月前</span> <span class="post-like"><a
+                                                href="javascript:;" data-action="comment_zan" data-id="1492" class=""><i
+                                                class="giligili giligili-zan"></i> <span
+                                                class="count">0</span></a></span> <span class="post-like"><a
+                                                href="javascript:;" data-action="comment_cai" data-id="1492" class=""><i
+                                                class="giligili giligili-cai"></i> <span
+                                                class="count">0</span></a></span> <a rel='nofollow'
+                                                                                     class='comment-reply-link'
+                                                                                     href='https://shawnzeng.com/friends?replytocom=1492#respond'
+                                                                                     onclick='return addComment.moveForm( "comment-1492", "1492", "respond", "66" )'
+                                                                                     aria-label='回复给CN千石'>回复</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="children">
+                                <li class="comment-item" id="li-comment-1502">
+                                    <div class="commentator-avatar"><a href="https://shawnzeng.com" target="_blank">
+                                        <img alt=''
+                                             src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                             srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                             class='avatar avatar-48 photo' height='48' width='48'/> </a> <i
+                                            class="giligili giligili-big-vip"></i></div>
+                                    <div class="commentator-comment" id="comment-1502"><span
+                                            class="commentator-name"><strong class="author-name"><a target='_blank'
+                                                                                                    href='https://shawnzeng.com'
+                                                                                                    rel='external nofollow'
+                                                                                                    class='url'>Shawn</a></strong></span>
+                                        <span class="giligili giligili-userlevel-6"></span>
+                                        <div class="comment-chat">
+                                            <div class="comment-comment"><p>已添加~</p>
+                                                <div class="comment-info"><span class="comment-time">1月前</span> <span
+                                                        class="post-like"><a href="javascript:;"
+                                                                             data-action="comment_zan" data-id="1502"
+                                                                             class=""><i
+                                                        class="giligili giligili-zan"></i> <span class="count">0</span></a></span>
+                                                    <span class="post-like"><a href="javascript:;"
+                                                                               data-action="comment_cai" data-id="1502"
+                                                                               class=""><i
+                                                            class="giligili giligili-cai"></i> <span
+                                                            class="count">0</span></a></span> <a rel='nofollow'
+                                                                                                 class='comment-reply-link'
+                                                                                                 href='https://shawnzeng.com/friends?replytocom=1502#respond'
+                                                                                                 onclick='return addComment.moveForm( "comment-1502", "1502", "respond", "66" )'
+                                                                                                 aria-label='回复给Shawn'>回复</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li><!-- #comment-## --></ul><!-- .children --></li><!-- #comment-## -->
+                        <li class="comment-item" id="li-comment-1490">
+                            <div class="commentator-avatar"><a href="https://www.hubertwang.me" target="_blank"> <img
+                                    alt=''
+                                    src='https://secure.gravatar.com/avatar/5a98b616d96c97124147b294681621fa?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                    srcset='https://secure.gravatar.com/avatar/5a98b616d96c97124147b294681621fa?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                    class='avatar avatar-48 photo' height='48' width='48'/> </a></div>
+                            <div class="commentator-comment" id="comment-1490"><span class="commentator-name"><strong
+                                    class="author-name"><a target='_blank' href='https://www.hubertwang.me'
+                                                           rel='external nofollow'
+                                                           class='url'>MR WHY</a></strong></span> <span
+                                    class="giligili giligili-userlevel-3"></span>
+                                <div class="comment-chat">
+                                    <div class="comment-comment"><p>哈哈 Shawn，最近域名过期我换域名啦，麻烦换成 <a
+                                            href="https://www.hubertwang.me"
+                                            rel="nofollow">https://www.hubertwang.me</a> 。谢谢！ 🙂</p>
+                                        <div class="comment-info"><span class="floor">#88</span"></span> <span
+                                                class="comment-time">2月前</span> <span class="post-like"><a
+                                                href="javascript:;" data-action="comment_zan" data-id="1490" class=""><i
+                                                class="giligili giligili-zan"></i> <span
+                                                class="count">0</span></a></span> <span class="post-like"><a
+                                                href="javascript:;" data-action="comment_cai" data-id="1490" class=""><i
+                                                class="giligili giligili-cai"></i> <span
+                                                class="count">0</span></a></span> <a rel='nofollow'
+                                                                                     class='comment-reply-link'
+                                                                                     href='https://shawnzeng.com/friends?replytocom=1490#respond'
+                                                                                     onclick='return addComment.moveForm( "comment-1490", "1490", "respond", "66" )'
+                                                                                     aria-label='回复给MR WHY'>回复</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="children">
+                                <li class="comment-item" id="li-comment-1501">
+                                    <div class="commentator-avatar"><a href="https://shawnzeng.com" target="_blank">
+                                        <img alt=''
+                                             src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                             srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                             class='avatar avatar-48 photo' height='48' width='48'/> </a> <i
+                                            class="giligili giligili-big-vip"></i></div>
+                                    <div class="commentator-comment" id="comment-1501"><span
+                                            class="commentator-name"><strong class="author-name"><a target='_blank'
+                                                                                                    href='https://shawnzeng.com'
+                                                                                                    rel='external nofollow'
+                                                                                                    class='url'>Shawn</a></strong></span>
+                                        <span class="giligili giligili-userlevel-6"></span>
+                                        <div class="comment-chat">
+                                            <div class="comment-comment"><p>好的~</p>
+                                                <div class="comment-info"><span class="comment-time">1月前</span> <span
+                                                        class="post-like"><a href="javascript:;"
+                                                                             data-action="comment_zan" data-id="1501"
+                                                                             class=""><i
+                                                        class="giligili giligili-zan"></i> <span class="count">1</span></a></span>
+                                                    <span class="post-like"><a href="javascript:;"
+                                                                               data-action="comment_cai" data-id="1501"
+                                                                               class=""><i
+                                                            class="giligili giligili-cai"></i> <span
+                                                            class="count">0</span></a></span> <a rel='nofollow'
+                                                                                                 class='comment-reply-link'
+                                                                                                 href='https://shawnzeng.com/friends?replytocom=1501#respond'
+                                                                                                 onclick='return addComment.moveForm( "comment-1501", "1501", "respond", "66" )'
+                                                                                                 aria-label='回复给Shawn'>回复</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="children">
+                                        <li class="comment-item" id="li-comment-1508">
+                                            <div class="commentator-avatar"><a href="http://hubertwang.me"
+                                                                               target="_blank"> <img alt=''
+                                                                                                     src='https://secure.gravatar.com/avatar/5a98b616d96c97124147b294681621fa?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                                                                                                     srcset='https://secure.gravatar.com/avatar/5a98b616d96c97124147b294681621fa?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                                                                                     class='avatar avatar-48 photo'
+                                                                                                     height='48'
+                                                                                                     width='48'/> </a>
+                                            </div>
+                                            <div class="commentator-comment" id="comment-1508"><span
+                                                    class="commentator-name"><strong class="author-name"><a
+                                                    target='_blank' href='http://hubertwang.me' rel='external nofollow'
+                                                    class='url'>MR WHY</a></strong></span> <span
+                                                    class="giligili giligili-userlevel-3"></span>
+                                                <div class="comment-chat">
+                                                    <div class="comment-comment"><p>谢谢 Shawn!</p>
+                                                        <div class="comment-info"><span class="comment-time">1月前</span>
+                                                            <span class="post-like"><a href="javascript:;"
+                                                                                       data-action="comment_zan"
+                                                                                       data-id="1508" class=""><i
+                                                                    class="giligili giligili-zan"></i> <span
+                                                                    class="count">0</span></a></span> <span
+                                                                    class="post-like"><a href="javascript:;"
+                                                                                         data-action="comment_cai"
+                                                                                         data-id="1508" class=""><i
+                                                                    class="giligili giligili-cai"></i> <span
+                                                                    class="count">0</span></a></span> <a rel='nofollow'
+                                                                                                         class='comment-reply-link'
+                                                                                                         href='https://shawnzeng.com/friends?replytocom=1508#respond'
+                                                                                                         onclick='return addComment.moveForm( "comment-1508", "1508", "respond", "66" )'
+                                                                                                         aria-label='回复给MR WHY'>回复</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li><!-- #comment-## --></ul><!-- .children --></li><!-- #comment-## --></ul>
+                            <!-- .children --></li><!-- #comment-## --></ol>
+                    <div id="pagination">
+                        <div class="giligili-comments-page"><a class="prev page-numbers"
+                                                               href="https://shawnzeng.com/friends/comment-page-8#comments">上一页</a>
+                            <a class='page-numbers' href='https://shawnzeng.com/friends/comment-page-1#comments'>1</a>
+                            <span class="page-numbers dots">&hellip;</span> <a class='page-numbers'
+                                                                               href='https://shawnzeng.com/friends/comment-page-7#comments'>7</a>
+                            <a class='page-numbers' href='https://shawnzeng.com/friends/comment-page-8#comments'>8</a>
+                            <span aria-current='page' class='page-numbers current'>9</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar-right" class="giligili-left">
+        <div class="giligili-item">
+            <header class="giligili-item-header"><h3 class="giligili-item-title"><i
+                    class="giligili giligili-visitors"></i> 博主专栏</h3></header>
+
+            <div class="post-lists ">
+                <div class="post-lists-body">
+                    <div class="post-list-item">
+                        <div class="post-list-item-container">
+                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/穹.png);"></div>
+                            <a href="http://47.107.69.19:9000/article/4">
+                                <div class="item-desc">
+                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
+                                </div>
+                            </a>
+                            <div class="item-slant reverse-slant bg-deepgrey"></div>
+                            <div class="item-slant"></div>
+                            <div class="item-label">
+                                <div class="giligili item-title" >
+                                    <p>Redis源码分析</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="position:relative;width: 100%;height: 20px;text-align: center">
+                            <p class="giligili" style="font-size: 10px"></p>
+                        </div>
+                    </div>
+
+                    <div class="post-list-item">
+                        <div class="post-list-item-container">
+                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/2.jpg);"></div>
+                            <a href="http://47.107.69.19:9000/article/4">
+                                <div class="item-desc">
+                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
+                                </div>
+                            </a>
+                            <div class="item-slant reverse-slant bg-deepgrey"></div>
+                            <div class="item-slant"></div>
+                            <div class="item-label">
+                                <div class="giligili item-title" >
+                                    <p >Redis源码分析</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="position:relative;width: 100%;height: 20px;text-align: center">
+                            <p class="giligili" style="font-size: 10px"></p>
+                        </div>
+                    </div>
+
+                    <div class="post-list-item">
+                        <div class="post-list-item-container">
+                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/2.jpg);"></div>
+                            <a href="http://47.107.69.19:9000/article/4">
+                                <div class="item-desc">
+                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
+                                </div>
+                            </a>
+                            <div class="item-slant reverse-slant bg-deepgrey"></div>
+                            <div class="item-slant"></div>
+                            <div class="item-label">
+                                <div class="giligili item-title" >
+                                    <p >Redis源码分析</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="position:relative;width: 100%;height: 20px;text-align: center">
+                            <p class="giligili" style="font-size: 10px"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="giligili-item" >
+            <header class="giligili-item-header"><h3 class="giligili-item-title"><i class="giligili giligili-tags"></i>
+                标签云</h3></header>
+            <div class="tagcloud">
+                <a href="#">3D</a>
+                <a href="#">Redis</a>
+                <a href="#">Java</a>
+                <a href="#">C</a>
+                <a href="#">C++</a>
+                <a href="#">Web</a>
+                <a href="#">Spring</a>
+                <a href="#">Mybatis</a>
+                <a href="#">Hibernate</a>
+                <a href="#">线程池</a>
+                <a href="#">Nginx</a>
+                <a href="#">Mysql</a>
+                <a href="#">Netty</a>
+            </div>
+        </div>
+
+        <div id="user-info-right" class="giligili-item">
+            <header class="giligili-item-header">
+                <h3 class="giligili-item-title">
+                    <i class="giligili giligili-menu"></i>
+                    分类
+                </h3>
+            </header>
+            <div class="row">
+                <div style="float: left;"><a href="#" title="">JavaWeb</a></div>
+                <div style="float: right;"><p>12篇</p></div>
+            </div>
+            <div class="row">
+                <div style="float: left;"><a href="#" title="">Linux</a></div>
+                <div style="float: right;"><p>10篇</p></div>
+            </div>
+            <div class="row">
+                <div style="float: left;"><a href="#" title="">Redis</a></div>
+                <div style="float: right;"><p>9篇</p></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div id="foot"><a id="back-to-top"><i class="giligili giligili-rocket"></i></a>
+    <p>版权所有 © 2017-2018 <a href="#">阑珊处</a> | <a
+            href="http://www.miitbeian.gov.cn">黑ICP备17000197号-1</a> <br/>Theme <a
+            href="#" target="_blank">Giligili</a> By <a
+            href="https://shawnzeng.com" target="_blank">Suyeq</a> With <i class="giligili giligili-heart-o throb"></i>
+        | All Rights Reserved<br/><span class="my-face">(●'◡'●)ﾉ</span>本博客已萌萌哒运行了<span id="span_dt_dt"></span></p>
+
+
+    <div id="landlord" style="left:0px;bottom:0px;">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
+        <div class="live_talk_input_body">
+            <div class="live_talk_input_name_body">
+                <input name="name" type="text" class="live_talk_name white_input" id="AIuserName" autocomplete="off" placeholder="你的名字" />
+            </div>
+            <div class="live_talk_input_text_body">
+                <input name="talk" type="text" class="live_talk_talk white_input" id="AIuserText" autocomplete="off" placeholder="要和我聊什么呀？"/>
+                <button type="button" class="live_talk_send_btn" id="talk_send">发送</button>
+            </div>
+        </div>
+        <input name="live_talk" id="live_talk" value="1" type="hidden" />
+        <div class="live_ico_box">
+            <div class="live_ico_item type_info" id="showInfoBtn"></div>
+            <div class="live_ico_item type_talk" id="showTalkBtn"></div>
+            <div class="live_ico_item type_music" id="musicButton"></div>
+            <div class="live_ico_item type_youdu" id="youduButton"></div>
+            <div class="live_ico_item type_quit" id="hideButton"></div>
+            <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
+            <audio src="" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
+            <input name="live2dBGM" value="https://t1.aixinxi.net/o_1c52p4qbp15idv6bl55h381moha.mp3" type="hidden">
+            <input name="live2dBGM" value="https://t1.aixinxi.net/o_1c52p8frrlmf1aled1e14m56una.mp3" type="hidden">
+            <input id="duType" value="douqilai,l2d_caihong" type="hidden">
+        </div>
+    </div>
+    <div id="open_live2d">召唤蕾姆</div>
+
+</div>
+<div id="layout-shadow"></div>
+<script type='text/javascript' src='js/jquery-3.2.1.min.js'></script>
+<script type='text/javascript' src='js/wp-embed.min.js'></script>
+<script type='text/javascript' src='js/func.js'></script>
+<script type='text/javascript' src='js/support.js'></script>
+<script type='text/javascript'>var giligiliConfig = {
+    "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
+    "siteStartTime": "2017-02-01",
+    "ajaxUrl": "https:\/\/shawnzeng.com\/wp-admin\/admin-ajax.php",
+    "commentEditAgain": "1",
+    "loadPjax": "1"
+};</script>
+<script type='text/javascript' src='js/app.js'></script>
+
+<!--云标签-->
+<script src="tagcloud/tagcloud.min.js"></script>
+<script type="text/javascript">
+    tagcloud();
+</script>
+
+<!--看板娘-->
+<script>
+    var message_Path = '/live2d/';//资源目录，如果目录不对请更改
+    var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
+</script>
+<script type="text/javascript" src="live2d/js/live2d.js"></script>
+<script type="text/javascript" src="live2d/js/message.js"></script>
+</body>
+</html>

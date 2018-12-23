@@ -1,0 +1,44 @@
+<div id="main-part" class="giligili-left">
+    <!--文章列表-->
+    <div id="main-content">
+
+        <article class="giligili-item post" th:each="BlogMessage:${recentBlogList}">
+            <span class="sticky"></span>
+
+            <div class="post-info" th:if="${BlogMessage.isTalk} eq 1">
+                <div class="post-author"><a href="#" title="由Suyeq发布" rel="author">Suyeq</a>
+                </div>
+                <div class="post-meta">
+                    <time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>
+                </div>
+                <div class="post-content">
+                    <a href="#">
+                        <p th:text="${BlogMessage.content}">
+                            大家好，我是埃及法老，相信大家昨天都听到“埃及牛逼”的呼喊了吧，是的，我要复活了，现在只差100人民币即可，如果你愿意助我复活，给我发100元红包，等我统治世界之后，你就是我的左护法！
+                        </p>
+                        <img src="front/img/rem.jpg" style="width: auto;height: 250px;margin-top: 6px" th:src="${BlogMessage.imgUrl}">
+                        <!--<div style="width: 100%;height: 250px;margin-top: 6px;background-image:url(front/img/rem.jpg)" th:style="'width: 100%;height: 250px;margin-top: 6px;background-image:url(' + ${BlogMessage.imgUrl}+')'"></div>-->
+                    </a>
+                </div>
+
+                <div class="post-about">
+                    <span class="post-view"><i class="giligili giligili-view"></i> <span class="count" th:text="${BlogMessage.readnum}"> 3 </span> </span>
+                    <span class="post-comment-num">
+                            <a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>
+                    <span class="post-like">
+                            <a href="javascript:;" data-action="post_zan" data-id="2593" class="">
+                                <i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span> </a> </span>
+                </div>
+            </div>
+
+            <img alt=''
+                 src='front/img/lem6.jpg'
+                 class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i
+                class="giligili giligili-certify-3"></i>
+        </article>
+
+
+    </div>
+    <div id="index-pagination" class="giligili-item"><a href="#" class="read-more">(｡・`ω´･)点我查看更多！</a>
+    </div>
+</div>
