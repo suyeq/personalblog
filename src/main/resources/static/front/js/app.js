@@ -107,6 +107,7 @@ App = {
   	postType:function() {
       	// 首页切换文章类型下划线动画
 		$('#post-type ul li').on('click',function(){
+		    console.log('jjjjj')
           	if(!$(this).hasClass('current')) {
                 var current_type = $('#post-type ul li').index('.current');
                 var future_type = $('#post-type ul li').index(this);

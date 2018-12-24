@@ -20,7 +20,8 @@ function commentLine() {
 }
 
 // 消息推送
-function createMessage(message,time=1000) {
+function createMessage(message) {
+    var time=1000
 	if ($(".message").length > 0) {
 		$(".message").remove();
 	}
@@ -88,6 +89,7 @@ function removeTouch() {
 // 阅读更多
 function pageReadMore() {
 	$('#index-pagination a').on('click',function(e) {
+	    console.log('kkkk')
         e.preventDefault();
         $(this).hide();
         var href = $(this).attr("href");

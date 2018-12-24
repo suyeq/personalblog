@@ -46,6 +46,20 @@ public class BlogMessageConversion {
         return messages;
     }
 
+    public BlogMessage getOneBlogMessage(Blog blog){
+        List<Label> labelList=labelService.findLabelsByBlogId(blog.getId());
+        List<Category> categoryList=categoryService.findCategoryByBlogId(blog.getId());
+        BlogMessage blogMessage=new BlogMessage(blog.getId(),
+                blog.getTitle(),blog.getImgUrl(),
+                readnumConversion(blog.getReadnum()),
+                TimeConversion.timeConversion(blog.getCreate_time()),
+                conmentnumConversion(blog.getConmentnum()),
+                blog.getVotenum(), blog.getContent(),
+                blog.getIsTalk(),blog.getDescrib(),
+                labelList,categoryList);
+        return blogMessage;
+    }
+
     public static String readnumConversion(int readnum){
         if (readnum<0){
             return "0";

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +25,7 @@ import java.util.List;
  * Time: 21:27
  */
 @Controller
-public class MainController {
+public class MainAndBlogController {
 
     @Autowired
     private CategoryService categoryService;
@@ -76,6 +77,11 @@ public class MainController {
         return new ModelAndView("index","allMessge",model);
     }
 
+    /**
+     * 响应博客的分类
+     * @param model
+     * @return
+     */
     @GetMapping("/blogs")
     public ModelAndView indexBlog(Model model){
         System.out.println("blogs");
@@ -86,7 +92,11 @@ public class MainController {
 
     }
 
-
+    /**
+     * 响应说说的分类
+     * @param model
+     * @return
+     */
     @GetMapping("/shuoshuos")
     public ModelAndView indexShuoShuo(Model model){
         System.out.println("shuosshuos");
@@ -97,6 +107,11 @@ public class MainController {
 
     }
 
+    /**
+     * 响应加载更多的全部
+     * @param model
+     * @return
+     */
     @GetMapping("/loadMoreAll")
     public ModelAndView loadMoreAll(Model model){
         System.out.println("loadMoreAll");
@@ -109,6 +124,11 @@ public class MainController {
         return new ModelAndView("index","allMessge",model);
     }
 
+    /**
+     * 响应加载更多的博客
+     * @param model
+     * @return
+     */
     @GetMapping("/loadMoreBlog")
     public ModelAndView loadMoreBlog(Model model){
         System.out.println("loadMoreBlog");
@@ -121,6 +141,11 @@ public class MainController {
         return new ModelAndView("front/indexblog","allMessge",model);
     }
 
+    /**
+     * 响应加载更多的说说
+     * @param model
+     * @return
+     */
     @GetMapping("/loadMoreShuoShuo")
     public ModelAndView loadMoreShuoShuo(Model model){
         System.out.println("loadMoreShuoShuo");
@@ -132,5 +157,30 @@ public class MainController {
         model.addAttribute("recentBlogList",recentBlogList);
         return new ModelAndView("front/indexshuoshuo","allMessge",model);
     }
+
+    @RequestMapping("/blogDetails/{blogid}")
+    public ModelAndView showBlogDetails(@PathVariable("blogid")int blogId, Model model){
+        System.out.println("blogdatails");
+        int blogTotal=blogService.blogTotal();
+        List<Label> labelList=labelService.getAllLabels();
+        List<Category> categoryList=categoryService.getAllCategory();
+        List<Column> columnList=columnService.getAllColumn();
+        List<BlogMessageConversion.BlogMessage> popularBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
+        List<ConmentMessageConversion.ConmentMessage> recentConmentList=
+                conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+        BlogMessageConversion.BlogMessage blogMessage=
+                blogMessageConversion.getOneBlogMessage(blogService.findOneById(blogId));
+        model.addAttribute("blogTotal",blogTotal);
+        model.addAttribute("labelList",labelList);
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("columnList",columnList);
+        model.addAttribute("popularBlogList",popularBlogList);
+        model.addAttribute("recentConmentList",recentConmentList);
+        model.addAttribute("blogDatailsMessage",blogMessage);
+        System.out.println(blogMessage.getImgUrl());
+        return new ModelAndView("front/blogDetailsPage","blogMessage",model);
+    }
+
 
 }

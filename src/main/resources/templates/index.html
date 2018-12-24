@@ -339,12 +339,14 @@
                         <time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>
                     </div>
                     <div class="post-content">
-                        <a href="#">
+                        <a data-pjax = "0" href="#" th:href="'/blogDetails/'+${BlogMessage.id}">
                         <p th:text="${BlogMessage.content}">
                             大家好，我是埃及法老，相信大家昨天都听到“埃及牛逼”的呼喊了吧，是的，我要复活了，现在只差100人民币即可，如果你愿意助我复活，给我发100元红包，等我统治世界之后，你就是我的左护法！
                         </p>
-                            <img src="front/img/rem.jpg" style="width: auto;height: 250px;margin-top: 6px" th:src="${BlogMessage.imgUrl}">
+
                         </a>
+                        <img src="front/img/rem.jpg" style="width: auto;height: 250px;margin-top: 6px" th:src="${BlogMessage.imgUrl}">
+
                     </div>
 
                     <div class="post-about">
@@ -377,7 +379,7 @@
                              style="background-image:url(front/img/rem.jpg)" th:style="'background-image:url(' + ${BlogMessage.imgUrl}+')'"></div>
                         <div class="post-thumbnail-shadow"></div>
                         <div class="text-info"><a href="#"
-                                                  rel="bookmark" title="WordPress响应式二次元主题Giligili"><h3
+                                                  rel="bookmark" title="WordPress响应式二次元主题Giligili" th:href="'/blogDetails/'+${BlogMessage.id}"><h3
                                 class="post-title" th:text="${BlogMessage.title}">WordPress响应式二次元主题Giligili</h3>
                             <div class="excerpt"><p th:text="${BlogMessage.content}">
                                 redis是一个键值对的数据库服务器，服务器中包含着若干个非空的数据库，每个非空数据库里又包含着若干个键值[&hellip;]</p></div>
@@ -518,9 +520,9 @@
 </div>
 <div id="layout-shadow"></div>
 <script type='text/javascript'>var giligiliConfig = {
-    "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
-    "siteStartTime": "2017-02-01",
-    "ajaxUrl": "https:\/\/shawnzeng.com\/wp-front\/front-ajax.php",
+    // "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
+    "siteStartTime": "2018-12-20",
+    // "ajaxUrl": "https:\/\/shawnzeng.com\/wp-front\/front-ajax.php",
     "commentEditAgain": "1",
     "loadPjax": "1"
 };</script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,10 +17,10 @@
           href="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-180x180.png"/>
     <meta name="msapplication-TileImage"
           content="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-270x270.png"/>
-    <link href="css/Column.css" rel="stylesheet">
-    <link type="text/css" media="all" href="css/allPage.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="tagcloud/tagcloud.min.css">
-    <link rel="stylesheet" href="live2d/css/live2d.css" />
+    <link href="http://localhost:8080/front/css/Column.css" rel="stylesheet">
+    <link type="text/css" media="all" href="http://localhost:8080/front/css/allPage.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="http://localhost:8080/front/tagcloud/tagcloud.min.css">
+    <link rel="stylesheet" href="http://localhost:8080/front/live2d/css/live2d.css" />
     <title>一两清风，半盏明月</title></head>
 <body>
 <header id="header">
@@ -31,18 +32,18 @@
             <ul>
                 <li id="menu-item-1404"
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="https://shawnzeng.com"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
-                    <a href="https://shawnzeng.com/%e5%bd%92%e6%a1%a3"><i class="giligili giligili-timeline"></i> 归档</a>
+                    <a href="#"><i class="giligili giligili-timeline"></i> 归档</a>
                 </li>
                 <li id="menu-item-1418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418">
-                    <a href="https://shawnzeng.com/friends"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                    <a href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419">
-                    <a href="https://shawnzeng.com/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                    <a href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
         <span id="menu-search"> <i class="giligili giligili-search"></i> </span>
-        <form action="https://shawnzeng.com/" method="get" id="content-search">
+        <form action="#" method="get" id="content-search">
             <div class="search-header"><span>请输入你想搜索的内容：</span> <i class="giligili giligili-close"></i></div>
             <input type="text" name="s" id="search" value=""/></form>
     </div>
@@ -50,21 +51,21 @@
 </header>
 <header id="mobile-header">
     <div class="mobile-user-info"><img alt=''
-                                       src='img/lem6.jpg'
-                                       srcset='img/lem6.jpg'
+                                       src='front/img/lem6.jpg'
+                                       srcset='front/img/lem6.jpg'
                                        class='avatar avatar-100 photo mobile-user-avatar' height='100' width='100'/>
         <h3 class="mobile-user-name">Shawn</h3>
         <div class="mobile-menu-container">
             <ul>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="https://shawnzeng.com"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
-                        href="https://shawnzeng.com/%e5%bd%92%e6%a1%a3"><i class="giligili giligili-timeline"></i>
+                        href="#"><i class="giligili giligili-timeline"></i>
                     归档</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418"><a
-                        href="https://shawnzeng.com/friends"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                        href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a
-                        href="https://shawnzeng.com/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                        href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
     </div>
@@ -80,7 +81,7 @@
             </a>
             <div id="user-card-info">
                 <a id="user-card-article" class="giligili-left" href="#">
-                    <p class="num">35</p>
+                    <p class="num" th:text="${blogTotal}">35</p>
                     <p class="text">博客</p>
                 </a>
                 <a id="user-card-like" class="giligili-left" href="#">
@@ -89,8 +90,8 @@
                 </a>
             </div>
             <img alt=''
-                 src='img/lem6.jpg'
-                 srcset='img/lem6.jpg 2x'
+                 src='front/img/lem6.jpg'
+                 srcset='front/img/lem6.jpg 2x'
                  class='avatar avatar-56 photo user-card-avatar' height='56' width='56' /> <i
                 class="giligili giligili-certify-3"></i>
         </div>
@@ -99,18 +100,10 @@
                     href="#">473721601</a></div>
             <div class="row"><i class="giligili giligili-email"></i>&nbsp;&nbsp;&nbsp;<a
                     href="https://blog.csdn.net/hackersuye">Suyeq233</a></div>
-            <!--<div class="row"><i class="giligili giligili-qqqun"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://jq.qq.com/?_wv=1027&amp;k=44nyJOX">面向博客编程</a></div>-->
-            <!--<div class="row"><i class="giligili giligili-weibo"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://weibo.com/shawnzeng1996">ShawnZeng1996</a></div>-->
             <div class="row"><i class="giligili giligili-github"></i>&nbsp;&nbsp;&nbsp;<a
                     href="https://github.com/suyeq">Suyeq233</a></div>
             <div class="row"><i class="csdn giligili-csdn"></i>&nbsp;&nbsp;&nbsp;<a
                     href="https://blog.csdn.net/hackersuye">Suyeq233</a></div>
-            <!--<div class="row"><i class="giligili giligili-zhihu"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://www.zhihu.com/people/shawn_zeng/activities">ShawnZeng</a></div>-->
-            <!--<div class="row"><i class="giligili giligili-bilibili"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://space.bilibili.com/9317943/#/dynamic">Shawn1996</a></div>-->
             <div class="intro">一杯敬明天，一杯敬过往</div>
         </div>
 
@@ -174,14 +167,14 @@
                     music: [{
                         title: '風の住む街',
                         author: '磯村由纪子',
-                        url: 'music/磯村由纪子 - 風の住む街.mp3',
-                        pic: 'img/风.jpg'
+                        url: 'http://localhost:8080/front/music/磯村由纪子 - 風の住む街.mp3',
+                        pic: 'http://localhost:8080/front/img/风.jpg'
                     },
                         {
                             title: 'ヨスガノソラ メインテーマ -記憶',
                             author: '三輪学',
-                            url: 'music/三輪学 - ヨスガノソラ メインテーマ -記憶-.mp3',
-                            pic: 'img/穹.jpg'
+                            url: 'http://localhost:8080/front/music/三輪学 - ヨスガノソラ メインテーマ -記憶-.mp3',
+                            pic: 'http://localhost:8080/front/img/穹.jpg'
                         },
 //                        {
 //                            title: 'Promise',
@@ -192,14 +185,14 @@
                         {
                             title: '蝶恋',
                             author: '林坤信',
-                            url: 'music/林坤信 - 蝶恋(钢琴版).mp3',
-                            pic: 'img/古剑.jpg'
+                            url: 'http://localhost:8080/front/music/林坤信 - 蝶恋(钢琴版).mp3',
+                            pic: 'http://localhost:8080/front/img/古剑.jpg'
                         },
                         {
                             title: '月光の雲海',
                             author: '久石譲',
-                            url: 'music/久石譲 - 月光の雲海.mp3',
-                            pic: 'img/轻语.jpg'
+                            url: 'http://localhost:8080/front/music/久石譲 - 月光の雲海.mp3',
+                            pic: 'http://localhost:8080/front/img/轻语.jpg'
                         }
                     ]
                 });</script>
@@ -210,73 +203,46 @@
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
                     class="giligili giligili-postlist"></i> 最受欢迎</h3></header>
             <ul class="sidebar-posts-list">
-                <li><p class="post-title"><a href="https://shawnzeng.com/wordpress-theme-memory.html"
-                                             title="WordPress响应式主题Memory" rel="bookmark">WordPress响应式主题Memory</a></p>
-                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;33.62k</span><span><i
-                            class="giligili giligili-time"></i>&nbsp;1年前</span><span><i
-                            class="giligili giligili-comment"></i>&nbsp;<a
-                            href="https://shawnzeng.com/wordpress-theme-memory.html#comments">206</a></span></p></li>
-                <li><p class="post-title"><a href="https://shawnzeng.com/after-ddos.html" title="经历过一波DDos攻击过后…"
-                                             rel="bookmark">经历过一波DDos攻击过后…</a></p>
-                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;10.02k</span><span><i
-                            class="giligili giligili-time"></i>&nbsp;2年前</span><span><i
-                            class="giligili giligili-comment"></i>&nbsp;<a
-                            href="https://shawnzeng.com/after-ddos.html#comments">38</a></span></p></li>
-                <li><p class="post-title"><a href="https://shawnzeng.com/wordpress-add-desc.html"
-                                             title="WordPress给来访的盆友们添加评论头衔" rel="bookmark">WordPress给来访的盆友们添加评论头衔</a>
-                </p>
-                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;8.94k</span><span><i
-                            class="giligili giligili-time"></i>&nbsp;2年前</span><span><i
-                            class="giligili giligili-comment"></i>&nbsp;<a
-                            href="https://shawnzeng.com/wordpress-add-desc.html#comments">21</a></span></p></li>
+
+                <li th:each="BlogMessage:${popularBlogList}">
+                    <p class="post-title">
+                        <a href="#" title="WordPress响应式主题Memory" rel="bookmark"
+                           th:text="${BlogMessage.title}">WordPress响应式主题Memory</a></p>
+                    <p class="post-info">
+                        <span>
+                            <i class="giligili giligili-view"></i>
+                            <a href="#" th:text="${BlogMessage.readnum}">33.62k</a>
+                        </span>
+                        <span>
+                            <i class="giligili giligili-time"></i>
+                            <a href="#" th:text="${BlogMessage.time}">1年前</a>
+                        </span>
+                        <span>
+                            <i class="giligili giligili-comment"></i>
+                            <a href="#" th:text="${BlogMessage.conmentnum}">206</a>
+                        </span>
+                    </p>
+                </li>
+
             </ul>
         </div>
+        <!--最近评论-->
         <div class="giligili-item">
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
                     class="giligili giligili-comments"></i> 最近评论</h3></header>
             <ul class="recentcomments">
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
+                <li th:each="ConmentMessage:${recentConmentList}">
+                    <a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
                        title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                          src='front/img/avatar.png'
                                           class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>3分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">OωO</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1589"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>3分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">大佬，那个验证的计算不会实时刷新，需要重新刷新后才会显示，不刷新再次提交会提示验证错误</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1586"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>7分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">已给start</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-9#comment-1585"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>8分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">php写的|´・ω・)ノ，准备改成Java进行二次开发φ(￣∇￣o)</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-9#comment-1584"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>13分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">感谢大佬的分享，哈哈哈</span></div>
-                </a></li>
+                        <div class="right-box"><span class="author" th:text="${ConmentMessage.visitorName}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
+                            <br/><span class="recent-comment" th:text="${ConmentMessage.content}">OωO</span></div>
+                    </a>
+                </li>
             </ul>
         </div>
+
         <div class="giligili-item">
             <div id="calendar_wrap" class="calendar_wrap">
                 <table id="wp-calendar">
@@ -294,7 +260,7 @@
                     </thead>
                     <tfoot>
                     <tr>
-                        <td colspan="3" id="prev"><a href="https://shawnzeng.com/2018/10">&laquo; 10月</a></td>
+                        <td colspan="3" id="prev"><a href="#">&laquo; 10月</a></td>
                         <td class="pad">&nbsp;</td>
                         <td colspan="3" id="next" class="pad">&nbsp;</td>
                     </tr>
@@ -349,109 +315,157 @@
     </div>
 
     <div id="main-part" class="giligili-left">
+
         <div class="giligili-item breadcrumbs">当前位置：
-            <div itemscope itemtype="http://schema.org/WebPage" id="crumbs"><a itemprop="breadcrumb"
-                                                                               href="https://shawnzeng.com">首页</a> > <a
-                    itemprop="breadcrumb" href="https://shawnzeng.com/category/news">大新闻</a> > <span class="current">WordPress响应式二次元主题Giligili</span>
+            <div itemscope itemtype="http://schema.org/WebPage" id="crumbs">
+                <a itemprop="breadcrumb" href="/index">首页</a> >
+                <a itemprop="breadcrumb" href="https://shawnzeng.com/category/news">大新闻</a> >
+                <span class="current">WordPress响应式二次元主题Giligili</span>
             </div>
         </div>
+
         <div id="main-content">
-            <article class="giligili-item post" id="post">
+
+            <article class="giligili-item post" id="shuoshuo" th:if="${blogDatailsMessage.isTalk} eq 1">
                 <div class="post-info">
-                    <div class="post-author"><a href="https://shawnzeng.com/author/shawn" title="由Shawn发布" rel="author">Shawn</a>
+                    <div class="post-author">
+                        <a href="javascript:void(0);" title="由Suyeq发布" rel="author">Suyeq</a>
                     </div>
-                    <div class="post-meta"><i class="giligili giligili-time"></i>
-                        <time itemprop="datePublished">4月前</time> &nbsp;•&nbsp; <span class="post-view"><i
-                                class="giligili giligili-view"></i> 3.93k</span> &nbsp;•&nbsp; <span
-                                class="post-comment-num"><i class="giligili giligili-comment"></i> <a
-                                href="https://shawnzeng.com/wordpress-theme-giligili.html#comments">49</a></span>
-                        <span></span></div>
-                    <!--<div class="post-preface">-->
-                        <!--从实习后期开始写的主题，期间断断续续，今天终于写出第一版了！这套主题是在写完Memory之后写的，所以手法娴熟了很多，大家可以来尝试一下哦！另外我也会开始着手于重构Memory主题~-->
-                    <!--</div>-->
+                    <div class="post-meta"> <i class="giligili giligili-time"></i>
+                        <time itemprop="datePublished" th:text="${blogDatailsMessage.time}">2月前</time>&nbsp;•&nbsp;
+                        <span class="post-view"><i class="giligili giligili-view"></i> <a href="javascript:void(0);" th:text="${blogDatailsMessage.readnum}">714</a></span>&nbsp;•&nbsp;
+                        <span class="post-comment-num"><i class="giligili giligili-comment"></i>
+                <a href="javascript:void(0);" th:text="${blogDatailsMessage.conmentnum}">7</a>
+                          </span>
+                        <span></span>
+                    </div>
                     <div class="post-content">
-                        <!--<img width="1646" height="1015"-->
-                                                   <!--src="https://shawnzeng.com/wp-content/uploads/2018/07/giligili-screenshot.png"-->
-                                                   <!--class="attachment-full size-full wp-post-image" alt=""-->
-                                                   <!--srcset="https://shawnzeng.com/wp-content/uploads/2018/07/giligili-screenshot.png 1646w, https://shawnzeng.com/wp-content/uploads/2018/07/giligili-screenshot-768x474.png 768w"-->
-                                                   <!--sizes="(max-width: 1646px) 100vw, 1646px"/>-->
                         <div class="text-info">
-                            <h3 class="post-title">WordPress响应式二次元主题Giligili</h3>
                             <div class="content">
-
-                                <p>
-                                很久之前就想写一套二次元主题，之前的Memory其实初期是有二次元的影子的，但后来还是把这种风格砍了，于是就有了重写一款完全二次元风格的主题。在这样的背景下，这款主题——Giligili就诞生了。</p>
-                                <p>
-                                    不得不说，写主题真的是一件非常累人的事情，不过在这过程也学到了不少。从刚开始写Memory的一脸懵逼到现在写Giligili的逐渐上路，真的收获了很多。这款主题有很大一部分是仿照某站设计的，但由于各式各样的原因，我也加入了一些其他的设计。主题特性如下：</p>
-                                <blockquote>
-                                    <ol>
-                                        <li>多种文章形式，支持说说</li>
-                                        <li>样式高度自定义</li>
-                                        <li>pjax局部无刷新</li>
-                                        <li>集成多项小工具：最近访客、最近评论、标签云、热门文章</li>
-                                        <li>内容分享、打赏</li>
-                                        <li>面包屑导航</li>
-                                        <li>SMTP发送邮件、评论邮件回复</li>
-                                        <li>SEO设置、维护模式</li>
-                                        <li>支持主题配置备份还原</li>
-                                    </ol>
-                                </blockquote>
-                                <p>鸣谢：<a href="https://blog.siitake.cn/" target="_blank" class="at">香菇</a>、<a
-                                        href="https://diygod.me/" target="_blank" class="at">DIYgod</a>、<a
-                                        href="http://www.theask.cn" target="_blank" class="at">该问</a>、<a
-                                        href="https://kotori.love" target="_blank" class="at">空樱酱</a>、<a
-                                        href="https://www.ludou.org" target="_blank" class="at">露兜</a>、<a
-                                        href="http://www.inlojv.com" target="_blank" class="at">JV</a>。</p>
-                                <p>本主题售价100元，在文章末尾打赏100元后并在发送邮件至admin#shawnzeng.com（#替换为@，请勿使用gmail邮箱容易收不到），邮件标题注明购买
-                                    Giligili主题+你的支付宝/微信账号即可，我会在24小时内将主题压缩包发送至你的邮箱~另外，出现在以上鸣谢名单和我友链中的后宫和大佬们可以免费在我这获取一份本主题！之前购买过Memory主题的同学可半价购买本主题！另外说一句，在维护本主题的同时，我也会开始重构memory主题，把之前小白时期写的一系列BUG尽量修复~</p>
-                                <p>主题使用教程：
-                                <div class="post-excerpt post-excerpt-2 no-touch">
-                                    <div class="post-thumbnail"
-                                         style="background-image:url(https://shawnzeng.com/wp-content/themes/Giligili/img/default_bg.jpg)"></div>
-                                    <div class="text-info"><a class="no-des" href="https://shawnzeng.com/giligili-help"
-                                                              rel="bookmark" title="Giligili主题使用教程"><h3
-                                            class="post-title">Giligili主题使用教程</h3>
-                                        <div class="excerpt">安装环境要求 PHP5.6+，wordpress4.8+。 主题安装&amp;&amp;更新
-                                            获取主题后，直接在wordpress后台“外观-&gt;主题”中上传压缩包进行安装即可，此后每次主题更新可在wordpress后台“仪表盘-&gt;更新”中获得通知。
-                                            主题功能配置 主题安装成功后，首先需要 [&hellip;]
-                                        </div>
-                                    </a></div>
+                                <p th:text="${blogDatailsMessage.content}">
+                                    女朋友萌化了怎么办？<br> PS:不要不要催更了已经在写了……<br>
+                                </p>
+                                <div>
+                                    <a href="https://shawnzeng.com/wp-content/uploads/2018/10/0CC153A8DBAD366734A9D100ECF17583-1.jpg" th:href="${blogDatailsMessage.imgUrl}" data-fancybox="gallery" class="no-des">
+                                        <img src="https://shawnzeng.com/wp-content/uploads/2018/10/0CC153A8DBAD366734A9D100ECF17583-1.jpg" th:src="${blogDatailsMessage.imgUrl}" alt="" width="auto" height="250px">
+                                    </a>
                                 </div>
-                                </p><p>另外，关于本主题有什么意见/建议也可以在此页留言，我会尽快回复~</p>
-                                <div class="ad">
-                                    <script async
-                                            src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                    <!-- ad -->
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-client="ca-pub-4924713764752759"
-                                         data-ad-slot="8452763453"
-                                         data-ad-format="auto"></ins>
-                                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                                </div>
-                                <div id="copyright-info"><p>原文链接：<a
-                                        href="https://shawnzeng.com/wordpress-theme-giligili.html"
-                                        title="WordPress响应式二次元主题Giligili">WordPress响应式二次元主题Giligili</a><br/><a
-                                        href="https://shawnzeng.com" title="诗与酒">诗与酒</a> 版权所有，转载请注明出处。</p></div>
                             </div>
-
-                            <span class="tags"><ul><li class="tag"><a href="https://shawnzeng.com/tag/giligili"
-                                                                      rel="tag">Giligili</a></li><li class="tag"><a
-                                    href="https://shawnzeng.com/tag/wordpress" rel="tag">WordPress</a></li><li
-                                    class="tag"><a href="https://shawnzeng.com/tag/%e4%b8%bb%e9%a2%98" rel="tag">主题</a></li></ul></span>
                         </div>
                     </div>
+                </div>
+                <img alt="" src="http://localhost:8080/front/img/lem6.jpg"  class="avatar avatar-48 photo post-author-avatar" height="48" width="48">
+                <i class="giligili giligili-certify-3"></i>
+            </article>
 
-                    <span class="category"><ul class="post-categories"><li><a href="https://shawnzeng.com/category/news"
-                                                                              rel="category tag">大新闻</a></li><li><a
-                            href="https://shawnzeng.com/category/growth" rel="category tag">成长路</a></li></ul>
+            <article class="giligili-item post" id="post" th:if="${blogDatailsMessage.isTalk} eq 0">
+                <div class="post-info">
+                    <div class="post-author">
+                        <a href="#" title="由Suyeq发布" rel="author">Suyeq</a>
+                    </div>
+                    <div class="post-meta"><i class="giligili giligili-time"></i>
+                        <time itemprop="datePublished" th:text="${blogDatailsMessage.time}">4月前</time>
+                        &nbsp;•&nbsp;<span class="post-view"><i class="giligili giligili-view"></i> <a href="javascript:void(0);" th:text="${blogDatailsMessage.readnum}">3.93k</a></span>
+                        &nbsp;•&nbsp; <span class="post-comment-num"><i class="giligili giligili-comment"></i>
+                                            <a href="javascript:void(0);"th:text="${blogDatailsMessage.conmentnum}">49</a>
+                                      </span>
+                        <span></span>
+                    </div>
+                    <div class="post-preface">
+                    <text th:text="${blogDatailsMessage.describ}">
+                    从实习后期开始写的主题，期间断断续续，今天终于写出第一版了！这套主题是在写完Memory之后写的，所以手法娴熟了很多，大家可以来尝试一下哦！另外我也会开始着手于重构Memory主题~
+                    </text>
+                    </div>
+                    <div class="post-content">
+                        <img width="1646" height="1015"
+                        src="https://images3.alphacoders.com/734/734139.png" th:src="${blogDatailsMessage.imgUrl}"
+                        class="attachment-full size-full wp-post-image" alt=""
+                        sizes="(max-width: 1646px) 100vw, 1646px"/>
+
+                        <div class="text-info">
+                            <h3 class="post-title" th:text="${blogDatailsMessage.title}">WordPress响应式二次元主题Giligili</h3>
+                            <div class="content"  th:text="${blogDatailsMessage.content}" >
+                            <!--<p>很久之前就想写一套二次元主题，之前的Memory其实初期是有二次元的影子的，但后来还是把这种风格砍了，于是就有了重写一款完全二次元风格的主题。在这样的背景下，这款主题——Giligili就诞生了。</p>-->
+                            <!--<p>不得不说，写主题真的是一件非常累人的事情，不过在这过程也学到了不少。从刚开始写Memory的一脸懵逼到现在写Giligili的逐渐上路，真的收获了很多。这款主题有很大一部分是仿照某站设计的，但由于各式各样的原因，我也加入了一些其他的设计。主题特性如下：</p>-->
+                            <!--<blockquote>-->
+                            <!--<ol>-->
+                            <!--<li>多种文章形式，支持说说</li>-->
+                            <!--<li>样式高度自定义</li>-->
+                            <!--<li>pjax局部无刷新</li>-->
+                            <!--<li>集成多项小工具：最近访客、最近评论、标签云、热门文章</li>-->
+                            <!--<li>内容分享、打赏</li>-->
+                            <!--<li>面包屑导航</li>-->
+                            <!--<li>SMTP发送邮件、评论邮件回复</li>-->
+                            <!--<li>SEO设置、维护模式</li>-->
+                            <!--<li>支持主题配置备份还原</li>-->
+                            <!--</ol>-->
+                            <!--</blockquote>-->
+                            <!--<p>鸣谢：<a href="https://blog.siitake.cn/" target="_blank" class="at">香菇</a>、<a-->
+                            <!--href="https://diygod.me/" target="_blank" class="at">DIYgod</a>、<a-->
+                            <!--href="http://www.theask.cn" target="_blank" class="at">该问</a>、<a-->
+                            <!--href="https://kotori.love" target="_blank" class="at">空樱酱</a>、<a-->
+                            <!--href="https://www.ludou.org" target="_blank" class="at">露兜</a>、<a-->
+                            <!--href="http://www.inlojv.com" target="_blank" class="at">JV</a>。</p>-->
+                            <!--<p>本主题售价100元，在文章末尾打赏100元后并在发送邮件至admin#shawnzeng.com（#替换为@，请勿使用gmail邮箱容易收不到），邮件标题注明购买-->
+                            <!--Giligili主题+你的支付宝/微信账号即可，我会在24小时内将主题压缩包发送至你的邮箱~另外，出现在以上鸣谢名单和我友链中的后宫和大佬们可以免费在我这获取一份本主题！之前购买过Memory主题的同学可半价购买本主题！另外说一句，在维护本主题的同时，我也会开始重构memory主题，把之前小白时期写的一系列BUG尽量修复~</p>-->
+                            <!--<p>主题使用教程：-->
+                            <!--<div class="post-excerpt post-excerpt-2 no-touch">-->
+                            <!--<div class="post-thumbnail"-->
+                            <!--style="background-image:url(https://shawnzeng.com/wp-content/themes/Giligili/img/default_bg.jpg)"></div>-->
+                            <!--<div class="text-info"><a class="no-des" href="https://shawnzeng.com/giligili-help"-->
+                            <!--rel="bookmark" title="Giligili主题使用教程"><h3-->
+                            <!--class="post-title">Giligili主题使用教程</h3>-->
+                            <!--<div class="excerpt">安装环境要求 PHP5.6+，wordpress4.8+。 主题安装&amp;&amp;更新-->
+                            <!--获取主题后，直接在wordpress后台“外观-&gt;主题”中上传压缩包进行安装即可，此后每次主题更新可在wordpress后台“仪表盘-&gt;更新”中获得通知。-->
+                            <!--主题功能配置 主题安装成功后，首先需要 [&hellip;]-->
+                            <!--</div>-->
+                            <!--</a></div>-->
+                            <!--</div>-->
+                            <!--</p><p>另外，关于本主题有什么意见/建议也可以在此页留言，我会尽快回复~</p>-->
+                            <!--<div class="ad">-->
+                            <!--<script async-->
+                            <!--src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+                            <!--&lt;!&ndash; ad &ndash;&gt;-->
+                            <!--<ins class="adsbygoogle"-->
+                            <!--style="display:block"-->
+                            <!--data-ad-client="ca-pub-4924713764752759"-->
+                            <!--data-ad-slot="8452763453"-->
+                            <!--data-ad-format="auto"></ins>-->
+                            <!--<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>-->
+                            <!--</div>-->
+                            <!--<div id="copyright-info"><p>原文链接：<a-->
+                            <!--href="https://shawnzeng.com/wordpress-theme-giligili.html"-->
+                            <!--title="WordPress响应式二次元主题Giligili">WordPress响应式二次元主题Giligili</a><br/><a-->
+                            <!--href="https://shawnzeng.com" title="诗与酒">诗与酒</a> 版权所有，转载请注明出处。</p></div>-->
+                            <!---->
+                            </div>
+
+                            <!--标签-->
+                            <span class="tags">
+                                <ul>
+                                    <li class="tag" th:each="Label:${blogDatailsMessage.labelList}"><a href="javascript:void(0);" rel="tag" th:text="${Label.name}">Giligili</a></li>
+                                    <!--<li class="tag"><a href="javascript:void(0);" rel="tag">WordPress</a></li>-->
+                                    <!--<li class="tag"><a href="javascript:void(0);" rel="tag">主题</a></li>-->
+                                </ul>
+                            </span>
+                        </div>
+
+                    </div>
+                    <!--分类-->
+                    <span class="category">
+                        <ul class="post-categories">
+                            <li th:each="Category:${blogDatailsMessage.categoryList}"><a href="javascript:void(0);" rel="category tag" th:text="${Category.name}">大新闻</a></li>
+                            <!--<li><a href="https://shawnzeng.com/category/growth" rel="category tag">成长路</a></li>-->
+                        </ul>
                     </span>
                 </div>
                 <img alt=''
-                     src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                     srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                     src='http://localhost:8080/front/img/lem6.jpg'
                      class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i
-                    class="giligili giligili-certify-3"></i></article>
+                    class="giligili giligili-certify-3"></i>
+            </article>
+
+
             <div class="giligili-post-extra giligili-item">
                 <div><span class="post-like"><a href="javascript:;" data-action="post_zan" data-id="2518" class="done"> <i
                         class="giligili giligili-zan"></i> 点赞 <span class="count">27 </span> </a> </span></div>
@@ -461,13 +475,13 @@
                         <div class="pay-body">
                             <h3>扫一扫支付</h3> <img class="alipay chosen"
                                                 src="https://shawnzeng.com/wp-content/uploads/2017/10/zhifubaodonate.png"/>
-                                <img class="wechatpay"
-                                     src="https://shawnzeng.com/wp-content/uploads/2017/10/weixindonate.png"/>
-                                <div class="pay-chose"><a class="alibutton chosen"><img
-                                        src="https://shawnzeng.com/wp-content/themes/Giligili/img/alipay.png"/></a> <a
-                                        class="wechatbutton"><img
-                                        src="https://shawnzeng.com/wp-content/themes/Giligili/img/wechat.png"/></a>
-                                </div>
+                            <img class="wechatpay"
+                                 src="https://shawnzeng.com/wp-content/uploads/2017/10/weixindonate.png"/>
+                            <div class="pay-chose"><a class="alibutton chosen"><img
+                                    src="https://shawnzeng.com/wp-content/themes/Giligili/img/alipay.png"/></a> <a
+                                    class="wechatbutton"><img
+                                    src="https://shawnzeng.com/wp-content/themes/Giligili/img/wechat.png"/></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -480,6 +494,8 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="comment-part giligili-item">
                 <div class="comment-respond" id="respond"><h3 id="reply-title"
                                                               class="comment-title comment-reply-title"> 评论 <a
@@ -531,7 +547,7 @@
                                     class="giligili giligili-userlevel-1"></span>
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>路过</p>
-                                        <div class="comment-info"><span class="floor">#30</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#30</span></span> <span
                                                 class="comment-time">7天前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1577" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -561,7 +577,7 @@
                                 <span class="giligili giligili-userlevel-1"></span>
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>已购买收藏~୧(๑•̀⌄•́๑)૭</p>
-                                        <div class="comment-info"><span class="floor">#29</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#29</span></span> <span
                                                 class="comment-time">1周前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1572" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -594,7 +610,7 @@
                                     <div class="comment-comment"><p><img
                                             src="/wp-content/themes/Giligili/emoji/paopao/乖@2x.png" alt="乖"
                                             class="OwO-img"/>typecho可以使用你的主题吗？</p>
-                                        <div class="comment-info"><span class="floor">#28</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#28</span></span> <span
                                                 class="comment-time">1周前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1571" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -657,7 +673,7 @@
                                 <span class="giligili giligili-userlevel-1"></span>
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>博主是 f还是m</p>
-                                        <div class="comment-info"><span class="floor">#27</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#27</span></span> <span
                                                 class="comment-time">1周前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1570" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -685,7 +701,7 @@
                                 <span class="giligili giligili-userlevel-1"></span>
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>大佬，有预览地址吗？</p>
-                                        <div class="comment-info"><span class="floor">#26</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#26</span></span> <span
                                                 class="comment-time">4周前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1511" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -748,7 +764,7 @@
                                 <span class="giligili giligili-userlevel-2"></span>
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>另外，此主题返回顶部按钮失效（百度浏览器）</p>
-                                        <div class="comment-info"><span class="floor">#25</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#25</span></span> <span
                                                 class="comment-time">1月前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1498" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -811,7 +827,7 @@
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>喜欢Memory主题，但是Memory
                                         2.0.6还有很多需要改进的地方，比如：标签云默认100个，小工具更改个数无效；首页、分类列表显示摘要太呆板，显示全文又破坏整页布局，最好缩略图文的样式固定；侧栏跟随滚动；希望添加相关文章功能；文章阅读数调用cookie；很喜欢这个主题，但是又有很多想修改的地方，真的很为难，期待尽快推出重构。</p>
-                                        <div class="comment-info"><span class="floor">#24</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#24</span></span> <span
                                                 class="comment-time">1月前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1497" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -873,7 +889,7 @@
                                 <span class="giligili giligili-userlevel-1"></span>
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>设计主题不容易，赞一个</p>
-                                        <div class="comment-info"><span class="floor">#23</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#23</span></span> <span
                                                 class="comment-time">1月前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1496" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -901,7 +917,7 @@
                                 <span class="giligili giligili-userlevel-1"></span>
                                 <div class="comment-chat">
                                     <div class="comment-comment"><p>(๑•́ ₃ •̀๑)</p>
-                                        <div class="comment-info"><span class="floor">#22</span"></span> <span
+                                        <div class="comment-info"><span class="floor">#22</span></span> <span
                                                 class="comment-time">2月前</span> <span class="post-like"><a
                                                 href="javascript:;" data-action="comment_zan" data-id="1474" class=""><i
                                                 class="giligili giligili-zan"></i> <span
@@ -932,68 +948,28 @@
     </div>
 
 
+
+
     <div id="sidebar-right" class="giligili-left">
         <div class="giligili-item">
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
                     class="giligili giligili-visitors"></i> 博主专栏</h3></header>
 
-            <div class="post-lists ">
+            <div class="post-lists " >
                 <div class="post-lists-body">
-                    <div class="post-list-item">
+                    <div class="post-list-item" th:each="Column:${columnList}">
                         <div class="post-list-item-container">
-                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/穹.png);"></div>
-                            <a href="http://47.107.69.19:9000/article/4">
+                            <div class="item-thumb bg-deepgrey" style="background-image:url(front/img/穹.png);" th:style="'background-image:url(' + ${Column.imgUrl}+')'"></div>
+                            <a href="#">
                                 <div class="item-desc">
-                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
+                                    <p class="giligili" style="font-size: 10px" th:text="${Column.describ}">redis源码分析</p>
                                 </div>
                             </a>
                             <div class="item-slant reverse-slant bg-deepgrey"></div>
                             <div class="item-slant"></div>
                             <div class="item-label">
                                 <div class="giligili item-title" >
-                                    <p>Redis源码分析</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="position:relative;width: 100%;height: 20px;text-align: center">
-                            <p class="giligili" style="font-size: 10px"></p>
-                        </div>
-                    </div>
-
-                    <div class="post-list-item">
-                        <div class="post-list-item-container">
-                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/2.jpg);"></div>
-                            <a href="http://47.107.69.19:9000/article/4">
-                                <div class="item-desc">
-                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
-                                </div>
-                            </a>
-                            <div class="item-slant reverse-slant bg-deepgrey"></div>
-                            <div class="item-slant"></div>
-                            <div class="item-label">
-                                <div class="giligili item-title" >
-                                    <p >Redis源码分析</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="position:relative;width: 100%;height: 20px;text-align: center">
-                            <p class="giligili" style="font-size: 10px"></p>
-                        </div>
-                    </div>
-
-                    <div class="post-list-item">
-                        <div class="post-list-item-container">
-                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/2.jpg);"></div>
-                            <a href="http://47.107.69.19:9000/article/4">
-                                <div class="item-desc">
-                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
-                                </div>
-                            </a>
-                            <div class="item-slant reverse-slant bg-deepgrey"></div>
-                            <div class="item-slant"></div>
-                            <div class="item-label">
-                                <div class="giligili item-title" >
-                                    <p >Redis源码分析</p>
+                                    <p th:text="${Column.name}">Redis源码分析</p>
                                 </div>
                             </div>
                         </div>
@@ -1007,23 +983,14 @@
 
         </div>
 
+
+
+        <!--标签云-->
         <div class="giligili-item" >
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i class="giligili giligili-tags"></i>
                 标签云</h3></header>
             <div class="tagcloud">
-                <a href="#">3D</a>
-                <a href="#">Redis</a>
-                <a href="#">Java</a>
-                <a href="#">C</a>
-                <a href="#">C++</a>
-                <a href="#">Web</a>
-                <a href="#">Spring</a>
-                <a href="#">Mybatis</a>
-                <a href="#">Hibernate</a>
-                <a href="#">线程池</a>
-                <a href="#">Nginx</a>
-                <a href="#">Mysql</a>
-                <a href="#">Netty</a>
+                <a href="#" th:each="Label:${labelList}" th:text="${Label.name}">3D</a>
             </div>
         </div>
 
@@ -1034,31 +1001,32 @@
                     分类
                 </h3>
             </header>
-            <div class="row">
-                <div style="float: left;"><a href="#" title="">JavaWeb</a></div>
-                <div style="float: right;"><p>12篇</p></div>
+            <div class="row" th:each="Category:${categoryList}">
+                <div style="float: left;margin-left: 5px"><a href="#" title="" th:text="${Category.name}">JavaWeb</a></div>
+                <div style="float: right;"><p th:text="${Category.blognum}+' 篇'">12篇</p></div>
             </div>
-            <div class="row">
-                <div style="float: left;"><a href="#" title="">Linux</a></div>
-                <div style="float: right;"><p>10篇</p></div>
-            </div>
-            <div class="row">
-                <div style="float: left;"><a href="#" title="">Redis</a></div>
-                <div style="float: right;"><p>9篇</p></div>
-            </div>
+            <!--<div class="row">-->
+            <!--<div style="float: left;"><a href="#" title="">Linux</a></div>-->
+            <!--<div style="float: right;"><p>10篇</p></div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div style="float: left;"><a href="#" title="">Redis</a></div>-->
+            <!--<div style="float: right;"><p>9篇</p></div>-->
+            <!--</div>-->
 
         </div>
+
     </div>
 </div>
 <div id="foot"><a id="back-to-top"><i class="giligili giligili-rocket"></i></a>
-    <p>版权所有 © 2017-2018 <a href="https://shawnzeng.com">诗与酒</a> | <a
+    <p>版权所有 © 2017-2018 <a href="#">阑珊处</a> | <a
             href="http://www.miitbeian.gov.cn">黑ICP备17000197号-1</a> <br/>Theme <a
-            href="https://shawnzeng.com/wordpress-theme-giligili.html" target="_blank">Giligili</a> By <a
-            href="https://shawnzeng.com" target="_blank">Shawn</a> With <i class="giligili giligili-heart-o throb"></i>
+            href="#" target="_blank">Giligili</a> By <a
+            href="#" target="_blank">Suyeq</a> With <i class="giligili giligili-heart-o throb"></i>
         | All Rights Reserved<br/><span class="my-face">(●'◡'●)ﾉ</span>本博客已萌萌哒运行了<span id="span_dt_dt"></span></p>
 
 
-    <div id="landlord" style="left:5px;bottom:0px;">
+    <div id="landlord" style="left:0px;bottom:0px;">
         <div class="message" style="opacity:0"></div>
         <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
         <div class="live_talk_input_body">
@@ -1088,23 +1056,24 @@
 
 </div>
 <div id="layout-shadow"></div>
-<script type='text/javascript' src='js/jquery-3.2.1.min.js'></script>
-<script type='text/javascript' src='js/wp-embed.min.js'></script>
-<script type='text/javascript' src='js/func.js'></script>
-<script type='text/javascript' src='js/support.js'></script>
 <script type='text/javascript'>var giligiliConfig = {
-    "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
-    "siteStartTime": "2017-02-01",
-    "ajaxUrl": "https:\/\/shawnzeng.com\/wp-admin\/admin-ajax.php",
+    // "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
+    "siteStartTime": "2018-12-20",
+    // "ajaxUrl": "https:\/\/shawnzeng.com\/wp-front\/front-ajax.php",
     "commentEditAgain": "1",
     "loadPjax": "1"
 };</script>
-<script type='text/javascript' src='js/app.js'></script>
-
+<script type='text/javascript' src='http://localhost:8080/front/js/jquery-3.2.1.min.js'></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/wp-embed.min.js'></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/func.js'></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/support.js'></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/app.js'></script>
 <!--云标签-->
-<script src="tagcloud/tagcloud.min.js"></script>
+<script src="http://localhost:8080/front/tagcloud/tagcloud.min.js"></script>
 <script type="text/javascript">
+    // window.onload=function(){
     tagcloud();
+    // }
 </script>
 
 <!--看板娘-->
@@ -1112,7 +1081,7 @@
     var message_Path = '/live2d/';//资源目录，如果目录不对请更改
     var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
 </script>
-<script type="text/javascript" src="live2d/js/live2d.js"></script>
-<script type="text/javascript" src="live2d/js/message.js"></script>
+<script type="text/javascript" src="http://localhost:8080/front/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="http://localhost:8080/front/live2d/js/message.js"></script>
 </body>
 </html>
