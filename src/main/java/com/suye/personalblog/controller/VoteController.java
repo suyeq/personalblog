@@ -23,6 +23,7 @@ public class VoteController {
     @Autowired
     private ConmentService conmentService;
 
+
     @RequestMapping("/vote")
     @ResponseBody
     public int increaseVotenum(@RequestParam("action")String action,
