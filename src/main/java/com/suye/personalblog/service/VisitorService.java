@@ -27,5 +27,19 @@ public class VisitorService {
         return visitorMapping.findOneById(id);
     }
 
+    public void addVisitor(String name,String email,String address){
+        visitorMapping.addVisitor(name,email,address);
+    }
+
+    public boolean isHaveThisVisitor(String email){
+        if (visitorMapping.findOneByEmail(email)!=null){
+            return true;
+        }
+        return false;
+    }
+
+    public Visitor findOneByEmail(String email){
+        return visitorMapping.findOneByEmail(email);
+    }
 
 }

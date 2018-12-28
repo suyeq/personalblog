@@ -23,5 +23,35 @@ public class ConmentService {
         return conmentMapping.recentConment();
     }
 
+    public Conment findOneConmentById(int id){
+        return conmentMapping.findOneConmentById(id);
+    }
 
+    public List<Conment> findConmentIsParentByBlogId(int blogId,int offset){
+        return conmentMapping.findConmentsIsParentByBlogId(blogId,offset);
+    }
+
+    public List<Conment> findConmentsByConmentParentID(int conmentParentId){
+        return conmentMapping.findConmentsByConmentPrentId(conmentParentId);
+    }
+
+    public int addConment(String content,int visitor_id,int blog_id,int conment_parent_id){
+        return conmentMapping.addConment(content,visitor_id,blog_id,conment_parent_id);
+    }
+
+    public synchronized Conment findLastConment(){
+        return conmentMapping.findLastConment();
+    }
+
+    public int conmnetTotal(int blogId){
+        return conmentMapping.conmnetTotal(blogId);
+    }
+
+    public int increaseConmentZan(int conmentId){
+        return conmentMapping.increaseConmentZan(conmentId);
+    }
+
+    public int increaseConmentCai(int conmentId){
+        return conmentMapping.increaseConmentCai(conmentId);
+    }
 }

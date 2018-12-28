@@ -32,7 +32,7 @@
             <ul>
                 <li id="menu-item-1404"
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
                     <a href="#"><i class="giligili giligili-timeline"></i> 归档</a>
                 </li>
@@ -51,14 +51,14 @@
 </header>
 <header id="mobile-header">
     <div class="mobile-user-info"><img alt=''
-                                       src='front/img/lem6.jpg'
+                                       src='http://localhost:8080/front/img/lem6.jpg'
                                        srcset='front/img/lem6.jpg'
                                        class='avatar avatar-100 photo mobile-user-avatar' height='100' width='100'/>
         <h3 class="mobile-user-name">Shawn</h3>
         <div class="mobile-menu-container">
             <ul>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
                         href="#"><i class="giligili giligili-timeline"></i>
                     归档</a></li>
@@ -90,7 +90,7 @@
                 </a>
             </div>
             <img alt=''
-                 src='front/img/lem6.jpg'
+                 src='http://localhost:8080/front/img/lem6.jpg'
                  srcset='front/img/lem6.jpg 2x'
                  class='avatar avatar-56 photo user-card-avatar' height='56' width='56' /> <i
                 class="giligili giligili-certify-3"></i>
@@ -211,19 +211,18 @@
                     <p class="post-info">
                         <span>
                             <i class="giligili giligili-view"></i>
-                            <a href="#" th:text="${BlogMessage.readnum}">33.62k</a>
+                            <a  th:text="${BlogMessage.readnum}">33.62k</a>
                         </span>
                         <span>
                             <i class="giligili giligili-time"></i>
-                            <a href="#" th:text="${BlogMessage.time}">1年前</a>
+                            <a th:text="${BlogMessage.time}">1年前</a>
                         </span>
                         <span>
                             <i class="giligili giligili-comment"></i>
-                            <a href="#" th:text="${BlogMessage.conmentnum}">206</a>
+                            <a th:text="${BlogMessage.conmentnum}">206</a>
                         </span>
                     </p>
                 </li>
-
             </ul>
         </div>
         <!--最近评论-->
@@ -234,9 +233,9 @@
                 <li th:each="ConmentMessage:${recentConmentList}">
                     <a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
                        title="suye"> <img alt=''
-                                          src='front/img/avatar.png'
+                                          src='http://localhost:8080/front/img/avatar.png'
                                           class='avatar avatar-36 photo' height='36' width='36'/>
-                        <div class="right-box"><span class="author" th:text="${ConmentMessage.visitorName}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
+                        <div class="right-box"><span class="author" th:text="${ConmentMessage.visitor.name}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
                             <br/><span class="recent-comment" th:text="${ConmentMessage.content}">OωO</span></div>
                     </a>
                 </li>
@@ -318,9 +317,12 @@
 
         <div class="giligili-item breadcrumbs">当前位置：
             <div itemscope itemtype="http://schema.org/WebPage" id="crumbs">
-                <a itemprop="breadcrumb" href="/index">首页</a> >
-                <a itemprop="breadcrumb" href="https://shawnzeng.com/category/news">大新闻</a> >
-                <span class="current">WordPress响应式二次元主题Giligili</span>
+                <!--<ul th:each="RunningTrack:${runningTrackList}">-->
+                    <!--<a  itemprop="breadcrumb" href="/index" th:href="${RunningTrack.url}" th:text="${RunningTrack.name}">首页</a> >-->
+                <!--</ul>-->
+                <a th:each="RunningTrack:${runningTrackList}" itemprop="breadcrumb" href="/index" th:href="${RunningTrack.url}" th:text="${RunningTrack.name}+'&nbsp;>'">首页</a>
+                <!--<a itemprop="breadcrumb" href="https://shawnzeng.com/category/news">大新闻</a> >-->
+                <span class="current" th:text="${blogDatailsMessage.title}">WordPress响应式二次元主题Giligili</span>
             </div>
         </div>
 
@@ -385,59 +387,6 @@
                         <div class="text-info">
                             <h3 class="post-title" th:text="${blogDatailsMessage.title}">WordPress响应式二次元主题Giligili</h3>
                             <div class="content"  th:text="${blogDatailsMessage.content}" >
-                            <!--<p>很久之前就想写一套二次元主题，之前的Memory其实初期是有二次元的影子的，但后来还是把这种风格砍了，于是就有了重写一款完全二次元风格的主题。在这样的背景下，这款主题——Giligili就诞生了。</p>-->
-                            <!--<p>不得不说，写主题真的是一件非常累人的事情，不过在这过程也学到了不少。从刚开始写Memory的一脸懵逼到现在写Giligili的逐渐上路，真的收获了很多。这款主题有很大一部分是仿照某站设计的，但由于各式各样的原因，我也加入了一些其他的设计。主题特性如下：</p>-->
-                            <!--<blockquote>-->
-                            <!--<ol>-->
-                            <!--<li>多种文章形式，支持说说</li>-->
-                            <!--<li>样式高度自定义</li>-->
-                            <!--<li>pjax局部无刷新</li>-->
-                            <!--<li>集成多项小工具：最近访客、最近评论、标签云、热门文章</li>-->
-                            <!--<li>内容分享、打赏</li>-->
-                            <!--<li>面包屑导航</li>-->
-                            <!--<li>SMTP发送邮件、评论邮件回复</li>-->
-                            <!--<li>SEO设置、维护模式</li>-->
-                            <!--<li>支持主题配置备份还原</li>-->
-                            <!--</ol>-->
-                            <!--</blockquote>-->
-                            <!--<p>鸣谢：<a href="https://blog.siitake.cn/" target="_blank" class="at">香菇</a>、<a-->
-                            <!--href="https://diygod.me/" target="_blank" class="at">DIYgod</a>、<a-->
-                            <!--href="http://www.theask.cn" target="_blank" class="at">该问</a>、<a-->
-                            <!--href="https://kotori.love" target="_blank" class="at">空樱酱</a>、<a-->
-                            <!--href="https://www.ludou.org" target="_blank" class="at">露兜</a>、<a-->
-                            <!--href="http://www.inlojv.com" target="_blank" class="at">JV</a>。</p>-->
-                            <!--<p>本主题售价100元，在文章末尾打赏100元后并在发送邮件至admin#shawnzeng.com（#替换为@，请勿使用gmail邮箱容易收不到），邮件标题注明购买-->
-                            <!--Giligili主题+你的支付宝/微信账号即可，我会在24小时内将主题压缩包发送至你的邮箱~另外，出现在以上鸣谢名单和我友链中的后宫和大佬们可以免费在我这获取一份本主题！之前购买过Memory主题的同学可半价购买本主题！另外说一句，在维护本主题的同时，我也会开始重构memory主题，把之前小白时期写的一系列BUG尽量修复~</p>-->
-                            <!--<p>主题使用教程：-->
-                            <!--<div class="post-excerpt post-excerpt-2 no-touch">-->
-                            <!--<div class="post-thumbnail"-->
-                            <!--style="background-image:url(https://shawnzeng.com/wp-content/themes/Giligili/img/default_bg.jpg)"></div>-->
-                            <!--<div class="text-info"><a class="no-des" href="https://shawnzeng.com/giligili-help"-->
-                            <!--rel="bookmark" title="Giligili主题使用教程"><h3-->
-                            <!--class="post-title">Giligili主题使用教程</h3>-->
-                            <!--<div class="excerpt">安装环境要求 PHP5.6+，wordpress4.8+。 主题安装&amp;&amp;更新-->
-                            <!--获取主题后，直接在wordpress后台“外观-&gt;主题”中上传压缩包进行安装即可，此后每次主题更新可在wordpress后台“仪表盘-&gt;更新”中获得通知。-->
-                            <!--主题功能配置 主题安装成功后，首先需要 [&hellip;]-->
-                            <!--</div>-->
-                            <!--</a></div>-->
-                            <!--</div>-->
-                            <!--</p><p>另外，关于本主题有什么意见/建议也可以在此页留言，我会尽快回复~</p>-->
-                            <!--<div class="ad">-->
-                            <!--<script async-->
-                            <!--src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
-                            <!--&lt;!&ndash; ad &ndash;&gt;-->
-                            <!--<ins class="adsbygoogle"-->
-                            <!--style="display:block"-->
-                            <!--data-ad-client="ca-pub-4924713764752759"-->
-                            <!--data-ad-slot="8452763453"-->
-                            <!--data-ad-format="auto"></ins>-->
-                            <!--<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>-->
-                            <!--</div>-->
-                            <!--<div id="copyright-info"><p>原文链接：<a-->
-                            <!--href="https://shawnzeng.com/wordpress-theme-giligili.html"-->
-                            <!--title="WordPress响应式二次元主题Giligili">WordPress响应式二次元主题Giligili</a><br/><a-->
-                            <!--href="https://shawnzeng.com" title="诗与酒">诗与酒</a> 版权所有，转载请注明出处。</p></div>-->
-                            <!---->
                             </div>
 
                             <!--标签-->
@@ -467,8 +416,8 @@
 
 
             <div class="giligili-post-extra giligili-item">
-                <div><span class="post-like"><a href="javascript:;" data-action="post_zan" data-id="2518" class="done"> <i
-                        class="giligili giligili-zan"></i> 点赞 <span class="count">27 </span> </a> </span></div>
+                <div><span class="post-like"><a href="javascript:;" data-action="blog_zan" data-id="2518" class="" th:attr="data-id=${blogDatailsMessage.id}"> <i
+                        class="giligili giligili-zan"></i> 点赞 <span class="count" th:text="${blogDatailsMessage.votenum}">27 </span> </a> </span></div>
                 <div class="giligili-pay-box"><i class="giligili giligili-Bbi"></i> 打赏
                     <div class="pay-box">
                         <div class="pay-header"><span>请作者吃个鸡腿！</span> <i class="giligili giligili-close"></i></div>
@@ -497,453 +446,63 @@
 
 
             <div class="comment-part giligili-item">
-                <div class="comment-respond" id="respond"><h3 id="reply-title"
-                                                              class="comment-title comment-reply-title"> 评论 <a
-                        rel="nofollow" id="cancel-comment-reply-link" href="/wordpress-theme-giligili.html#respond"
-                        style="display:none;">放弃治疗</a></h3>
-                    <form name="comment-form" class="comment-form" id="comment-form" method="post"
-                          action="https://shawnzeng.com/wp-comments-post.php">
+                <!--发表评论-->
+                <div class="comment-respond" id="respond">
+                    <h3 id="reply-title" class="comment-title comment-reply-title">
+                        评论<a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress-theme-giligili.html#respond" style="display:none;">放弃治疗</a>
+                    </h3>
+                    <form name="comment-form" class="comment-form" id="comment-form" method="post" action="/addConmentAndVisitor">
                         <div id="comment-info">
-                            <div class="commentator"><img alt=''
-                                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
+                            <div class="commentator">
+                                <img alt='' src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
                                                           srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                                          class='avatar avatar-48 photo' height='48' width='48'/></div>
+                                                          class='avatar avatar-48 photo' height='48' width='48'/>
+                            </div>
                             <div class="comment-text">
-                                <div class="comment-input"><input type="text" name="author" value="suye"
-                                                                  class="text-input" id="comment-author"
-                                                                  placeholder="昵称 *"> <input type="text" name="email"
-                                                                                             value="473721601@qq.com"
-                                                                                             class="text-input"
-                                                                                             id="comment-email"
-                                                                                             placeholder="邮箱 *"> <input
-                                        type="text" name="url" value="http://suyeq.com" class="text-input"
-                                        id="comment-url" placeholder="网址"> <input type='text' name='sum'
-                                                                                  class='text-input sum'
-                                                                                  id='comment-validate' value=''
-                                                                                  placeholder='4 + 0 = ?'><input
-                                        type='hidden' name='num1' value='4'><input type='hidden' name='num2' value='0'>
+                                <div class="comment-input">
+                                    <input type="text" name="author" value="suye" class="text-input" id="comment-author" placeholder="昵称 *">
+                                    <input type="text" name="email" value="473721601@qq.com" class="text-input" id="comment-email" placeholder="邮箱 *">
+                                    <input type="text" name="url" value="http://suyeq.com" class="text-input" id="comment-url" placeholder="网址">
+                                    <input type='text' name='sum' class='text-input sum' id='comment-validate' value='' placeholder='4 + 0 = ?'>
+                                    <input type='hidden' name='num1' value='4'>
+                                    <input type='hidden' name='num2' value='0'>
                                 </div>
-                                <div class="comment-s"><textarea class="text-input error" id="comment" name="comment"
-                                                                 rows="8" cols="45" aria-required="true"
-                                                                 placeholder="一言：努力是不会背叛自己的，虽然梦想有时会背叛自己。"></textarea>
+
+                                <div class="comment-s">
+                                    <textarea class="text-input error" id="comment" name="comment" rows="8" cols="45" aria-required="true" placeholder="一言：努力是不会背叛自己的，虽然梦想有时会背叛自己。"></textarea>
                                     <div class="OwO no-touch"></div>
                                     <button type="submit" name="submit" class="comment-submit push-status">发表评论</button>
                                 </div>
                             </div>
                         </div>
-                        <input type='hidden' name='comment_post_ID' value='2518' id='comment_post_ID'/> <input
-                            type='hidden' name='comment_parent' id='comment_parent' value='0'/></form>
+                        <input type='hidden' name='comment_post_ID' value='2518' id='comment_post_ID' th:value="${blogDatailsMessage.id}"/>
+                        <input type='hidden' name='comment_parent' id='comment_parent' value='0'/>
+                    </form>
                 </div>
+
+                <!--评论列表-->
                 <div id="comments">
                     <ol class="giligili-comments">
-                        <li class="comment-item" id="li-comment-1577">
-                            <div class="commentator-avatar"><img alt=''
-                                                                 src='https://secure.gravatar.com/avatar/f8337d6a15ad1cff287c69ea01616f01?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                                                 srcset='https://secure.gravatar.com/avatar/f8337d6a15ad1cff287c69ea01616f01?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                                                 class='avatar avatar-48 photo' height='48' width='48'/>
-                            </div>
-                            <div class="commentator-comment" id="comment-1577"><span class="commentator-name"><strong
-                                    class="author-name">雪花</strong></span> <span
-                                    class="giligili giligili-userlevel-1"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>路过</p>
-                                        <div class="comment-info"><span class="floor">#30</span></span> <span
-                                                class="comment-time">7天前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1577" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">0</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1577" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">0</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1577#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1577", "1577", "respond", "2518" )'
-                                                                                     aria-label='回复给雪花'>回复</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1572">
-                            <div class="commentator-avatar"><a href="https://www.gzczy.top" target="_blank"> <img alt=''
-                                                                                                                  src='https://secure.gravatar.com/avatar/d35f7d5ee6a7d8bf5dfbdc60dd07e226?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                                                                                                  srcset='https://secure.gravatar.com/avatar/d35f7d5ee6a7d8bf5dfbdc60dd07e226?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                                                                                                  class='avatar avatar-48 photo'
-                                                                                                                  height='48'
-                                                                                                                  width='48'/>
-                            </a></div>
-                            <div class="commentator-comment" id="comment-1572"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='https://www.gzczy.top'
-                                                           rel='external nofollow' class='url'>红警专家</a></strong></span>
-                                <span class="giligili giligili-userlevel-1"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>已购买收藏~୧(๑•̀⌄•́๑)૭</p>
-                                        <div class="comment-info"><span class="floor">#29</span></span> <span
-                                                class="comment-time">1周前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1572" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">0</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1572" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">0</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1572#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1572", "1572", "respond", "2518" )'
-                                                                                     aria-label='回复给红警专家'>回复</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1571">
-                            <div class="commentator-avatar"><a href="http://www.tomcat7.cn" target="_blank"> <img alt=''
-                                                                                                                  src='https://secure.gravatar.com/avatar/f975dcf6bd5d1ee63cbe44ab35973600?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                                                                                                  srcset='https://secure.gravatar.com/avatar/f975dcf6bd5d1ee63cbe44ab35973600?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                                                                                                  class='avatar avatar-48 photo'
-                                                                                                                  height='48'
-                                                                                                                  width='48'/>
-                            </a></div>
-                            <div class="commentator-comment" id="comment-1571"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='http://www.tomcat7.cn'
-                                                           rel='external nofollow'
-                                                           class='url'>IamMicroCoder</a></strong></span> <span
-                                    class="giligili giligili-userlevel-1"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p><img
-                                            src="/wp-content/themes/Giligili/emoji/paopao/乖@2x.png" alt="乖"
-                                            class="OwO-img"/>typecho可以使用你的主题吗？</p>
-                                        <div class="comment-info"><span class="floor">#28</span></span> <span
-                                                class="comment-time">1周前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1571" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">0</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1571" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">0</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1571#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1571", "1571", "respond", "2518" )'
-                                                                                     aria-label='回复给IamMicroCoder'>回复</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="children">
-                                <li class="comment-item" id="li-comment-1573">
-                                    <div class="commentator-avatar"><a href="https://shawnzeng.com" target="_blank">
-                                        <img alt=''
-                                             src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                             srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                             class='avatar avatar-48 photo' height='48' width='48'/> </a> <i
-                                            class="giligili giligili-big-vip"></i></div>
-                                    <div class="commentator-comment" id="comment-1573"><span
-                                            class="commentator-name"><strong class="author-name"><a target='_blank'
-                                                                                                    href='https://shawnzeng.com'
-                                                                                                    rel='external nofollow'
-                                                                                                    class='url'>Shawn</a></strong></span>
-                                        <span class="giligili giligili-userlevel-6"></span>
-                                        <div class="comment-chat">
-                                            <div class="comment-comment"><p>不行的哦~</p>
-                                                <div class="comment-info"><span class="comment-time">1周前</span> <span
-                                                        class="post-like"><a href="javascript:;"
-                                                                             data-action="comment_zan" data-id="1573"
-                                                                             class=""><i
-                                                        class="giligili giligili-zan"></i> <span class="count">0</span></a></span>
-                                                    <span class="post-like"><a href="javascript:;"
-                                                                               data-action="comment_cai" data-id="1573"
-                                                                               class=""><i
-                                                            class="giligili giligili-cai"></i> <span
-                                                            class="count">0</span></a></span> <a rel='nofollow'
-                                                                                                 class='comment-reply-link'
-                                                                                                 href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1573#respond'
-                                                                                                 onclick='return addComment.moveForm( "comment-1573", "1573", "respond", "2518" )'
-                                                                                                 aria-label='回复给Shawn'>回复</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- #comment-## --></ul><!-- .children --></li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1570">
-                            <div class="commentator-avatar"><a href="http://cn.pikespool.com/" target="_blank"> <img
-                                    alt=''
-                                    src='https://secure.gravatar.com/avatar/4d9dc6065fd8bfbc422de283d3bb67da?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                    srcset='https://secure.gravatar.com/avatar/4d9dc6065fd8bfbc422de283d3bb67da?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                    class='avatar avatar-48 photo' height='48' width='48'/> </a></div>
-                            <div class="commentator-comment" id="comment-1570"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='http://cn.pikespool.com/'
-                                                           rel='external nofollow' class='url'>过滤沙缸</a></strong></span>
-                                <span class="giligili giligili-userlevel-1"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>博主是 f还是m</p>
-                                        <div class="comment-info"><span class="floor">#27</span></span> <span
-                                                class="comment-time">1周前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1570" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">0</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1570" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">0</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1570#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1570", "1570", "respond", "2518" )'
-                                                                                     aria-label='回复给过滤沙缸'>回复</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1511">
-                            <div class="commentator-avatar"><a href="https://www.dongmanxingkong.com" target="_blank">
-                                <img alt=''
-                                     src='https://secure.gravatar.com/avatar/05708a1d780d919aa125aa960f6c87b8?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                     srcset='https://secure.gravatar.com/avatar/05708a1d780d919aa125aa960f6c87b8?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                     class='avatar avatar-48 photo' height='48' width='48'/> </a></div>
-                            <div class="commentator-comment" id="comment-1511"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='https://www.dongmanxingkong.com'
-                                                           rel='external nofollow' class='url'>动漫星空-最美不过二次元</a></strong></span>
-                                <span class="giligili giligili-userlevel-1"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>大佬，有预览地址吗？</p>
-                                        <div class="comment-info"><span class="floor">#26</span></span> <span
-                                                class="comment-time">4周前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1511" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">0</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1511" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">0</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1511#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1511", "1511", "respond", "2518" )'
-                                                                                     aria-label='回复给动漫星空-最美不过二次元'>回复</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="children">
-                                <li class="comment-item" id="li-comment-1513">
-                                    <div class="commentator-avatar"><a href="https://shawnzeng.com" target="_blank">
-                                        <img alt=''
-                                             src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                             srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                             class='avatar avatar-48 photo' height='48' width='48'/> </a> <i
-                                            class="giligili giligili-big-vip"></i></div>
-                                    <div class="commentator-comment" id="comment-1513"><span
-                                            class="commentator-name"><strong class="author-name"><a target='_blank'
-                                                                                                    href='https://shawnzeng.com'
-                                                                                                    rel='external nofollow'
-                                                                                                    class='url'>Shawn</a></strong></span>
-                                        <span class="giligili giligili-userlevel-6"></span>
-                                        <div class="comment-chat">
-                                            <div class="comment-comment"><p>本站现在就是啊</p>
-                                                <div class="comment-info"><span class="comment-time">4周前</span> <span
-                                                        class="post-like"><a href="javascript:;"
-                                                                             data-action="comment_zan" data-id="1513"
-                                                                             class=""><i
-                                                        class="giligili giligili-zan"></i> <span class="count">0</span></a></span>
-                                                    <span class="post-like"><a href="javascript:;"
-                                                                               data-action="comment_cai" data-id="1513"
-                                                                               class=""><i
-                                                            class="giligili giligili-cai"></i> <span
-                                                            class="count">0</span></a></span> <a rel='nofollow'
-                                                                                                 class='comment-reply-link'
-                                                                                                 href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1513#respond'
-                                                                                                 onclick='return addComment.moveForm( "comment-1513", "1513", "respond", "2518" )'
-                                                                                                 aria-label='回复给Shawn'>回复</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- #comment-## --></ul><!-- .children --></li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1498">
-                            <div class="commentator-avatar"><a href="https://www.liwei8090.com/" target="_blank"> <img
-                                    alt=''
-                                    src='https://secure.gravatar.com/avatar/e67deb659fc8fc0d91ae2811397feeca?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                    srcset='https://secure.gravatar.com/avatar/e67deb659fc8fc0d91ae2811397feeca?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                    class='avatar avatar-48 photo' height='48' width='48'/> </a></div>
-                            <div class="commentator-comment" id="comment-1498"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='https://www.liwei8090.com/'
-                                                           rel='external nofollow' class='url'>里维斯社</a></strong></span>
-                                <span class="giligili giligili-userlevel-2"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>另外，此主题返回顶部按钮失效（百度浏览器）</p>
-                                        <div class="comment-info"><span class="floor">#25</span></span> <span
-                                                class="comment-time">1月前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1498" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">0</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1498" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">0</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1498#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1498", "1498", "respond", "2518" )'
-                                                                                     aria-label='回复给里维斯社'>回复</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="children">
-                                <li class="comment-item" id="li-comment-1504">
-                                    <div class="commentator-avatar"><a href="https://shawnzeng.com" target="_blank">
-                                        <img alt=''
-                                             src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                             srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                             class='avatar avatar-48 photo' height='48' width='48'/> </a> <i
-                                            class="giligili giligili-big-vip"></i></div>
-                                    <div class="commentator-comment" id="comment-1504"><span
-                                            class="commentator-name"><strong class="author-name"><a target='_blank'
-                                                                                                    href='https://shawnzeng.com'
-                                                                                                    rel='external nofollow'
-                                                                                                    class='url'>Shawn</a></strong></span>
-                                        <span class="giligili giligili-userlevel-6"></span>
-                                        <div class="comment-chat">
-                                            <div class="comment-comment"><p>BUG已知，重构版已修复~</p>
-                                                <div class="comment-info"><span class="comment-time">1月前</span> <span
-                                                        class="post-like"><a href="javascript:;"
-                                                                             data-action="comment_zan" data-id="1504"
-                                                                             class=""><i
-                                                        class="giligili giligili-zan"></i> <span class="count">0</span></a></span>
-                                                    <span class="post-like"><a href="javascript:;"
-                                                                               data-action="comment_cai" data-id="1504"
-                                                                               class=""><i
-                                                            class="giligili giligili-cai"></i> <span
-                                                            class="count">0</span></a></span> <a rel='nofollow'
-                                                                                                 class='comment-reply-link'
-                                                                                                 href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1504#respond'
-                                                                                                 onclick='return addComment.moveForm( "comment-1504", "1504", "respond", "2518" )'
-                                                                                                 aria-label='回复给Shawn'>回复</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- #comment-## --></ul><!-- .children --></li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1497">
-                            <div class="commentator-avatar"><a href="https://www.liwei8090.com/" target="_blank"> <img
-                                    alt=''
-                                    src='https://secure.gravatar.com/avatar/e67deb659fc8fc0d91ae2811397feeca?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                    srcset='https://secure.gravatar.com/avatar/e67deb659fc8fc0d91ae2811397feeca?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                    class='avatar avatar-48 photo' height='48' width='48'/> </a></div>
-                            <div class="commentator-comment" id="comment-1497"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='https://www.liwei8090.com/'
-                                                           rel='external nofollow' class='url'>里维斯社</a></strong></span>
-                                <span class="giligili giligili-userlevel-2"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>喜欢Memory主题，但是Memory
-                                        2.0.6还有很多需要改进的地方，比如：标签云默认100个，小工具更改个数无效；首页、分类列表显示摘要太呆板，显示全文又破坏整页布局，最好缩略图文的样式固定；侧栏跟随滚动；希望添加相关文章功能；文章阅读数调用cookie；很喜欢这个主题，但是又有很多想修改的地方，真的很为难，期待尽快推出重构。</p>
-                                        <div class="comment-info"><span class="floor">#24</span></span> <span
-                                                class="comment-time">1月前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1497" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">0</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1497" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">0</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1497#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1497", "1497", "respond", "2518" )'
-                                                                                     aria-label='回复给里维斯社'>回复</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="children">
-                                <li class="comment-item" id="li-comment-1503">
-                                    <div class="commentator-avatar"><a href="https://shawnzeng.com" target="_blank">
-                                        <img alt=''
-                                             src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                             srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                             class='avatar avatar-48 photo' height='48' width='48'/> </a> <i
-                                            class="giligili giligili-big-vip"></i></div>
-                                    <div class="commentator-comment" id="comment-1503"><span
-                                            class="commentator-name"><strong class="author-name"><a target='_blank'
-                                                                                                    href='https://shawnzeng.com'
-                                                                                                    rel='external nofollow'
-                                                                                                    class='url'>Shawn</a></strong></span>
-                                        <span class="giligili giligili-userlevel-6"></span>
-                                        <div class="comment-chat">
-                                            <div class="comment-comment"><p>OK，会尽快的~</p>
-                                                <div class="comment-info"><span class="comment-time">1月前</span> <span
-                                                        class="post-like"><a href="javascript:;"
-                                                                             data-action="comment_zan" data-id="1503"
-                                                                             class=""><i
-                                                        class="giligili giligili-zan"></i> <span class="count">0</span></a></span>
-                                                    <span class="post-like"><a href="javascript:;"
-                                                                               data-action="comment_cai" data-id="1503"
-                                                                               class=""><i
-                                                            class="giligili giligili-cai"></i> <span
-                                                            class="count">0</span></a></span> <a rel='nofollow'
-                                                                                                 class='comment-reply-link'
-                                                                                                 href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1503#respond'
-                                                                                                 onclick='return addComment.moveForm( "comment-1503", "1503", "respond", "2518" )'
-                                                                                                 aria-label='回复给Shawn'>回复</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- #comment-## --></ul><!-- .children --></li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1496">
-                            <div class="commentator-avatar"><a href="http://www.geyisu.com/297.html" target="_blank">
-                                <img alt=''
-                                     src='https://secure.gravatar.com/avatar/bd8e47ce6ab30b3cc122c9d8555f629e?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                     srcset='https://secure.gravatar.com/avatar/bd8e47ce6ab30b3cc122c9d8555f629e?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                     class='avatar avatar-48 photo' height='48' width='48'/> </a></div>
-                            <div class="commentator-comment" id="comment-1496"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='http://www.geyisu.com/297.html'
-                                                           rel='external nofollow' class='url'>女生游戏</a></strong></span>
-                                <span class="giligili giligili-userlevel-1"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>设计主题不容易，赞一个</p>
-                                        <div class="comment-info"><span class="floor">#23</span></span> <span
-                                                class="comment-time">1月前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1496" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">1</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1496" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">1</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1496#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1496", "1496", "respond", "2518" )'
-                                                                                     aria-label='回复给女生游戏'>回复</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- #comment-## -->
-                        <li class="comment-item" id="li-comment-1474">
-                            <div class="commentator-avatar"><a href="http://www.hldrying.cn/" target="_blank"> <img
-                                    alt=''
-                                    src='https://secure.gravatar.com/avatar/f3928ade04cae2de5658d728c3dc8cd9?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                    srcset='https://secure.gravatar.com/avatar/f3928ade04cae2de5658d728c3dc8cd9?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                    class='avatar avatar-48 photo' height='48' width='48'/> </a></div>
-                            <div class="commentator-comment" id="comment-1474"><span class="commentator-name"><strong
-                                    class="author-name"><a target='_blank' href='http://www.hldrying.cn/'
-                                                           rel='external nofollow' class='url'>Page</a></strong></span>
-                                <span class="giligili giligili-userlevel-1"></span>
-                                <div class="comment-chat">
-                                    <div class="comment-comment"><p>(๑•́ ₃ •̀๑)</p>
-                                        <div class="comment-info"><span class="floor">#22</span></span> <span
-                                                class="comment-time">2月前</span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_zan" data-id="1474" class=""><i
-                                                class="giligili giligili-zan"></i> <span
-                                                class="count">1</span></a></span> <span class="post-like"><a
-                                                href="javascript:;" data-action="comment_cai" data-id="1474" class=""><i
-                                                class="giligili giligili-cai"></i> <span
-                                                class="count">1</span></a></span> <a rel='nofollow'
-                                                                                     class='comment-reply-link'
-                                                                                     href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1474#respond'
-                                                                                     onclick='return addComment.moveForm( "comment-1474", "1474", "respond", "2518" )'
-                                                                                     aria-label='回复给Page'>回复</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- #comment-## --></ol>
+                        <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList})"></div>
+                    </ol>
+
                     <div id="pagination">
-                        <div class="giligili-comments-page"><a class="prev page-numbers"
-                                                               href="https://shawnzeng.com/wordpress-theme-giligili.html/comment-page-2#comments">上一页</a>
-                            <a class='page-numbers'
-                               href='https://shawnzeng.com/wordpress-theme-giligili.html/comment-page-1#comments'>1</a>
-                            <a class='page-numbers'
-                               href='https://shawnzeng.com/wordpress-theme-giligili.html/comment-page-2#comments'>2</a>
-                            <span aria-current='page' class='page-numbers current'>3</span></div>
+                        <div class="giligili-comments-page">
+                            <th:block th:each="page:${conmentPages}">
+                                <a class="prev page-numbers" href="" th:if="${pageStat.count} eq 1" th:href="'/loadMore/'+${blogDatailsMessage.id}+'/'+(${pageStat.size}-1)">上一页</a>
+                                <a class='page-numbers' href='' th:if="${pageStat.count} lt ${pageStat.size}" th:href="'/loadMore/'+${blogDatailsMessage.id}+'/'+${pageStat.count}" th:text="${pageStat.count}">1</a>
+                                <span aria-current='page' class='page-numbers current' th:if="${pageStat.count} eq ${pageStat.size}" th:text="${pageStat.count}">3</span>
+                            </th:block>
+                            <!--<a class="prev page-numbers" href="">上一页</a>-->
+                            <!--<a class='page-numbers' href=''>1</a>-->
+                            <!--<a class='page-numbers' href=''>2</a>-->
+                            <!--<span aria-current='page' class='page-numbers current'>3</span>-->
+                        </div>
                     </div>
+
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -1060,7 +619,7 @@
     // "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
     "siteStartTime": "2018-12-20",
     // "ajaxUrl": "https:\/\/shawnzeng.com\/wp-front\/front-ajax.php",
-    "commentEditAgain": "1",
+    "commentEditAgain": "0",
     "loadPjax": "1"
 };</script>
 <script type='text/javascript' src='http://localhost:8080/front/js/jquery-3.2.1.min.js'></script>
@@ -1084,4 +643,5 @@
 <script type="text/javascript" src="http://localhost:8080/front/live2d/js/live2d.js"></script>
 <script type="text/javascript" src="http://localhost:8080/front/live2d/js/message.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,19 @@
+<div class="comment-part giligili-item">
+    <!--评论列表-->
+    <div id="comments">
+        <ol class="giligili-comments">
+            <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList})"></div>
+        </ol>
+
+        <div id="pagination">
+            <div class="giligili-comments-page">
+                <th:block th:each="page:${conmentPages}">
+                    <a class="prev page-numbers" href="" th:if="${pageStat.count} eq 1" th:href="'/loadMore/'+${blogDatailsMessage.id}+'/'+(${pageStat.size}-1)">上一页</a>
+                    <a class='page-numbers' href='' th:if="${pageStat.count} lt ${pageStat.size}" th:href="'/loadMore/'+${blogDatailsMessage.id}+'/'+${pageStat.count}" th:text="${pageStat.count}">1</a>
+                    <span aria-current='page' class='page-numbers current' th:if="${pageStat.count} eq ${pageStat.size}" th:text="${pageStat.count}">3</span>
+                </th:block>
+            </div>
+        </div>
+
+    </div>
+</div>

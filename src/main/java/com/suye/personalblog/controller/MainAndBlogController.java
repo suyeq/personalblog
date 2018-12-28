@@ -1,12 +1,10 @@
 package com.suye.personalblog.controller;
 
-import com.suye.personalblog.model.Blog;
-import com.suye.personalblog.model.Category;
-import com.suye.personalblog.model.Column;
-import com.suye.personalblog.model.Label;
+import com.suye.personalblog.model.*;
 import com.suye.personalblog.service.*;
 import com.suye.personalblog.tool.BlogMessageConversion;
 import com.suye.personalblog.tool.ConmentMessageConversion;
+import com.suye.personalblog.tool.RunningTrackStack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,6 +55,7 @@ public class MainAndBlogController {
     @RequestMapping("/index")
     public ModelAndView allMessage(Model model){
         System.out.println("lall");
+        RunningTrackStack.clearRunningTrackStack();
         int blogTotal=blogService.blogTotal();
         List<Label> labelList=labelService.getAllLabels();
         List<Category> categoryList=categoryService.getAllCategory();
@@ -64,7 +64,6 @@ public class MainAndBlogController {
                 blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
         List<ConmentMessageConversion.ConmentMessage> recentConmentList=
                 conmentMessageConversion.conmentMessageList(conmentService.recentConment());
-
         List<BlogMessageConversion.BlogMessage> recentBlogList=
                 blogMessageConversion.getBlogMessageList(blogService.recentBlogs());
         model.addAttribute("blogTotal",blogTotal);
@@ -85,9 +84,34 @@ public class MainAndBlogController {
     @GetMapping("/blogs")
     public ModelAndView indexBlog(Model model){
         System.out.println("blogs");
+        RunningTrackStack.addRunningStack(0,"博客","/blogs");
+        int blogTotal=blogService.blogTotal();
+        List<Label> labelList=labelService.getAllLabels();
+        List<Category> categoryList=categoryService.getAllCategory();
+        List<Column> columnList=columnService.getAllColumn();
+        List<BlogMessageConversion.BlogMessage> popularBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
+
+//        List<Conment> list=conmentService.recentConment();
+//        for (int i=0;i<list.size();i++){
+//            Date date=new Date(list.get(i).getConment_time().getTime());
+//            System.out.println(date);
+//            System.out.println(new Date());
+//            System.out.println();
+//        }
+
+        List<ConmentMessageConversion.ConmentMessage> recentConmentList=
+                conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+
         List<BlogMessageConversion.BlogMessage> recentBlogList=
                 blogMessageConversion.getBlogMessageList(blogService.recentBlogsNotShuoShuo());
         model.addAttribute("recentBlogList",recentBlogList);
+        model.addAttribute("blogTotal",blogTotal);
+        model.addAttribute("labelList",labelList);
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("columnList",columnList);
+        model.addAttribute("popularBlogList",popularBlogList);
+        model.addAttribute("recentConmentList",recentConmentList);
         return new ModelAndView("front/indexblog","allMessge",model);
 
     }
@@ -100,11 +124,26 @@ public class MainAndBlogController {
     @GetMapping("/shuoshuos")
     public ModelAndView indexShuoShuo(Model model){
         System.out.println("shuosshuos");
+        RunningTrackStack.addRunningStack(1,"说说","/shuoshuos");
+        int blogTotal=blogService.blogTotal();
+        List<Label> labelList=labelService.getAllLabels();
+        List<Category> categoryList=categoryService.getAllCategory();
+        List<Column> columnList=columnService.getAllColumn();
+        List<BlogMessageConversion.BlogMessage> popularBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
+        List<ConmentMessageConversion.ConmentMessage> recentConmentList=
+                conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+
         List<BlogMessageConversion.BlogMessage> recentBlogList=
                 blogMessageConversion.getBlogMessageList(blogService.recentBlogsIsShuoShuo());
         model.addAttribute("recentBlogList",recentBlogList);
+        model.addAttribute("recentBlogList",recentBlogList);
+        model.addAttribute("blogTotal",blogTotal);
+        model.addAttribute("labelList",labelList);
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("columnList",columnList);
+        model.addAttribute("popularBlogList",popularBlogList);
         return new ModelAndView("front/indexshuoshuo","allMessge",model);
-
     }
 
     /**
@@ -171,6 +210,13 @@ public class MainAndBlogController {
                 conmentMessageConversion.conmentMessageList(conmentService.recentConment());
         BlogMessageConversion.BlogMessage blogMessage=
                 blogMessageConversion.getOneBlogMessage(blogService.findOneById(blogId));
+        List<RunningTrackStack.RunningTrack> runningTrackList=RunningTrackStack.getRunningTrackStack();
+
+        List<ConmentMessageConversion.ConmentMessage> recentAllConmentList=
+                conmentMessageConversion.findAllConmentsByBlogId(blogId,0);
+
+        List<Object> conmentPages=conmentMessageConversion.conversionTotal(conmentService.conmnetTotal(blogId));
+
         model.addAttribute("blogTotal",blogTotal);
         model.addAttribute("labelList",labelList);
         model.addAttribute("categoryList",categoryList);
@@ -178,7 +224,14 @@ public class MainAndBlogController {
         model.addAttribute("popularBlogList",popularBlogList);
         model.addAttribute("recentConmentList",recentConmentList);
         model.addAttribute("blogDatailsMessage",blogMessage);
+        model.addAttribute("runningTrackList",runningTrackList);
+        model.addAttribute("recentAllConmentList",recentAllConmentList);
+        model.addAttribute("conmentPages",conmentPages);
         System.out.println(blogMessage.getImgUrl());
+        System.out.println(recentAllConmentList.size());
+        for (int i=0;i<recentAllConmentList.size();i++){
+            System.out.println(recentAllConmentList.get(i).getId());
+        }
         return new ModelAndView("front/blogDetailsPage","blogMessage",model);
     }
 

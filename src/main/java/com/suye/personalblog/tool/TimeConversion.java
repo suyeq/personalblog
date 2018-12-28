@@ -1,5 +1,6 @@
 package com.suye.personalblog.tool;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,7 +19,10 @@ public class TimeConversion {
 
     public static String timeConversion(Date date){
         //这操蛋的Java时间戳，以后记得改
+        //System.out.println("createtime is"+date);
         long now=new Date().getTime();
+//        System.out.println("now is"+new Date());
+//        System.out.println();
 //        Date nowtrasfer=new Date(nows.getYear(),nows.getMonth(),nows.getDay(),nows.getHours(),nows.getMinutes(),nows.getSeconds());
 //        long now=nowtrasfer.getTime();
 //        System.out.println(nowtrasfer);

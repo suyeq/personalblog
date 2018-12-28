@@ -32,7 +32,7 @@
             <ul>
                 <li id="menu-item-1404"
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
                     <a href="#"><i class="giligili giligili-timeline"></i> 归档</a>
                 </li>
@@ -58,7 +58,7 @@
         <div class="mobile-menu-container">
             <ul>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
                         href="#"><i class="giligili giligili-timeline"></i>
                     归档</a></li>
@@ -90,7 +90,7 @@
                 </a>
             </div>
             <img alt=''
-                 src='front/img/lem6.jpg'
+                 src='http://localhost:8080/front/img/lem6.jpg'
                  srcset='front/img/lem6.jpg 2x'
                  class='avatar avatar-56 photo user-card-avatar' height='56' width='56' /> <i
                 class="giligili giligili-certify-3"></i>
@@ -211,15 +211,15 @@
                     <p class="post-info">
                         <span>
                             <i class="giligili giligili-view"></i>
-                            <a href="#" th:text="${BlogMessage.readnum}">33.62k</a>
+                            <a th:text="${BlogMessage.readnum}">33.62k</a>
                         </span>
                         <span>
                             <i class="giligili giligili-time"></i>
-                            <a href="#" th:text="${BlogMessage.time}">1年前</a>
+                            <a th:text="${BlogMessage.time}">1年前</a>
                         </span>
                         <span>
                             <i class="giligili giligili-comment"></i>
-                            <a href="#" th:text="${BlogMessage.conmentnum}">206</a>
+                            <a th:text="${BlogMessage.conmentnum}">206</a>
                         </span>
                     </p>
                 </li>
@@ -236,7 +236,7 @@
                        title="suye"> <img alt=''
                                           src='front/img/avatar.png'
                                           class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author" th:text="${ConmentMessage.visitorName}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
+                    <div class="right-box"><span class="author" th:text="${ConmentMessage.visitor.name}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
                         <br/><span class="recent-comment" th:text="${ConmentMessage.content}">OωO</span></div>
                 </a>
                 </li>
@@ -343,7 +343,6 @@
                         <p th:text="${BlogMessage.content}">
                             大家好，我是埃及法老，相信大家昨天都听到“埃及牛逼”的呼喊了吧，是的，我要复活了，现在只差100人民币即可，如果你愿意助我复活，给我发100元红包，等我统治世界之后，你就是我的左护法！
                         </p>
-
                         </a>
                         <img src="front/img/rem.jpg" style="width: auto;height: 250px;margin-top: 6px" th:src="${BlogMessage.imgUrl}">
 
@@ -354,8 +353,10 @@
                         <span class="post-comment-num">
                             <a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>
                         <span class="post-like">
-                            <a href="javascript:;" data-action="post_zan" data-id="2593" class="">
-                                <i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span> </a> </span>
+                            <a href="javascript:;" data-action="blog_zan"  data-id="2593" class="" th:attr="data-id=${BlogMessage.id}">
+                                <i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span>
+                            </a>
+                        </span>
                     </div>
                 </div>
 
@@ -397,7 +398,7 @@
                         <span class="post-comment-num">
                             <a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>
                         <span class="post-like">
-                            <a href="javascript:;" data-action="post_zan" data-id="2593" class="">
+                            <a href="javascript:;" data-action="blog_zan" data-id="2593" class="" th:attr="data-id=${BlogMessage.id}">
                                 <i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span> </a> </span>
                     </div>
 
@@ -522,8 +523,8 @@
 <script type='text/javascript'>var giligiliConfig = {
     // "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
     "siteStartTime": "2018-12-20",
-    // "ajaxUrl": "https:\/\/shawnzeng.com\/wp-front\/front-ajax.php",
-    "commentEditAgain": "1",
+    "ajaxUrl": "https:\/\/localhost:8080\/",
+    // "commentEditAgain": "1",
     "loadPjax": "1"
 };</script>
 <script type='text/javascript' src='front/js/jquery-3.2.1.min.js'></script>

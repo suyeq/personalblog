@@ -34,7 +34,7 @@ App = {
       	// 点赞
         $(document).on('click','.post-like a',function() {
           if ($(this).hasClass('done')) {
-            createMessage('你已经点过赞啦！');
+            createMessage('你已经点过赞啦！',1000);
             console.log('1');
             return false;
           } else {
@@ -47,7 +47,7 @@ App = {
               um_id: id,
               um_action: action
             };
-            $.post(giligiliConfig.ajaxUrl, ajax_data, function(data) {
+            $.post("/vote", ajax_data, function(data) {
               $(rateHolder).html(data);
             });
             return false;
@@ -221,8 +221,9 @@ App = {
             if ( edit ) $('#comment').after('<input type="text" name="edit_id" id="edit_id" value="' + edit + '" style="display:none;" />');
             // Ajax
             $.ajax({
-                url: giligiliConfig.ajaxUrl,
-                data: $(this).serialize() + "&action=ajax_comment",
+                url: "/addConmentAndVisitor",
+                data: $(this).serialize()+ "&action=ajax_comment",
+                // data: $(this).serialize() + "&action=ajax_comment",
                 type: $(this).attr('method'),
                 error: function(XmlHttpRequest, textStatus, errorThrown) {
                     push_status.html('重新提交');
@@ -232,6 +233,7 @@ App = {
                     }, 3000);
                 },
                 success: function(data) {
+                    // console.log(data)
                     comm_array.push($('#comment').val());
                   	$('textarea').each(function() {this.value = ''});
                     var t = addComment, cancel = t.I('cancel-comment-reply-link'), temp = t.I('wp-temp-form-div'), respond = t.I(t.respondId), post = t.I('comment_post_ID').value, parent = t.I('comment_parent').value;
@@ -275,7 +277,9 @@ App = {
         // comment-reply.dev.js
         addComment = {
             moveForm : function(commId, parentId, respondId, postId, num) {
+                // alert('llala'+comm)
                 var t = this, div, comm = t.I(commId), respond = t.I(respondId), cancel = t.I('cancel-comment-reply-link'), parent = t.I('comment_parent'), post = t.I('comment_post_ID');
+                // console.log('评论id'+comm)
                 if ( edit ) PrevEdit();
                 num ? (
                     t.I('comment').value = comm_array[num],
@@ -366,7 +370,9 @@ App = {
                 position: 'down',
                 width: '100%',
                 maxHeight: '200px',
-                api: giligiliConfig.siteUrl + "/emoji/OwO.min.json"
+                // api: giligiliConfig.siteUrl + "/emoji/OwO.min.json"
+                api: "http://localhost:8080/front/OwO/OwO.min.json"
+
 			});
 		});
 	},

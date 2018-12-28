@@ -3,6 +3,7 @@ package com.suye.personalblog.mapping;
 import com.suye.personalblog.model.Blog;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -42,4 +43,10 @@ public interface BlogMapping {
 
     @Select("select * from blog where istalk=1 order by create_time desc limit #{offset},7")
     List<Blog> loadMoreBlogsIsShuoShuo(@Param("offset")int offset);
+
+    @Update("update blog set votenum=votenum+1 where id=#{blogId}")
+    int increaseVotenum(@Param("blogId") int blogId);
+
+    @Update("update blog set cainum=cainum+1 where id=#{blogId}")
+    int increaseCainum(@Param("blogId") int blogId);
 }

@@ -1,7 +1,10 @@
 package com.suye.personalblog.mapping;
 
 import com.suye.personalblog.model.Conment;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,5 +19,29 @@ import java.util.List;
 public interface ConmentMapping {
 
     @Select("select * from conment order by conment_time desc limit 0,5")
-    public List<Conment> recentConment();
+    List<Conment> recentConment();
+
+    @Select("select * from conment where id=#{id}")
+    Conment findOneConmentById(@Param("id") int id);
+
+    @Select("select * from conment where blog_id=#{blogId} and conment_parent_id=0 order by conment_time desc limit #{offset},5")
+    List<Conment> findConmentsIsParentByBlogId(@Param("blogId") int blogId,@Param("offset")int offset);
+
+    @Select("select * from conment where conment_parent_id=#{conmentParentId}")
+    List<Conment> findConmentsByConmentPrentId(@Param("conmentParentId") int conmentParentId);
+
+    @Insert("insert into conment(content,conment_time,visitor_id,blog_id,conment_parent_id,votenum,cainum) values(#{content},NOW(),#{visitor_id},#{blog_id},#{conment_parent_id},0,0)")
+    int addConment(@Param("content") String content,@Param("visitor_id") int visitor_id,@Param("blog_id") int blog_id,@Param("conment_parent_id") int conment_parent_id);
+
+    @Select("select * from conment where id = (select max(id) from conment)")
+    Conment findLastConment();
+
+    @Select("select count(*) from conment where conment_parent_id=0 and blog_id=#{blogId}")
+    int conmnetTotal(@Param("blogId") int blogId);
+
+    @Update("update conment set votenum=votenum+1 where id=#{conmentId}")
+    int increaseConmentZan(@Param("conmentId") int conmentId);
+
+    @Update("update conment set cainum=cainum+1 where id=#{conmentId}")
+    int increaseConmentCai(@Param("conmentId")int conmentId);
 }

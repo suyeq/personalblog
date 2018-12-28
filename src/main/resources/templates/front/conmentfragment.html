@@ -1,0 +1,145 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <!-- #comment-## -->
+    <!--<li  th:fragment="conmentList(conmentLists)" class="comment-item" id="li-comment-1571" th:each="ConmentMessage:${conmentLists}" th:id="'li-comment-'+${ConmentMessage.id}">-->
+        <!--<div class="commentator-avatar">-->
+            <!--<a href="http://www.tomcat7.cn" target="_blank">-->
+                <!--<img alt=''-->
+                     <!--src='https://secure.gravatar.com/avatar/f975dcf6bd5d1ee63cbe44ab35973600?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'-->
+                     <!--srcset='https://secure.gravatar.com/avatar/f975dcf6bd5d1ee63cbe44ab35973600?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'-->
+                     <!--class='avatar avatar-48 photo'-->
+                     <!--height='48'-->
+                     <!--width='48'/>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="commentator-comment" id="comment-1571" th:id="'li-comment-'+${ConmentMessage.id}">-->
+                                <!--<span class="commentator-name">-->
+                                    <!--<strong class="author-name">-->
+                                        <!--<a target='_blank' href='#'-->
+                                           <!--rel='external nofollow'-->
+                                           <!--class='url' th:text="${ConmentMessage.visitor.name}">-->
+                                            <!--IamMicroCoder-->
+                                        <!--</a>-->
+                                    <!--</strong>-->
+                                <!--</span>-->
+            <!--<span class="giligili giligili-userlevel-1"></span>-->
+            <!--<div class="comment-chat">-->
+                <!--<div class="comment-comment">-->
+                    <!--<p th:text="${ConmentMessage.content}">-->
+                        <!--<img src="/wp-content/themes/Giligili/emoji/paopao/乖@2x.png" alt="乖"-->
+                             <!--class="OwO-img"/>-->
+                        <!--typecho可以使用你的主题吗？-->
+                    <!--</p>-->
+
+                    <!--<div class="comment-info">-->
+                        <!--<span class="floor">#28</span></span>-->
+                        <!--<span class="comment-time" th:text="${ConmentMessage.time}">1周前</span>-->
+                        <!--<span class="post-like">-->
+                                                <!--<a href="javascript:;" data-action="comment_zan" data-id="1571" class="">-->
+                                                    <!--<i class="giligili giligili-zan"></i>-->
+                                                    <!--<span class="count" th:text="${ConmentMessage.votenum}">0</span>-->
+                                                <!--</a>-->
+                                            <!--</span>-->
+                        <!--<span class="post-like">-->
+                                                <!--<a href="javascript:;" data-action="comment_cai" data-id="1571" class="">-->
+                                                    <!--<i class="giligili giligili-cai"></i>-->
+                                                    <!--<span class="count">0</span>-->
+                                                <!--</a>-->
+                                            <!--</span>-->
+                        <!--<a rel='nofollow' class='comment-reply-link' href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1571#respond'-->
+                           <!--onclick='return addComment.moveForm( "comment-1571", "1571", "respond", "2518" )' th:onclick="'return addComment.moveForm(&quot;'+'comment-'+${ConmentMessage.id}+'&quot;,&quot;'+${ConmentMessage.id}+'&quot;,&quot;respond&quot;,&quot;2518&quot;)'"-->
+                           <!--aria-label='回复给IamMicroCoder'>回复</a>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<ul class="children">-->
+            <!--<li class="comment-item" id="li-comment-1573" th:each="ChildConmentMessage:${ConmentMessage.child}" th:id="'li-comment-'+${ChildConmentMessage.id}">-->
+                <!--<div class="commentator-avatar">-->
+                    <!--<a href="https://shawnzeng.com" target="_blank">-->
+                        <!--<img alt=''-->
+                             <!--src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'-->
+                             <!--srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'-->
+                             <!--class='avatar avatar-48 photo' height='48' width='48'/>-->
+                    <!--</a>-->
+                    <!--<i class="giligili giligili-big-vip"></i>-->
+                <!--</div>-->
+                <!--<div th:unless="${#lists.isEmpty(ChildConmentMessage.child)}" th:fragment="::conmentList(${ChildConmentMessage.child})"></div>-->
+
+            <!--</li>-->
+            <!--&lt;!&ndash; .children &ndash;&gt;-->
+        <!--</ul>-->
+        <!--&lt;!&ndash; #comment-## &ndash;&gt;-->
+    <!--</li>-->
+    <th:block th:fragment="conmentList(conmentLists)">
+        <th:block th:each="ConmentMessage:${conmentLists}">
+            <li class="comment-item" id="li-comment-1571" th:id="'li-comment-'+${ConmentMessage.id}">
+                <div class="commentator-avatar">
+                    <a href="http://www.tomcat7.cn" target="_blank" th:href="${ConmentMessage.visitor.address}">
+                        <img alt=''
+                             src='http://localhost:8080/front/img/avatar.png'
+                             class='avatar avatar-48 photo'
+                             height='48'
+                             width='48'/>
+                    </a>
+                </div>
+                <div class="commentator-comment" id="comment-1571" th:id="'comment-'+${ConmentMessage.id}">
+                                <span class="commentator-name">
+                                    <strong class="author-name">
+                                        <a target='_blank' href='#'
+                                           rel='external nofollow'
+                                           class='url' th:text="${ConmentMessage.visitor.name}">
+                                            IamMicroCoder
+                                        </a>
+                                    </strong>
+                                </span>
+                    <span class="giligili giligili-userlevel-1"></span>
+                    <div class="comment-chat">
+                        <div class="comment-comment">
+                            <p th:text="${ConmentMessage.content}">
+                                <img src="/wp-content/themes/Giligili/emoji/paopao/乖@2x.png" alt="乖"
+                                     class="OwO-img"/>
+                                typecho可以使用你的主题吗？
+                            </p>
+                            <div class="comment-info">
+                                <span class="floor" th:text="'#'+${ConmentMessage.id}">#28</span>
+                                <span class="comment-time" th:text="${ConmentMessage.time}">1周前</span>
+                                <span class="post-like">
+                                                <a href="javascript:;" data-action="conment_zan" data-id="1571" class="" th:attr="data-id=${ConmentMessage.id}">
+                                                    <i class="giligili giligili-zan"></i>
+                                                    <span class="count" th:text="${ConmentMessage.votenum}">0</span>
+                                                </a>
+                                            </span>
+                                <span class="post-like">
+                                                <a href="javascript:;" data-action="conment_cai" data-id="1571" class="" th:attr="data-id=${ConmentMessage.id}">
+                                                    <i class="giligili giligili-cai"></i>
+                                                    <span class="count" th:text="${ConmentMessage.cainum}" th:attr="data-id=${ConmentMessage.id}">0</span>
+                                                </a>
+                                            </span>
+                                <!--https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1571#respond-->
+                                <a rel='nofollow' class='comment-reply-link' href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1571#respond'
+                                   onclick='return addComment.moveForm( "comment-1", "1", "respond", "2518" )' th:onclick="'return addComment.moveForm(&quot;comment-'+${ConmentMessage.id}+'&quot;,&quot;'+${ConmentMessage.id}+'&quot;,&quot;respond&quot;,&quot;1&quot;)'"
+                                   aria-label='回复给IamMicroCoder'>回复</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="children">
+                    <th:block th:unless="${#lists.isEmpty(ConmentMessage.child)}">
+                        <div th:replace="/front/conmentfragment::conmentList(${ConmentMessage.child})"></div>
+                    </th:block>
+                    <!-- .children -->
+                </ul>
+                <!-- #comment-## -->
+            </li>
+        </th:block>
+    </th:block>
+
+
+</body>
+</html>
+

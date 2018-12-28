@@ -7,6 +7,7 @@ import com.suye.personalblog.service.BlogService;
 import com.suye.personalblog.service.ConmentService;
 import com.suye.personalblog.service.LabelService;
 import com.suye.personalblog.service.VisitorService;
+import com.suye.personalblog.tool.ConmentMessageConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,8 @@ public class Hello {
     private ConmentService conmentService;
     @Autowired
     private BlogService blogService;
+    @Autowired
+    ConmentMessageConversion conmentMessageConversion;
 
 
     @GetMapping("/visitor")
@@ -49,7 +52,15 @@ public class Hello {
 
     @GetMapping("/conment")
     public List<Conment> getAllConment(){
+        for (int i=0;i<conmentService.recentConment().size();i++){
+            System.out.println(conmentService.recentConment().get(i).getConment_time().getTime());
+        }
         return conmentService.recentConment();
+    }
+
+    @RequestMapping("/con")
+    public void showConmentChild(){
+        //conmentMessageConversion.findAllConmentsByBlogId(1);
     }
 
     @GetMapping("/blog")

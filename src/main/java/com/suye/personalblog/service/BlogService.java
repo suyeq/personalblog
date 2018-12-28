@@ -97,4 +97,12 @@ public class BlogService {
     public List<Blog> loadMoreRecentIsShuoShuo(int offset){
         return blogMapping.loadMoreBlogsIsShuoShuo(offset);
     }
+
+    public int increaseVotenum(int blogId){
+        return blogMapping.increaseVotenum(blogId);
+    }
+
+    public int increaseCainum(int blogId){
+        return blogMapping.increaseCainum(blogId);
+    }
 }

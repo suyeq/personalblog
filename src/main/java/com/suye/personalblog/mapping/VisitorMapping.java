@@ -22,4 +22,9 @@ public interface VisitorMapping {
     @Select("select * from visitor where id=#{id}")
     Visitor findOneById(@Param("id")int id);
 
+    @Select("insert into visitor(name,email,address,isfriend)values(#{name},#{email},#{address},0)")
+    void addVisitor(@Param("name") String name,@Param("email") String email,@Param("address") String address);
+
+    @Select("select * from visitor where email=#{email}")
+    Visitor findOneByEmail(@Param("email") String email);
 }

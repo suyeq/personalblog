@@ -1,5 +1,6 @@
 package com.suye.personalblog.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -15,14 +16,20 @@ public class Conment {
     private Date conment_time;
     private int visitor_id;
     private int blog_id;
+    private int conment_parent_id;
+    private int votenum;
+    private int cainum;
 
-    public Conment(){}
-    public Conment(int id,String content,Date conment_time,int visitor_id,int blog_id){
+    protected Conment(){}
+    public Conment(int id,String content,Date conment_time,int visitor_id,int blog_id,int conment_parent_id,int votenum,int cainum){
         this.id=id;
         this.content=content;
         this.conment_time=conment_time;
         this.visitor_id=visitor_id;
         this.blog_id=blog_id;
+        this.conment_parent_id=conment_parent_id;
+        this.votenum=votenum;
+        this.cainum=cainum;
     }
     public int getId() {
         return id;
@@ -62,5 +69,33 @@ public class Conment {
 
     public void setBlog_id(int blog_id) {
         this.blog_id = blog_id;
+    }
+
+    public int getConment_parent_id() {
+        return conment_parent_id;
+    }
+
+    public void setConment_parent_id(int conment_parent_id) {
+        this.conment_parent_id = conment_parent_id;
+    }
+
+    public int getVotenum() {
+        return votenum;
+    }
+
+    public void setVotenum(int votenum) {
+        this.votenum = votenum;
+    }
+
+    public int getCainum() {
+        return cainum;
+    }
+
+    public void setCainum(int cainum) {
+        this.cainum = cainum;
+    }
+
+    public String toString(){
+        return "[id="+id+",   time="+conment_time+"]";
     }
 }

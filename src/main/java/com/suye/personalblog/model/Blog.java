@@ -1,5 +1,7 @@
 package com.suye.personalblog.model;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,11 +20,12 @@ public class Blog {
     private Date create_time;
     private int readnum;
     private int votenum;
+    private int cainum;
     private int conmentnum;
     private int isTalk;
 
     public Blog(){}
-    public Blog(int id,String imgUrl,String title,String describ,String content,Date create_time,int readnum,int votenum,int conmentnum,int isTalk){
+    public Blog(int id, String imgUrl, String title, String describ, String content, Date create_time, int readnum, int votenum, int conmentnum, int isTalk,int cainum){
         this.id=id;
         this.title=title;
         this.imgUrl=imgUrl;
@@ -33,6 +36,7 @@ public class Blog {
         this.votenum=votenum;
         this.conmentnum=conmentnum;
         this.isTalk=isTalk;
+        this.cainum=cainum;
     }
     public int getId() {
         return id;
@@ -112,5 +116,13 @@ public class Blog {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public int getCainum() {
+        return cainum;
+    }
+
+    public void setCainum(int cainum) {
+        this.cainum = cainum;
     }
 }
