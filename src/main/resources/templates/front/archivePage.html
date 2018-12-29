@@ -1,5 +1,6 @@
-blogDetailsPage.html<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,10 +17,10 @@ blogDetailsPage.html<!DOCTYPE html>
           href="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-180x180.png"/>
     <meta name="msapplication-TileImage"
           content="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-270x270.png"/>
-    <link href="css/Column.css" rel="stylesheet">
-    <link type="text/css" media="all" href="css/allPage.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="tagcloud/tagcloud.min.css">
-    <link rel="stylesheet" href="live2d/css/live2d.css" />
+    <link href="front/css/Column.css" rel="stylesheet">
+    <link type="text/css" media="all" href="front/css/allPage.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="front/tagcloud/tagcloud.min.css">
+    <link rel="stylesheet" href="front/live2d/css/live2d.css" />
     <title>一两清风，半盏明月</title></head>
 <body>
 <header id="header">
@@ -31,18 +32,18 @@ blogDetailsPage.html<!DOCTYPE html>
             <ul>
                 <li id="menu-item-1404"
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="https://shawnzeng.com"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
-                    <a href="https://shawnzeng.com/%e5%bd%92%e6%a1%a3"><i class="giligili giligili-timeline"></i> 归档</a>
+                    <a href="/archive"><i class="giligili giligili-timeline"></i> 归档</a>
                 </li>
                 <li id="menu-item-1418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418">
-                    <a href="https://shawnzeng.com/friends"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                    <a href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419">
-                    <a href="https://shawnzeng.com/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                    <a href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
         <span id="menu-search"> <i class="giligili giligili-search"></i> </span>
-        <form action="https://shawnzeng.com/" method="get" id="content-search">
+        <form action="#" method="get" id="content-search">
             <div class="search-header"><span>请输入你想搜索的内容：</span> <i class="giligili giligili-close"></i></div>
             <input type="text" name="s" id="search" value=""/></form>
     </div>
@@ -50,21 +51,21 @@ blogDetailsPage.html<!DOCTYPE html>
 </header>
 <header id="mobile-header">
     <div class="mobile-user-info"><img alt=''
-                                       src='img/lem6.jpg'
-                                       srcset='img/lem6.jpg'
+                                       src='front/img/lem6.jpg'
+                                       srcset='front/img/lem6.jpg'
                                        class='avatar avatar-100 photo mobile-user-avatar' height='100' width='100'/>
         <h3 class="mobile-user-name">Shawn</h3>
         <div class="mobile-menu-container">
             <ul>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                    <a href="https://shawnzeng.com"><i class="giligili giligili-home"></i> 首页</a></li>
+                    <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
-                        href="https://shawnzeng.com/%e5%bd%92%e6%a1%a3"><i class="giligili giligili-timeline"></i>
+                        href="/archive"><i class="giligili giligili-timeline"></i>
                     归档</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418"><a
-                        href="https://shawnzeng.com/friends"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                        href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a
-                        href="https://shawnzeng.com/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                        href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
     </div>
@@ -80,7 +81,7 @@ blogDetailsPage.html<!DOCTYPE html>
             </a>
             <div id="user-card-info">
                 <a id="user-card-article" class="giligili-left" href="#">
-                    <p class="num">35</p>
+                    <p class="num" th:text="${blogTotal}">35</p>
                     <p class="text">博客</p>
                 </a>
                 <a id="user-card-like" class="giligili-left" href="#">
@@ -89,8 +90,8 @@ blogDetailsPage.html<!DOCTYPE html>
                 </a>
             </div>
             <img alt=''
-                 src='img/lem6.jpg'
-                 srcset='img/lem6.jpg 2x'
+                 src='http://localhost:8080/front/img/lem6.jpg'
+                 srcset='front/img/lem6.jpg 2x'
                  class='avatar avatar-56 photo user-card-avatar' height='56' width='56' /> <i
                 class="giligili giligili-certify-3"></i>
         </div>
@@ -99,18 +100,10 @@ blogDetailsPage.html<!DOCTYPE html>
                     href="#">473721601</a></div>
             <div class="row"><i class="giligili giligili-email"></i>&nbsp;&nbsp;&nbsp;<a
                     href="https://blog.csdn.net/hackersuye">Suyeq233</a></div>
-            <!--<div class="row"><i class="giligili giligili-qqqun"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://jq.qq.com/?_wv=1027&amp;k=44nyJOX">面向博客编程</a></div>-->
-            <!--<div class="row"><i class="giligili giligili-weibo"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://weibo.com/shawnzeng1996">ShawnZeng1996</a></div>-->
             <div class="row"><i class="giligili giligili-github"></i>&nbsp;&nbsp;&nbsp;<a
                     href="https://github.com/suyeq">Suyeq233</a></div>
             <div class="row"><i class="csdn giligili-csdn"></i>&nbsp;&nbsp;&nbsp;<a
                     href="https://blog.csdn.net/hackersuye">Suyeq233</a></div>
-            <!--<div class="row"><i class="giligili giligili-zhihu"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://www.zhihu.com/people/shawn_zeng/activities">ShawnZeng</a></div>-->
-            <!--<div class="row"><i class="giligili giligili-bilibili"></i>&nbsp;&nbsp;&nbsp;<a-->
-            <!--href="https://space.bilibili.com/9317943/#/dynamic">Shawn1996</a></div>-->
             <div class="intro">一杯敬明天，一杯敬过往</div>
         </div>
 
@@ -174,14 +167,14 @@ blogDetailsPage.html<!DOCTYPE html>
                     music: [{
                         title: '風の住む街',
                         author: '磯村由纪子',
-                        url: 'music/磯村由纪子 - 風の住む街.mp3',
-                        pic: 'img/风.jpg'
+                        url: 'front/music/磯村由纪子 - 風の住む街.mp3',
+                        pic: 'front/img/风.jpg'
                     },
                         {
                             title: 'ヨスガノソラ メインテーマ -記憶',
                             author: '三輪学',
-                            url: 'music/三輪学 - ヨスガノソラ メインテーマ -記憶-.mp3',
-                            pic: 'img/穹.jpg'
+                            url: 'front/music/三輪学 - ヨスガノソラ メインテーマ -記憶-.mp3',
+                            pic: 'front/img/穹.jpg'
                         },
 //                        {
 //                            title: 'Promise',
@@ -192,90 +185,64 @@ blogDetailsPage.html<!DOCTYPE html>
                         {
                             title: '蝶恋',
                             author: '林坤信',
-                            url: 'music/林坤信 - 蝶恋(钢琴版).mp3',
-                            pic: 'img/古剑.jpg'
+                            url: 'front/music/林坤信 - 蝶恋(钢琴版).mp3',
+                            pic: 'front/img/古剑.jpg'
                         },
                         {
                             title: '月光の雲海',
                             author: '久石譲',
-                            url: 'music/久石譲 - 月光の雲海.mp3',
-                            pic: 'img/轻语.jpg'
+                            url: 'front/music/久石譲 - 月光の雲海.mp3',
+                            pic: 'front/img/轻语.jpg'
                         }
                     ]
                 });</script>
             </div>
         </div>
+
         <div class="giligili-item">
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
                     class="giligili giligili-postlist"></i> 最受欢迎</h3></header>
             <ul class="sidebar-posts-list">
-                <li><p class="post-title"><a href="https://shawnzeng.com/wordpress-theme-memory.html"
-                                             title="WordPress响应式主题Memory" rel="bookmark">WordPress响应式主题Memory</a></p>
-                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;33.62k</span><span><i
-                            class="giligili giligili-time"></i>&nbsp;1年前</span><span><i
-                            class="giligili giligili-comment"></i>&nbsp;<a
-                            href="https://shawnzeng.com/wordpress-theme-memory.html#comments">206</a></span></p></li>
-                <li><p class="post-title"><a href="https://shawnzeng.com/after-ddos.html" title="经历过一波DDos攻击过后…"
-                                             rel="bookmark">经历过一波DDos攻击过后…</a></p>
-                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;10.02k</span><span><i
-                            class="giligili giligili-time"></i>&nbsp;2年前</span><span><i
-                            class="giligili giligili-comment"></i>&nbsp;<a
-                            href="https://shawnzeng.com/after-ddos.html#comments">38</a></span></p></li>
-                <li><p class="post-title"><a href="https://shawnzeng.com/wordpress-add-desc.html"
-                                             title="WordPress给来访的盆友们添加评论头衔" rel="bookmark">WordPress给来访的盆友们添加评论头衔</a>
-                </p>
-                    <p class="post-info"><span><i class="giligili giligili-view"></i>&nbsp;8.94k</span><span><i
-                            class="giligili giligili-time"></i>&nbsp;2年前</span><span><i
-                            class="giligili giligili-comment"></i>&nbsp;<a
-                            href="https://shawnzeng.com/wordpress-add-desc.html#comments">21</a></span></p></li>
+
+                <li th:each="BlogMessage:${popularBlogList}">
+                    <p class="post-title">
+                        <a href="#" title="WordPress响应式主题Memory" rel="bookmark"
+                           th:text="${BlogMessage.title}">WordPress响应式主题Memory</a></p>
+                    <p class="post-info">
+                        <span>
+                            <i class="giligili giligili-view"></i>
+                            <a th:text="${BlogMessage.readnum}">33.62k</a>
+                        </span>
+                        <span>
+                            <i class="giligili giligili-time"></i>
+                            <a th:text="${BlogMessage.time}">1年前</a>
+                        </span>
+                        <span>
+                            <i class="giligili giligili-comment"></i>
+                            <a th:text="${BlogMessage.conmentnum}">206</a>
+                        </span>
+                    </p>
+                </li>
+
             </ul>
         </div>
+        <!--最近评论-->
         <div class="giligili-item">
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
                     class="giligili giligili-comments"></i> 最近评论</h3></header>
             <ul class="recentcomments">
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
+                <li th:each="ConmentMessage:${recentConmentList}">
+                    <a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
                        title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                                          src='front/img/avatar.png'
                                           class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>3分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">OωO</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1589"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>3分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">大佬，那个验证的计算不会实时刷新，需要重新刷新后才会显示，不刷新再次提交会提示验证错误</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1586"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>7分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">已给start</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-9#comment-1585"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>8分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">php写的|´・ω・)ノ，准备改成Java进行二次开发φ(￣∇￣o)</span></div>
-                </a></li>
-                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-9#comment-1584"
-                       title="suye"> <img alt=''
-                                          src='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=36&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                                          srcset='https://secure.gravatar.com/avatar/f54bcbf60236951cc8b0f4fde9538510?s=72&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
-                                          class='avatar avatar-36 photo' height='36' width='36'/>
-                    <div class="right-box"><span class="author">suye</span>于<span>13分钟前</span>在<span class="title">「WordPress响应式主题Memory」</span>中说:
-                        <br/><span class="recent-comment">感谢大佬的分享，哈哈哈</span></div>
-                </a></li>
+                        <div class="right-box"><span class="author" th:text="${ConmentMessage.visitor.name}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
+                            <br/><span class="recent-comment" th:text="${ConmentMessage.content}">OωO</span></div>
+                    </a>
+                </li>
             </ul>
         </div>
+
         <div class="giligili-item">
             <div id="calendar_wrap" class="calendar_wrap">
                 <table id="wp-calendar">
@@ -293,7 +260,7 @@ blogDetailsPage.html<!DOCTYPE html>
                     </thead>
                     <tfoot>
                     <tr>
-                        <td colspan="3" id="prev"><a href="https://shawnzeng.com/2018/10">&laquo; 10月</a></td>
+                        <td colspan="3" id="prev"><a href="#">&laquo; 10月</a></td>
                         <td class="pad">&nbsp;</td>
                         <td colspan="3" id="next" class="pad">&nbsp;</td>
                     </tr>
@@ -346,6 +313,8 @@ blogDetailsPage.html<!DOCTYPE html>
             </div>
         </div>
     </div>
+
+
     <div id="main-part" class="giligili-left">
         <div class="giligili-item breadcrumbs">当前位置：
             <div itemscope itemtype="http://schema.org/WebPage" id="crumbs"><a itemprop="breadcrumb"
@@ -355,197 +324,66 @@ blogDetailsPage.html<!DOCTYPE html>
         <div id="main-content">
             <article class="giligili-item post" id="post">
                 <div class="post-info">
-                    <div class="post-author"><a href="https://shawnzeng.com/author/shawn" title="由Shawn发布" rel="author">Shawn</a>
+                    <div class="post-author"><a href="javascript:void(0);" title="由Suyeq发布" rel="author">Suyeq</a>
                     </div>
                     <div class="post-meta">
                         <i class="giligili giligili-time">
                         </i>
-                        <time itemprop="datePublished">4月前</time> &nbsp;•&nbsp; <span class="post-view"><i
-                            class="giligili giligili-view"></i> 1.03k</span>&nbsp;•&nbsp;
+                        <time itemprop="datePublished" th:text="${blogMessage.time}">4月前</time> &nbsp;•&nbsp; <span class="post-view"><i
+                            class="giligili giligili-view"></i> <th:block th:text="${blogMessage.readnum}">1.03k</th:block></span>&nbsp;•&nbsp;
                         <span class="post-comment-num">
         <i class="giligili giligili-comment"></i> <span>评论已关闭</span></span> <span></span>
                     </div>
                     <div class="post-preface"></div>
+
                     <div class="post-content">
                         <div class="text-info"><h3 class="post-title">归档</h3>
                             <div class="content">
                                 <div id="archives">
-                                    <h3 class="al_year">2018 年</h3>
-                                    <ul class="al_mon_list">
-                                        <li><span class="al_mon">10月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/qqkandian-experience.html">22日:
-                                                    记一次参加QQ看点问答比赛的经历……(1条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">7月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/wordpress-theme-giligili.html">18日:
-                                                    WordPress响应式二次元主题Giligili(50条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/beauty-your-browser-stylus.html">6日:
-                                                    美化你浏览的样式——浏览器插件Stylus(5条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">4月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/resolve-ios-link-twice.html">24日:
-                                                    解决pjax下ios设备上链接要点击两次才跳转的问题(3条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">3月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/hi-the-first-editer.html">19日:
-                                                    嗨！你一年没见的女编辑已经上线(10条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">2月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/web-font-use.html">26日:
-                                                    为你的博客挑选合适的中文字体(9条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">1月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/axure-menu.html">2日:
-                                                    Axure利用动态面板制作二级菜单(1条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <h3 class="al_year">2017 年</h3>
-                                    <ul class="al_mon_list">
-                                        <li><span class="al_mon">12月</span>
-                                            <ul class="al_post_list">
+                                    <th:block th:each="ArchiveMessage:${archiveMessageList}">
+                                        <h3 class="al_year" th:text="${ArchiveMessage.dateTitle}+'&nbsp;年'">2018 年</h3>
+                                        <ul class="al_mon_list" >
+                                            <th:block th:each="ArchiveMessageMonth:${ArchiveMessage.list}">
                                                 <li>
-                                                    <a href="https://shawnzeng.com/wordpress-plugin-do-you-like-me.html">28日:
-                                                        wordpress插件——Do you like me小工具(27条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/a-wonderful-axure-rplib.html">11日:
-                                                    一套很棒的Axure元件库——Refs.cn(4条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">11月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/wordpress-hitikoto.html">12日:
-                                                    WordPress不依赖任何在线API和本地数据库调用一言(14条评论)</a></li>
-                                                <li>
-                                                    <a href="https://shawnzeng.com/scrum%e5%bc%80%e5%8f%91%e4%bb%8b%e7%bb%8d.html">2日:
-                                                        Scrum开发介绍(1条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">9月</span>
-                                            <ul class="al_post_list">
-                                                <li>
-                                                    <a href="https://shawnzeng.com/%e5%88%a9%e7%94%a8wordpress%e8%87%aa%e5%b8%a6%e9%93%be%e6%8e%a5%e5%8a%9f%e8%83%bd%e5%88%9b%e5%bb%ba%e5%8f%8b%e9%93%be%e9%a1%b5%e9%9d%a2.html">3日:
-                                                        利用WordPress自带链接功能创建友链页面(3条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/wordpress-wp_query-args.html">3日:
-                                                    WordPress自定义查询wp_query所有参数详细注释汉化版(2条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/wp-statistics-widget-revise.html">2日:
-                                                    WP Statistics小工具修改(0条评论)</a></li>
-                                                <li>
-                                                    <a href="https://shawnzeng.com/wordpress-add-sidebar-card-widget.html">1日:
-                                                        WordPress添加侧边栏名片小工具(2条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">8月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/wordpress-theme-memory.html">11日:
-                                                    WordPress响应式主题Memory(208条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/find-wordpress4-7-new.html">8日:
-                                                    意外发现WordPress4.7+新特性！(2条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">7月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/font-change-and-menu.html">11日:
-                                                    字体切换+[兰陵]仿Key游戏风格jQuery右键菜单(6条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">6月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/tencentcloud-vs-alicloud.html">11日:
-                                                    腾讯云&#038;&#038;阿里云竞品分析报告(11条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">5月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/qingchun.html">27日: 青·春(8条评论)</a>
+                                                    <span class="al_mon" th:text="${ArchiveMessageMonth.dateTitle}+'月'">10月</span>
+                                                        <ul class="al_post_list">
+                                                            <th:block th:each="ArchiveMessageDay:${ArchiveMessageMonth.list}">
+                                                            <li>
+                                                                <a href="javascript:void(0);" th:text="${ArchiveMessageDay.dateTitle}+'日:'+${ArchiveMessageDay.title}">22日:
+                                                                    记一次参加QQ看点问答比赛的经历……(1条评论)
+                                                                </a>
+                                                            </li>
+                                                            </th:block>
+                                                        </ul>
                                                 </li>
-                                                <li><a href="https://shawnzeng.com/record-recent-life.html">25日: <span>[杂谈]</span>记近来的生活(9条评论)</a>
-                                                </li>
-                                                <li><a href="https://shawnzeng.com/wish-you-come-back-soon.html">3日:
-                                                    城南花已开，望君早归来。(16条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/service-study.html">3日:
-                                                    服务计算学习笔记（Part）(2条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">3月</span>
-                                            <ul class="al_post_list">
-                                                <li><a href="https://shawnzeng.com/wordpress-add-desc.html">30日:
-                                                    WordPress给来访的盆友们添加评论头衔(21条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/about-cloud-service.html">20日: <span>[转]</span>有关云服务（IaaS，PaaS，以及SaaS）(3条评论)</a>
-                                                </li>
-                                                <li><a href="https://shawnzeng.com/after-ddos.html">10日:
-                                                    经历过一波DDos攻击过后…(38条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/love-normal.html">6日:
-                                                    爱情终将归于平淡(6条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/software-test-and-quantity.html">5日:
-                                                    软件测试与质量保证之黑盒测试(0条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/getridof-mail-in-macterminal.html">2日:
-                                                    摆脱mac terminal的&#8221;You hace new mail.&#8221;的提示(2条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/html-css-improve.html">1日:
-                                                    网页布局结构样式分离之性能优化(6条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/mac-sublime-text-key.html">1日: Mac
-                                                    Sublime Text常用快捷键(0条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span class="al_mon">2月</span>
-                                            <ul class="al_post_list">
-                                                <li>
-                                                    <a href="https://shawnzeng.com/css-transition%e4%bb%a5%e5%8f%8aanimation%e7%9a%84%e4%bd%bf%e7%94%a8.html">28日:
-                                                        CSS transition以及animation的使用(12条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/welcome-yebumeng.html">28日:
-                                                    欢迎本站名誉主编——网红<span>叶不萌</span>(10条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/cisc-and-risc.html">27日:
-                                                    CISC和RISC的区别与联系(0条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/the-life-of-grandfather.html">26日:
-                                                    <span>[转]</span>外公的两条命(0条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/css-use-float.html">13日:
-                                                    CSS利用浮动让元素脱离标准文档流(2条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/add-nightmode-for-blog.html">11日:
-                                                    给自己的博客添加夜间模式(4条评论)</a></li>
-                                                <li><a href="https://shawnzeng.com/22yaersold.html">7日:
-                                                    22岁的碎碎念(8条评论)</a></li>
-                                                <li>
-                                                    <a href="https://shawnzeng.com/centos7-wordpress-backupandrecover.html">4日:
-                                                        Centos7下wordpress的备份与还原(0条评论)</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                            </th:block>
+                                        </ul>
+                                    </th:block>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <img alt=''
-                     src='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=48&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g'
-                     srcset='https://secure.gravatar.com/avatar/3448949a7fd417d7c976a0639d74385d?s=96&#038;d=https%3A%2F%2Fshawnzeng.com%2Fwp-content%2Fthemes%2FGiligili%2Fimg%2Fcomment-avatar.png&#038;r=g 2x'
+                     src='http://localhost:8080/front/img/lem6.jpg'
                      class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i
                     class="giligili giligili-certify-3"></i></article>
             <div class="giligili-post-extra giligili-item">
-                <div><span class="post-like"><a href="javascript:;" data-action="post_zan" data-id="2551" class=""> <i
-                        class="giligili giligili-zan"></i> 点赞 <span class="count">0 </span> </a> </span></div>
+                <div><span class="post-like"><a href="javascript:;" data-action="blog_zan" data-id="2551" class="" th:attr="data-id=${blogMessage.id}"> <i
+                        class="giligili giligili-zan"></i> 点赞 <span class="count" th:text="${blogMessage.votenum}">0 </span> </a> </span></div>
                 <div class="giligili-pay-box"><i class="giligili giligili-Bbi"></i> 打赏
                     <div class="pay-box">
                         <div class="pay-header"><span>请作者吃个鸡腿！</span> <i class="giligili giligili-close"></i></div>
                         <div class="pay-body">
-                            <h4>扫一扫支付</h3> <img class="alipay chosen"
+                            <h3>扫一扫支付</h3> <img class="alipay chosen"
                                                 src="https://shawnzeng.com/wp-content/uploads/2017/10/zhifubaodonate.png"/>
-                                <img class="wechatpay"
-                                     src="https://shawnzeng.com/wp-content/uploads/2017/10/weixindonate.png"/>
-                                <div class="pay-chose"><a class="alibutton chosen"><img
-                                        src="https://shawnzeng.com/wp-content/themes/Giligili/img/alipay.png"/></a> <a
-                                        class="wechatbutton"><img
-                                        src="https://shawnzeng.com/wp-content/themes/Giligili/img/wechat.png"/></a>
-                                </div>
+                            <img class="wechatpay"
+                                 src="https://shawnzeng.com/wp-content/uploads/2017/10/weixindonate.png"/>
+                            <div class="pay-chose"><a class="alibutton chosen"><img
+                                    src="https://shawnzeng.com/wp-content/themes/Giligili/img/alipay.png"/></a> <a
+                                    class="wechatbutton"><img
+                                    src="https://shawnzeng.com/wp-content/themes/Giligili/img/wechat.png"/></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -574,68 +412,28 @@ blogDetailsPage.html<!DOCTYPE html>
         </div>
     </div>
 
+
+
     <div id="sidebar-right" class="giligili-left">
         <div class="giligili-item">
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
                     class="giligili giligili-visitors"></i> 博主专栏</h3></header>
 
-            <div class="post-lists ">
+            <div class="post-lists " >
                 <div class="post-lists-body">
-                    <div class="post-list-item">
+                    <div class="post-list-item" th:each="Column:${columnList}">
                         <div class="post-list-item-container">
-                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/穹.png);"></div>
-                            <a href="http://47.107.69.19:9000/article/4">
+                            <div class="item-thumb bg-deepgrey" style="background-image:url(front/img/穹.png);" th:style="'background-image:url(' + ${Column.imgUrl}+')'"></div>
+                            <a href="#">
                                 <div class="item-desc">
-                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
+                                    <p class="giligili" style="font-size: 10px" th:text="${Column.describ}">redis源码分析</p>
                                 </div>
                             </a>
                             <div class="item-slant reverse-slant bg-deepgrey"></div>
                             <div class="item-slant"></div>
                             <div class="item-label">
                                 <div class="giligili item-title" >
-                                    <p>Redis源码分析</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="position:relative;width: 100%;height: 20px;text-align: center">
-                            <p class="giligili" style="font-size: 10px"></p>
-                        </div>
-                    </div>
-
-                    <div class="post-list-item">
-                        <div class="post-list-item-container">
-                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/2.jpg);"></div>
-                            <a href="http://47.107.69.19:9000/article/4">
-                                <div class="item-desc">
-                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
-                                </div>
-                            </a>
-                            <div class="item-slant reverse-slant bg-deepgrey"></div>
-                            <div class="item-slant"></div>
-                            <div class="item-label">
-                                <div class="giligili item-title" >
-                                    <p >Redis源码分析</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="position:relative;width: 100%;height: 20px;text-align: center">
-                            <p class="giligili" style="font-size: 10px"></p>
-                        </div>
-                    </div>
-
-                    <div class="post-list-item">
-                        <div class="post-list-item-container">
-                            <div class="item-thumb bg-deepgrey" style="background-image:url(img/2.jpg);"></div>
-                            <a href="http://47.107.69.19:9000/article/4">
-                                <div class="item-desc">
-                                    <p class="giligili" style="font-size: 10px">redis源码分析</p>
-                                </div>
-                            </a>
-                            <div class="item-slant reverse-slant bg-deepgrey"></div>
-                            <div class="item-slant"></div>
-                            <div class="item-label">
-                                <div class="giligili item-title" >
-                                    <p >Redis源码分析</p>
+                                    <p th:text="${Column.name}">Redis源码分析</p>
                                 </div>
                             </div>
                         </div>
@@ -649,23 +447,12 @@ blogDetailsPage.html<!DOCTYPE html>
 
         </div>
 
+        <!--标签云-->
         <div class="giligili-item" >
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i class="giligili giligili-tags"></i>
                 标签云</h3></header>
             <div class="tagcloud">
-                <a href="#">3D</a>
-                <a href="#">Redis</a>
-                <a href="#">Java</a>
-                <a href="#">C</a>
-                <a href="#">C++</a>
-                <a href="#">Web</a>
-                <a href="#">Spring</a>
-                <a href="#">Mybatis</a>
-                <a href="#">Hibernate</a>
-                <a href="#">线程池</a>
-                <a href="#">Nginx</a>
-                <a href="#">Mysql</a>
-                <a href="#">Netty</a>
+                <a href="#" th:each="Label:${labelList}" th:text="${Label.name}">3D</a>
             </div>
         </div>
 
@@ -676,18 +463,18 @@ blogDetailsPage.html<!DOCTYPE html>
                     分类
                 </h3>
             </header>
-            <div class="row">
-                <div style="float: left;"><a href="#" title="">JavaWeb</a></div>
-                <div style="float: right;"><p>12篇</p></div>
+            <div class="row" th:each="Category:${categoryList}">
+                <div style="float: left;margin-left: 5px"><a href="#" title="" th:text="${Category.name}">JavaWeb</a></div>
+                <div style="float: right;"><p th:text="${Category.blognum}+' 篇'">12篇</p></div>
             </div>
-            <div class="row">
-                <div style="float: left;"><a href="#" title="">Linux</a></div>
-                <div style="float: right;"><p>10篇</p></div>
-            </div>
-            <div class="row">
-                <div style="float: left;"><a href="#" title="">Redis</a></div>
-                <div style="float: right;"><p>9篇</p></div>
-            </div>
+            <!--<div class="row">-->
+            <!--<div style="float: left;"><a href="#" title="">Linux</a></div>-->
+            <!--<div style="float: right;"><p>10篇</p></div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div style="float: left;"><a href="#" title="">Redis</a></div>-->
+            <!--<div style="float: right;"><p>9篇</p></div>-->
+            <!--</div>-->
 
         </div>
 
@@ -697,12 +484,12 @@ blogDetailsPage.html<!DOCTYPE html>
     <p>版权所有 © 2017-2018 <a href="#">阑珊处</a> | <a
             href="http://www.miitbeian.gov.cn">黑ICP备17000197号-1</a> <br/>Theme <a
             href="#" target="_blank">Giligili</a> By <a
-            href="https://shawnzeng.com" target="_blank">Suyeq</a> With <i class="giligili giligili-heart-o throb"></i>
+            href="#" target="_blank">Suyeq</a> With <i class="giligili giligili-heart-o throb"></i>
         | All Rights Reserved<br/><span class="my-face">(●'◡'●)ﾉ</span>本博客已萌萌哒运行了<span id="span_dt_dt"></span></p>
 
 
     <div id="landlord" style="left:0px;bottom:0px;">
-        <div class="message" style="opacity:0"></div>
+        <div class="messagesrem" style="opacity:0"></div>
         <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
         <div class="live_talk_input_body">
             <div class="live_talk_input_name_body">
@@ -731,23 +518,24 @@ blogDetailsPage.html<!DOCTYPE html>
 
 </div>
 <div id="layout-shadow"></div>
-<script type='text/javascript' src='js/jquery-3.2.1.min.js'></script>
-<script type='text/javascript' src='js/wp-embed.min.js'></script>
-<script type='text/javascript' src='js/func.js'></script>
-<script type='text/javascript' src='js/support.js'></script>
 <script type='text/javascript'>var giligiliConfig = {
-    "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
-    "siteStartTime": "2017-02-01",
-    "ajaxUrl": "https:\/\/shawnzeng.com\/wp-admin\/admin-ajax.php",
-    "commentEditAgain": "1",
+    // "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
+    "siteStartTime": "2018-12-20",
+    "ajaxUrl": "https:\/\/localhost:8080\/",
+    // "commentEditAgain": "1",
     "loadPjax": "1"
 };</script>
-<script type='text/javascript' src='js/app.js'></script>
-
+<script type='text/javascript' src='front/js/jquery-3.2.1.min.js'></script>
+<script type='text/javascript' src='front/js/wp-embed.min.js'></script>
+<script type='text/javascript' src='front/js/func.js'></script>
+<script type='text/javascript' src='front/js/support.js'></script>
+<script type='text/javascript' src='front/js/app.js'></script>
 <!--云标签-->
-<script src="tagcloud/tagcloud.min.js"></script>
+<script src="front/tagcloud/tagcloud.min.js"></script>
 <script type="text/javascript">
+    // window.onload=function(){
     tagcloud();
+    // }
 </script>
 
 <!--看板娘-->
@@ -755,7 +543,7 @@ blogDetailsPage.html<!DOCTYPE html>
     var message_Path = '/live2d/';//资源目录，如果目录不对请更改
     var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
 </script>
-<script type="text/javascript" src="live2d/js/live2d.js"></script>
-<script type="text/javascript" src="live2d/js/message.js"></script>
+<script type="text/javascript" src="front/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="front/live2d/js/message.js"></script>
 </body>
 </html>

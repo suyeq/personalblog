@@ -49,4 +49,16 @@ public interface BlogMapping {
 
     @Update("update blog set cainum=cainum+1 where id=#{blogId}")
     int increaseCainum(@Param("blogId") int blogId);
+
+    @Select("select * from blog order by create_time desc")
+    List<Blog> findAllBlogTimeDesc();
+
+    @Select("select * from blog where istalk=3")
+    Blog findArchive();
+
+    @Select("select * from blog where istalk=4")
+    Blog findFriends();
+
+    @Select("select * from blog where istalk=5")
+    Blog findAboutMe();
 }

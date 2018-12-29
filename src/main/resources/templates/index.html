@@ -34,12 +34,12 @@
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
                     <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
-                    <a href="#"><i class="giligili giligili-timeline"></i> 归档</a>
+                    <a href="/archive"><i class="giligili giligili-timeline"></i> 归档</a>
                 </li>
                 <li id="menu-item-1418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418">
-                    <a href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                    <a href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419">
-                    <a href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                    <a href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
         <span id="menu-search"> <i class="giligili giligili-search"></i> </span>
@@ -60,12 +60,12 @@
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
                     <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
-                        href="#"><i class="giligili giligili-timeline"></i>
+                        href="/archive"><i class="giligili giligili-timeline"></i>
                     归档</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418"><a
-                        href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                        href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a
-                        href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                        href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
     </div>
@@ -329,86 +329,184 @@
         <!--文章列表-->
         <div id="main-content">
 
-            <article class="giligili-item post" th:each="BlogMessage:${recentBlogList}">
-                <span class="sticky"></span>
+            <th:block th:each="BlogMessage:${recentBlogList}">
+                <th:block th:if="${BlogMessage.isTalk} eq 1">
+                    <article class="giligili-item post">
+                        <span class="sticky"></span>
 
-                <div class="post-info" th:if="${BlogMessage.isTalk} eq 1">
-                    <div class="post-author"><a href="#" title="由Suyeq发布" rel="author">Suyeq</a>
-                    </div>
-                    <div class="post-meta">
-                        <time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>
-                    </div>
-                    <div class="post-content">
-                        <a data-pjax = "0" href="#" th:href="'/blogDetails/'+${BlogMessage.id}">
-                        <p th:text="${BlogMessage.content}">
-                            大家好，我是埃及法老，相信大家昨天都听到“埃及牛逼”的呼喊了吧，是的，我要复活了，现在只差100人民币即可，如果你愿意助我复活，给我发100元红包，等我统治世界之后，你就是我的左护法！
-                        </p>
-                        </a>
-                        <img src="front/img/rem.jpg" style="width: auto;height: 250px;margin-top: 6px" th:src="${BlogMessage.imgUrl}">
+                        <div class="post-info">
+                            <div class="post-author"><a href="#" title="由Suyeq发布" rel="author">Suyeq</a>
+                            </div>
+                            <div class="post-meta">
+                                <time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>
+                            </div>
+                            <div class="post-content">
+                                <a data-pjax = "0" href="#" th:href="'/blogDetails/'+${BlogMessage.id}">
+                                    <p th:text="${BlogMessage.content}">
+                                        大家好，我是埃及法老，相信大家昨天都听到“埃及牛逼”的呼喊了吧，是的，我要复活了，现在只差100人民币即可，如果你愿意助我复活，给我发100元红包，等我统治世界之后，你就是我的左护法！
+                                    </p>
+                                </a>
+                                <img src="front/img/rem.jpg" style="width: auto;height: 250px;margin-top: 6px" th:src="${BlogMessage.imgUrl}">
 
-                    </div>
+                            </div>
 
-                    <div class="post-about">
-                        <span class="post-view"><i class="giligili giligili-view"></i> <span class="count" th:text="${BlogMessage.readnum}"> 3 </span> </span>
-                        <span class="post-comment-num">
+                            <div class="post-about">
+                                <span class="post-view"><i class="giligili giligili-view"></i> <span class="count" th:text="${BlogMessage.readnum}"> 3 </span> </span>
+                                <span class="post-comment-num">
                             <a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>
-                        <span class="post-like">
+                                <span class="post-like">
                             <a href="javascript:;" data-action="blog_zan"  data-id="2593" class="" th:attr="data-id=${BlogMessage.id}">
                                 <i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span>
                             </a>
                         </span>
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
-                <div class="post-info" th:if="${BlogMessage.isTalk} eq 0">
-                    <div class="post-author"><a href="#" title="由Suyeq发布" rel="author">Suyeq</a>
-                    </div>
-                    <div class="post-meta">
-                        <time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>
-                    </div>
+                        <img alt=''
+                             src='front/img/lem6.jpg'
+                             class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i
+                            class="giligili giligili-certify-3"></i>
+                    </article>
+                </th:block>
+                <th:block th:if="${BlogMessage.isTalk} eq 0">
+                    <article class="giligili-item post" >
+                        <span class="sticky"></span>
+                        <div class="post-info">
+                            <div class="post-author"><a href="#" title="由Suyeq发布" rel="author">Suyeq</a>
+                            </div>
+                            <div class="post-meta">
+                                <time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>
+                            </div>
 
-                    <div class="post-preface">
-                        <span class="tags" th:each="Label:${BlogMessage.labelList}">
-                            <a href="#" rel="tag"  th:text="${Label.name}">Giligili</a>
-                        </span>
-                        <!--<span class="tags"><a href="#" rel="tag">WordPress</a></span>-->
-                        <!--<span class="tags"><a href="#" rel="tag">主题</a></span>-->
-                       <text th:text="${BlogMessage.describ}">从实习后期开始写的主题，期间断断续续，今天终于写出第一版了！这套主题是在写完Memory之后写的，所以手法娴熟了很多，大家可以来尝试一下哦！另外我也会开始着手于重构Memory主题~</text>
-                    </div>
-                    <div class="post-excerpt no-touch">
-                        <div class="post-thumbnail"
-                             style="background-image:url(front/img/rem.jpg)" th:style="'background-image:url(' + ${BlogMessage.imgUrl}+')'"></div>
-                        <div class="post-thumbnail-shadow"></div>
-                        <div class="text-info"><a href="#"
-                                                  rel="bookmark" title="WordPress响应式二次元主题Giligili" th:href="'/blogDetails/'+${BlogMessage.id}"><h3
-                                class="post-title" th:text="${BlogMessage.title}">WordPress响应式二次元主题Giligili</h3>
-                            <div class="excerpt"><p th:text="${BlogMessage.content}">
-                                redis是一个键值对的数据库服务器，服务器中包含着若干个非空的数据库，每个非空数据库里又包含着若干个键值[&hellip;]</p></div>
-                        </a>
-                            <span class="category">
+                            <div class="post-preface">
+                            <th:block th:each="Label:${BlogMessage.labelList}">
+                                <span class="tags">
+                                    <a href="#" rel="tag"  th:text="${Label.name}">Giligili</a>
+                                </span>
+                            </th:block>
+                        <!--<span class="tags" th:each="Label:${BlogMessage.labelList}">-->
+                            <!--<a href="#" rel="tag"  th:text="${Label.name}">Giligili</a>-->
+                        <!--</span>-->
+                                <!--<span class="tags"><a href="#" rel="tag">WordPress</a></span>-->
+                                <!--<span class="tags"><a href="#" rel="tag">主题</a></span>-->
+                                <th:block th:text="${BlogMessage.describ}">从实习后期开始写的主题，期间断断续续，今天终于写出第一版了！这套主题是在写完Memory之后写的，所以手法娴熟了很多，大家可以来尝试一下哦！另外我也会开始着手于重构Memory主题~</th:block>
+                            </div>
+                            <div class="post-excerpt no-touch">
+                                <div class="post-thumbnail"
+                                     style="background-image:url(front/img/rem.jpg)" th:style="'background-image:url(' + ${BlogMessage.imgUrl}+')'"></div>
+                                <div class="post-thumbnail-shadow"></div>
+                                <div class="text-info"><a href="#"
+                                                          rel="bookmark" title="WordPress响应式二次元主题Giligili" th:href="'/blogDetails/'+${BlogMessage.id}"><h3
+                                        class="post-title" th:text="${BlogMessage.title}">WordPress响应式二次元主题Giligili</h3>
+                                    <div class="excerpt"><p th:text="${BlogMessage.content}">
+                                        redis是一个键值对的数据库服务器，服务器中包含着若干个非空的数据库，每个非空数据库里又包含着若干个键值[&hellip;]</p></div>
+                                </a>
+                                    <span class="category">
                                 <a href="#" rel="category tag" th:each="Category:${BlogMessage.categoryList}" th:text="${Category.name}+'，'" th:if="${CategoryStat.count} ne ${CategoryStat.size}">大新闻</a>
                                 <a href="#" rel="category tag" th:each="Category:${BlogMessage.categoryList}" th:text="${Category.name}" th:if="${CategoryStat.count} eq ${CategoryStat.size}">大新闻</a>
-                                <!--<a href="#" rel="category tag">成长路</a>-->
+                                        <!--<a href="#" rel="category tag">成长路</a>-->
                             </span>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
 
-                    <div class="post-about">
-                        <span class="post-view"><i class="giligili giligili-view"></i> <span class="count" th:text="${BlogMessage.readnum}"> 3 </span> </span>
-                        <span class="post-comment-num">
+                            <div class="post-about">
+                                <span class="post-view"><i class="giligili giligili-view"></i> <span class="count" th:text="${BlogMessage.readnum}"> 3 </span> </span>
+                                <span class="post-comment-num">
                             <a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>
-                        <span class="post-like">
+                                <span class="post-like">
                             <a href="javascript:;" data-action="blog_zan" data-id="2593" class="" th:attr="data-id=${BlogMessage.id}">
                                 <i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span> </a> </span>
-                    </div>
+                            </div>
 
-                </div>
+                        </div>
 
-                <img alt=''
-                     src='front/img/lem6.jpg'
-                class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i
-                        class="giligili giligili-certify-3"></i>
-            </article>
+                        <img alt=''
+                             src='front/img/lem6.jpg'
+                             class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i
+                            class="giligili giligili-certify-3"></i>
+                    </article>
+                </th:block>
+            </th:block>
+            <!--<article class="giligili-item post" th:each="BlogMessage:${recentBlogList}">-->
+                <!--<span class="sticky"></span>-->
+
+                <!--<div class="post-info" th:if="${BlogMessage.isTalk} eq 1">-->
+                    <!--<div class="post-author"><a href="#" title="由Suyeq发布" rel="author">Suyeq</a>-->
+                    <!--</div>-->
+                    <!--<div class="post-meta">-->
+                        <!--<time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>-->
+                    <!--</div>-->
+                    <!--<div class="post-content">-->
+                        <!--<a data-pjax = "0" href="#" th:href="'/blogDetails/'+${BlogMessage.id}">-->
+                        <!--<p th:text="${BlogMessage.content}">-->
+                            <!--大家好，我是埃及法老，相信大家昨天都听到“埃及牛逼”的呼喊了吧，是的，我要复活了，现在只差100人民币即可，如果你愿意助我复活，给我发100元红包，等我统治世界之后，你就是我的左护法！-->
+                        <!--</p>-->
+                        <!--</a>-->
+                        <!--<img src="front/img/rem.jpg" style="width: auto;height: 250px;margin-top: 6px" th:src="${BlogMessage.imgUrl}">-->
+
+                    <!--</div>-->
+
+                    <!--<div class="post-about">-->
+                        <!--<span class="post-view"><i class="giligili giligili-view"></i> <span class="count" th:text="${BlogMessage.readnum}"> 3 </span> </span>-->
+                        <!--<span class="post-comment-num">-->
+                            <!--<a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>-->
+                        <!--<span class="post-like">-->
+                            <!--<a href="javascript:;" data-action="blog_zan"  data-id="2593" class="" th:attr="data-id=${BlogMessage.id}">-->
+                                <!--<i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span>-->
+                            <!--</a>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="post-info" th:if="${BlogMessage.isTalk} eq 0">-->
+                    <!--<div class="post-author"><a href="#" title="由Suyeq发布" rel="author">Suyeq</a>-->
+                    <!--</div>-->
+                    <!--<div class="post-meta">-->
+                        <!--<time itemprop="datePublished" th:text="${BlogMessage.time}">4月前</time>-->
+                    <!--</div>-->
+
+                    <!--<div class="post-preface">-->
+                        <!--<span class="tags" th:each="Label:${BlogMessage.labelList}">-->
+                            <!--<a href="#" rel="tag"  th:text="${Label.name}">Giligili</a>-->
+                        <!--</span>-->
+                        <!--&lt;!&ndash;<span class="tags"><a href="#" rel="tag">WordPress</a></span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="tags"><a href="#" rel="tag">主题</a></span>&ndash;&gt;-->
+                       <!--<text th:text="${BlogMessage.describ}">从实习后期开始写的主题，期间断断续续，今天终于写出第一版了！这套主题是在写完Memory之后写的，所以手法娴熟了很多，大家可以来尝试一下哦！另外我也会开始着手于重构Memory主题~</text>-->
+                    <!--</div>-->
+                    <!--<div class="post-excerpt no-touch">-->
+                        <!--<div class="post-thumbnail"-->
+                             <!--style="background-image:url(front/img/rem.jpg)" th:style="'background-image:url(' + ${BlogMessage.imgUrl}+')'"></div>-->
+                        <!--<div class="post-thumbnail-shadow"></div>-->
+                        <!--<div class="text-info"><a href="#"-->
+                                                  <!--rel="bookmark" title="WordPress响应式二次元主题Giligili" th:href="'/blogDetails/'+${BlogMessage.id}"><h3-->
+                                <!--class="post-title" th:text="${BlogMessage.title}">WordPress响应式二次元主题Giligili</h3>-->
+                            <!--<div class="excerpt"><p th:text="${BlogMessage.content}">-->
+                                <!--redis是一个键值对的数据库服务器，服务器中包含着若干个非空的数据库，每个非空数据库里又包含着若干个键值[&hellip;]</p></div>-->
+                        <!--</a>-->
+                            <!--<span class="category">-->
+                                <!--<a href="#" rel="category tag" th:each="Category:${BlogMessage.categoryList}" th:text="${Category.name}+'，'" th:if="${CategoryStat.count} ne ${CategoryStat.size}">大新闻</a>-->
+                                <!--<a href="#" rel="category tag" th:each="Category:${BlogMessage.categoryList}" th:text="${Category.name}" th:if="${CategoryStat.count} eq ${CategoryStat.size}">大新闻</a>-->
+                                <!--&lt;!&ndash;<a href="#" rel="category tag">成长路</a>&ndash;&gt;-->
+                            <!--</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="post-about">-->
+                        <!--<span class="post-view"><i class="giligili giligili-view"></i> <span class="count" th:text="${BlogMessage.readnum}"> 3 </span> </span>-->
+                        <!--<span class="post-comment-num">-->
+                            <!--<a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>-->
+                        <!--<span class="post-like">-->
+                            <!--<a href="javascript:;" data-action="blog_zan" data-id="2593" class="" th:attr="data-id=${BlogMessage.id}">-->
+                                <!--<i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span> </a> </span>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+                <!--<img alt=''-->
+                     <!--src='front/img/lem6.jpg'-->
+                <!--class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i-->
+                        <!--class="giligili giligili-certify-3"></i>-->
+            <!--</article>-->
 
 
         </div>
@@ -491,7 +589,7 @@
 
 
     <div id="landlord" style="left:0px;bottom:0px;">
-        <div class="message" style="opacity:0"></div>
+        <div class="messagesrem" style="opacity:0"></div>
         <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
         <div class="live_talk_input_body">
             <div class="live_talk_input_name_body">

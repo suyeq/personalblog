@@ -105,4 +105,32 @@ public class BlogService {
     public int increaseCainum(int blogId){
         return blogMapping.increaseCainum(blogId);
     }
+
+    public List<Blog> findAllBlogTimeDesc(){
+        return blogMapping.findAllBlogTimeDesc();
+    }
+
+    /**
+     * 返回归档信息
+     * @return
+     */
+    public Blog findArchive(){
+       return blogMapping.findArchive();
+    }
+
+    /**
+     * 返回友链信息
+     * @return
+     */
+    public Blog findFirends(){
+        return blogMapping.findFriends();
+    }
+
+    /**
+     * 返回关于我的信息
+     * @return
+     */
+    public Blog findAboutMe(){
+        return blogMapping.findAboutMe();
+    }
 }

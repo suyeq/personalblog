@@ -188,11 +188,11 @@ if(!norunFlag){
 	function showMessage(text, timeout){
 		if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
 		//console.log('showMessage', text);
-		$('.message').stop();
-		$('.message').html(text);
-		$('.message').fadeTo(200, 1);
-		//if (timeout === null) timeout = 5000;
-		//hideMessage(timeout);
+		$('.messagesrem').stop();
+		$('.messagesrem').html(text);
+		$('.messagesrem').fadeTo(200, 1);
+		// if (timeout === null) timeout = 5000;
+		// hideMessage(timeout);
 	}
 	function talkValTimer(){
 		$('#live_talk').val('1');
@@ -201,7 +201,7 @@ if(!norunFlag){
 	function hideMessage(timeout){
 		//$('.message').stop().css('opacity',1);
 		if (timeout === null) timeout = 5000;
-		$('.message').delay(timeout).fadeTo(200, 0);
+		$('.messagesrem').delay(timeout).fadeTo(200, 0);
 	}
 	
 	function initLive2d (){

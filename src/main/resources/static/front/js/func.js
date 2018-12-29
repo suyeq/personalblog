@@ -22,11 +22,13 @@ function commentLine() {
 // 消息推送
 function createMessage(message,time) {
     //var time=1000
-    alert('1111')
+    // alert('1111')
 	if ($(".message").length > 0) {
+	    // alert('2222')
 		$(".message").remove();
 	}
 	$("body").append('<div class="message"><p class="message-info">' + message + '</p></div>');
+	// alert('3333')
 	setTimeout("$('.message').remove()", time);
 }
 

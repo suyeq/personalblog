@@ -108,14 +108,14 @@
                 <ul>
                     <li id="menu-item-1404"
                         class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                        <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
+                        <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                     <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
-                        <a href="#"><i class="giligili giligili-timeline"></i> 归档</a>
+                        <a href="/archive"><i class="giligili giligili-timeline"></i> 归档</a>
                     </li>
                     <li id="menu-item-1418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418">
-                        <a href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                        <a href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                     <li id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419">
-                        <a href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                        <a href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
                 </ul>
             </div>
             <span id="menu-search"> <i class="giligili giligili-search"></i> </span>
@@ -134,14 +134,14 @@
             <div class="mobile-menu-container">
                 <ul>
                     <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
-                        <a href="#"><i class="giligili giligili-home"></i> 首页</a></li>
+                        <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
-                            href="#"><i class="giligili giligili-timeline"></i>
+                            href="/archive"><i class="giligili giligili-timeline"></i>
                         归档</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418"><a
-                            href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                            href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                     <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a
-                            href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                            href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
                 </ul>
             </div>
         </div>
@@ -446,7 +446,7 @@
                             <span class="post-comment-num">
                             <a href="#"><i class="giligili giligili-comment"></i> <span class="count" th:text="${BlogMessage.conmentnum}"> 3 </span> </a></span>
                             <span class="post-like">
-                            <a href="javascript:;" data-action="post_zan" data-id="2593" class="">
+                            <a href="javascript:;" data-action="blog_zan" data-id="2593" class="" th:attr="data-id=${BlogMessage.id}">
                                 <i class="giligili giligili-zan"></i> <span class="count" th:text="${BlogMessage.votenum}"> 3 </span> </a> </span>
                         </div>
 

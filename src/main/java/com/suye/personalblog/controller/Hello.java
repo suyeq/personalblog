@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,10 +53,11 @@ public class Hello {
 
     @GetMapping("/conment")
     public List<Conment> getAllConment(){
-        for (int i=0;i<conmentService.recentConment().size();i++){
-            System.out.println(conmentService.recentConment().get(i).getConment_time().getTime());
+        List<Conment> list=conmentService.recentConment();
+        for (int i=0;i<list.size();i++){
+            System.out.println(new Date(list.get(i).getConment_time().getTime()-8*60*60*1000));
         }
-        return conmentService.recentConment();
+        return list;
     }
 
     @RequestMapping("/con")

@@ -28,7 +28,7 @@ public class TimeConversion {
 //        System.out.println(nowtrasfer);
 //        Date datetrasfer=new Date(date.getYear(),date.getMonth(),date.getDay(),date.getHours(),date.getMinutes(),date.getSeconds());
 //        System.out.println(datetrasfer);
-        long create=date.getTime();
+        long create=date.getTime()-HOUR*8;
         long time=now-create;
 //        System.out.println("time"+time);
         if (time<0){
@@ -47,5 +47,24 @@ public class TimeConversion {
         }else{
             return time/YEAR+"年前";
         }
+    }
+
+    //Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+    public static String monthConversion(String month){
+        switch (month){
+            case "Jan":return 1+"";
+            case "Feb":return 2+"";
+            case "Mar":return 3+"";
+            case "Apr":return 4+"";
+            case "May":return 5+"";
+            case "Jun":return 6+"";
+            case "Jul":return 7+"";
+            case "Aug":return 8+"";
+            case "Sep":return 9+"";
+            case "Oct":return 10+"";
+            case "Nov":return 11+"";
+            case "Dec":return 12+"";
+        }
+        return null;
     }
 }

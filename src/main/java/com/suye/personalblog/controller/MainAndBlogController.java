@@ -2,16 +2,14 @@ package com.suye.personalblog.controller;
 
 import com.suye.personalblog.model.*;
 import com.suye.personalblog.service.*;
+import com.suye.personalblog.tool.ArchiveMessageConversion;
 import com.suye.personalblog.tool.BlogMessageConversion;
 import com.suye.personalblog.tool.ConmentMessageConversion;
 import com.suye.personalblog.tool.RunningTrackStack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
@@ -42,6 +40,8 @@ public class MainAndBlogController {
     private ConmentMessageConversion conmentMessageConversion;
     @Autowired
     private BlogMessageConversion blogMessageConversion;
+    @Autowired
+    private ArchiveMessageConversion archiveMessageConversion;
     //加载更多的索引
     private int loadMoreAll=1;
     private int loadMoreBlog=1;
@@ -227,13 +227,95 @@ public class MainAndBlogController {
         model.addAttribute("runningTrackList",runningTrackList);
         model.addAttribute("recentAllConmentList",recentAllConmentList);
         model.addAttribute("conmentPages",conmentPages);
-        System.out.println(blogMessage.getImgUrl());
-        System.out.println(recentAllConmentList.size());
-        for (int i=0;i<recentAllConmentList.size();i++){
-            System.out.println(recentAllConmentList.get(i).getId());
-        }
         return new ModelAndView("front/blogDetailsPage","blogMessage",model);
     }
 
+    @RequestMapping("/archive")
+    public ModelAndView showarchivePage(Model model){
+        System.out.println("archive");
+        int blogTotal=blogService.blogTotal();
+        List<Label> labelList=labelService.getAllLabels();
+        List<Category> categoryList=categoryService.getAllCategory();
+        List<Column> columnList=columnService.getAllColumn();
+        List<BlogMessageConversion.BlogMessage> popularBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
+        List<ConmentMessageConversion.ConmentMessage> recentConmentList=
+                conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+        BlogMessageConversion.BlogMessage blogMessage=
+                blogMessageConversion.getOneBlogMessage(blogService.findArchive());
+        List<ArchiveMessageConversion.ArchiveMessage> archiveMessageList=
+                archiveMessageConversion.archiveMessageList(blogService.findAllBlogTimeDesc());
+        List<RunningTrackStack.RunningTrack> runningTrackList=RunningTrackStack.getRunningTrackStack();
+        model.addAttribute("blogMessage",blogMessage);
+        model.addAttribute("archiveMessageList",archiveMessageList);
+        model.addAttribute("blogTotal",blogTotal);
+        model.addAttribute("labelList",labelList);
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("columnList",columnList);
+        model.addAttribute("popularBlogList",popularBlogList);
+        model.addAttribute("recentConmentList",recentConmentList);
+        model.addAttribute("runningTrackList",runningTrackList);
+        return new ModelAndView("front/archivePage","archivePage",model);
+    }
+
+    @RequestMapping("/friend")
+    public  ModelAndView showFriendChain(Model model){
+        int blogTotal=blogService.blogTotal();
+        List<Visitor> friendList=visitorService.findAllFriends();
+        List<Label> labelList=labelService.getAllLabels();
+        List<Category> categoryList=categoryService.getAllCategory();
+        List<Column> columnList=columnService.getAllColumn();
+        List<BlogMessageConversion.BlogMessage> popularBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
+        List<ConmentMessageConversion.ConmentMessage> recentConmentList=
+                conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+        BlogMessageConversion.BlogMessage blogMessage=
+                blogMessageConversion.getOneBlogMessage(blogService.findFirends());
+
+        List<ConmentMessageConversion.ConmentMessage> recentAllConmentList=
+                conmentMessageConversion.findAllConmentsByBlogId(11,0);
+
+        List<Object> conmentPages=conmentMessageConversion.conversionTotal(conmentService.conmnetTotal(11));
+        model.addAttribute("blogMessage",blogMessage);
+        model.addAttribute("blogTotal",blogTotal);
+        model.addAttribute("labelList",labelList);
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("columnList",columnList);
+        model.addAttribute("popularBlogList",popularBlogList);
+        model.addAttribute("recentConmentList",recentConmentList);
+        model.addAttribute("friendList",friendList);
+        model.addAttribute("recentAllConmentList",recentAllConmentList);
+        model.addAttribute("conmentPages",conmentPages);
+        return new ModelAndView("front/friendChain","friendChain",model);
+    }
+
+    @RequestMapping("/aboutme")
+    public  ModelAndView showAboutMe(Model model){
+        int blogTotal=blogService.blogTotal();
+        List<Label> labelList=labelService.getAllLabels();
+        List<Category> categoryList=categoryService.getAllCategory();
+        List<Column> columnList=columnService.getAllColumn();
+        List<BlogMessageConversion.BlogMessage> popularBlogList=
+                blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
+        List<ConmentMessageConversion.ConmentMessage> recentConmentList=
+                conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+        BlogMessageConversion.BlogMessage blogMessage=
+                blogMessageConversion.getOneBlogMessage(blogService.findAboutMe());
+
+        List<ConmentMessageConversion.ConmentMessage> recentAllConmentList=
+                conmentMessageConversion.findAllConmentsByBlogId(12,0);
+
+        List<Object> conmentPages=conmentMessageConversion.conversionTotal(conmentService.conmnetTotal(12));
+        model.addAttribute("blogMessage",blogMessage);
+        model.addAttribute("blogTotal",blogTotal);
+        model.addAttribute("labelList",labelList);
+        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("columnList",columnList);
+        model.addAttribute("popularBlogList",popularBlogList);
+        model.addAttribute("recentConmentList",recentConmentList);
+        model.addAttribute("recentAllConmentList",recentAllConmentList);
+        model.addAttribute("conmentPages",conmentPages);
+        return new ModelAndView("front/aboutMe","aboutMe",model);
+    }
 
 }

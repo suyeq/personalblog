@@ -42,4 +42,8 @@ public class VisitorService {
         return visitorMapping.findOneByEmail(email);
     }
 
+    public List<Visitor> findAllFriends(){
+        return visitorMapping.findAllFriends();
+    }
+
 }

@@ -34,12 +34,12 @@
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
                     <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li id="menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553">
-                    <a href="#"><i class="giligili giligili-timeline"></i> 归档</a>
+                    <a href="/archive"><i class="giligili giligili-timeline"></i> 归档</a>
                 </li>
                 <li id="menu-item-1418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418">
-                    <a href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                    <a href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li id="menu-item-1419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419">
-                    <a href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                    <a href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
         <span id="menu-search"> <i class="giligili giligili-search"></i> </span>
@@ -60,12 +60,12 @@
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
                     <a href="/index"><i class="giligili giligili-home"></i> 首页</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2553"><a
-                        href="#"><i class="giligili giligili-timeline"></i>
+                        href="/archive"><i class="giligili giligili-timeline"></i>
                     归档</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1418"><a
-                        href="#"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
+                        href="/friend"><i class="giligili giligili-attachment"></i> 友情链接</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1419"><a
-                        href="#"><i class="giligili giligili-theme"></i> 关于我</a></li>
+                        href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
     </div>
@@ -320,7 +320,10 @@
                 <!--<ul th:each="RunningTrack:${runningTrackList}">-->
                     <!--<a  itemprop="breadcrumb" href="/index" th:href="${RunningTrack.url}" th:text="${RunningTrack.name}">首页</a> >-->
                 <!--</ul>-->
-                <a th:each="RunningTrack:${runningTrackList}" itemprop="breadcrumb" href="/index" th:href="${RunningTrack.url}" th:text="${RunningTrack.name}+'&nbsp;>'">首页</a>
+                <th:block th:each="RunningTrack:${runningTrackList}">
+                    <a itemprop="breadcrumb" href="/index" th:href="${RunningTrack.url}" th:text="${RunningTrack.name}">首页</a> >
+                </th:block>
+
                 <!--<a itemprop="breadcrumb" href="https://shawnzeng.com/category/news">大新闻</a> >-->
                 <span class="current" th:text="${blogDatailsMessage.title}">WordPress响应式二次元主题Giligili</span>
             </div>

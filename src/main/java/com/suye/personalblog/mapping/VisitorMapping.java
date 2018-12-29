@@ -27,4 +27,7 @@ public interface VisitorMapping {
 
     @Select("select * from visitor where email=#{email}")
     Visitor findOneByEmail(@Param("email") String email);
+
+    @Select("select * from visitor where isfriend=1")
+    List<Visitor> findAllFriends();
 }
