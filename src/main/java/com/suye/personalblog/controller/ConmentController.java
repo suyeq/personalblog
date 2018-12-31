@@ -43,8 +43,9 @@ public class ConmentController {
                                    @RequestParam("comment_parent")String newConmentParentId,
                                    @RequestParam("comment") String conment,
                                    Model model){
-        System.out.println("addConment");
-        System.out.println(author+" "+email+" "+url+" "+blogId+" "+newConmentParentId+" "+conment);
+//        System.out.println("addConment");
+//        System.out.println(author+" "+email+" "+url+" "+blogId+" "+newConmentParentId+" "+conment);
+        blogService.increaseConmentNum(Integer.parseInt(blogId));
         if (!visitorService.isHaveThisVisitor(email)){
             visitorService.addVisitor(author,email,url);
         }

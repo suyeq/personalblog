@@ -26,7 +26,7 @@
 <header id="header">
     <div id="menu-blur-bg"></div>
     <div id="menu-blur"></div>
-    <div id="menu-pc"><h1 id="logo"><a href="https://shawnzeng.com/">阑珊处</a></h1> <span id="mobile-menu"> <i
+    <div id="menu-pc"><h1 id="logo"><a href="/index">阑珊处</a></h1> <span id="mobile-menu"> <i
             class="giligili giligili-menu"></i> </span>
         <div id="menu-main" class="menu-main">
             <ul>
@@ -42,10 +42,12 @@
                     <a href="/aboutme"><i class="giligili giligili-theme"></i> 关于我</a></li>
             </ul>
         </div>
+
         <span id="menu-search"> <i class="giligili giligili-search"></i> </span>
-        <form action="#" method="get" id="content-search">
+        <form action="/index" method="get" id="content-search">
             <div class="search-header"><span>请输入你想搜索的内容：</span> <i class="giligili giligili-close"></i></div>
-            <input type="text" name="s" id="search" value=""/></form>
+            <input type="text" name="search" id="search" value=""/>
+        </form>
     </div>
     <div id="header-bg"></div>
 </header>
@@ -206,7 +208,7 @@
 
                 <li th:each="BlogMessage:${popularBlogList}">
                     <p class="post-title">
-                        <a href="#" title="WordPress响应式主题Memory" rel="bookmark"
+                        <a href="#" th:href="'/blogDetails/'+${BlogMessage.id}" title="WordPress响应式主题Memory"  th:title="${BlogMessage.title}" rel="bookmark"
                            th:text="${BlogMessage.title}">WordPress响应式主题Memory</a></p>
                     <p class="post-info">
                         <span>
@@ -232,8 +234,8 @@
                     class="giligili giligili-comments"></i> 最近评论</h3></header>
             <ul class="recentcomments">
                 <li th:each="ConmentMessage:${recentConmentList}">
-                    <a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
-                       title="suye"> <img alt=''
+                    <a href="" th:href="'/blogDetails/'+${ConmentMessage.blogId}"
+                       title="suye" th:title="${ConmentMessage.blogName}"> <img alt=''
                                           src='front/img/avatar.png'
                                           class='avatar avatar-36 photo' height='36' width='36'/>
                     <div class="right-box"><span class="author" th:text="${ConmentMessage.visitor.name}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
@@ -519,12 +521,12 @@
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
                     class="giligili giligili-visitors"></i> 博主专栏</h3></header>
 
-            <div class="post-lists " >
+            <div class="post-lists">
                 <div class="post-lists-body">
                     <div class="post-list-item" th:each="Column:${columnList}">
                         <div class="post-list-item-container">
                             <div class="item-thumb bg-deepgrey" style="background-image:url(front/img/穹.png);" th:style="'background-image:url(' + ${Column.imgUrl}+')'"></div>
-                            <a href="#">
+                            <a href="#" th:href="'/column/'+${Column.id}">
                                 <div class="item-desc">
                                     <p class="giligili" style="font-size: 10px" th:text="${Column.describ}">redis源码分析</p>
                                 </div>
@@ -552,7 +554,9 @@
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i class="giligili giligili-tags"></i>
                 标签云</h3></header>
             <div class="tagcloud">
-                <a href="#" th:each="Label:${labelList}" th:text="${Label.name}">3D</a>
+                <th:block th:each="Label:${labelList}">
+                    <a href="#" th:href="'/label/'+${Label.id}"  th:text="${Label.name}">3D</a>
+                </th:block>
             </div>
         </div>
 
@@ -564,7 +568,7 @@
                 </h3>
             </header>
             <div class="row" th:each="Category:${categoryList}">
-                <div style="float: left;margin-left: 5px"><a href="#" title="" th:text="${Category.name}">JavaWeb</a></div>
+                <div style="float: left;margin-left: 5px"><a href="#" th:href="'/category/'+${Category.id}" title=""  th:title="${Category.name}" th:text="${Category.name}">JavaWeb</a></div>
                 <div style="float: right;"><p th:text="${Category.blognum}+' 篇'">12篇</p></div>
             </div>
             <!--<div class="row">-->

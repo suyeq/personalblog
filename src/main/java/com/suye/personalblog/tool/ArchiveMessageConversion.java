@@ -134,7 +134,8 @@ public class ArchiveMessageConversion {
     private List<ArchiveChildMessage> archiveChildMessageList(List<Blog> blogList){
         List<ArchiveChildMessage> archiveChildMessage=new ArrayList<>();
         for (int i=0;i<blogList.size();i++){
-            Date date=new Date(blogList.get(i).getCreate_time().getTime()-8*24*60*60*1000);
+            Date date=new Date(blogList.get(i).getCreate_time().getTime()-8*60*60*1000);
+            //System.out.println(date);
             archiveChildMessage.add(new ArchiveChildMessage(date.toString().substring(24),
                                                             TimeConversion.monthConversion(date.toString().substring(4,7)),
                                                             date.toString().substring(8,10),

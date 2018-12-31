@@ -85,10 +85,12 @@ App = {
           	$('#layout-shadow').hide();
       		$(this).parents('.social-share-box').hide();
 		});
+
       	// 搜索
       	$(document).on('click', '#menu-search', function() {
       		$('#content-search, #layout-shadow').show();
 		});
+
       	$(document).delegate('.search-header .giligili-close', 'click', function(e) {
           	e.stopPropagation();
           	$('#content-search, #layout-shadow').hide();

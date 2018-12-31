@@ -61,4 +61,16 @@ public interface BlogMapping {
 
     @Select("select * from blog where istalk=5")
     Blog findAboutMe();
+
+    @Select("select * from blog where content like CONCAT('%',#{content},'%') or title like CONCAT('%',#{content},'%') limit 0,7")
+    List<Blog> searchContent(@Param("content") String content);
+
+    @Select("select * from blog where content like CONCAT('%',#{content},'%') or title like CONCAT('%',#{content},'%') limit #{offset},7")
+    List<Blog> loadMoreSearch(@Param("content") String content,@Param("offset") int offset);
+
+    @Update("update blog set readnum=readnum+1 where id=#{blogId}")
+    int increaseReadNum(int blogId);
+
+    @Update("update blog set conmentnum=conmentnum+1 where id=#{blogId}")
+    int increaseConmentNum(int blogId);
 }

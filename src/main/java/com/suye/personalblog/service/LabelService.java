@@ -43,4 +43,8 @@ public class LabelService {
         }
         return labelList;
     }
+
+    public List<Integer> findBlogIdsByLabelId(int labelId,int offset){
+        return labelMapping.findBlogIdsByLabelId(labelId,offset);
+    }
 }

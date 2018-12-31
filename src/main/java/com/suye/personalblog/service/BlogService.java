@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,12 @@ public class BlogService {
 
     @Autowired
     private BlogMapping blogMapping;
+    @Autowired
+    private ColumnService columnService;
+    @Autowired
+    private LabelService labelService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 返回最受欢迎的5篇博客
@@ -132,5 +139,50 @@ public class BlogService {
      */
     public Blog findAboutMe(){
         return blogMapping.findAboutMe();
+    }
+
+    public List<Blog> searchContent(String content){
+        return blogMapping.searchContent(content);
+    }
+
+    public List<Blog> loadMoreSearch(String content,int offset){
+        return blogMapping.loadMoreSearch(content,offset);
+    }
+
+    public int increaseReadNum(int blogId){
+        return blogMapping.increaseReadNum(blogId);
+    }
+
+    public int increaseConmentNum(int blogId){
+        return blogMapping.increaseConmentNum(blogId);
+    }
+
+    public List<Blog> findBlogsByColumnId(int columnId,int offset){
+        List<Integer> blogIdList=columnService.findBlogIdsByColumnId(columnId,offset);
+        List<Blog> blogList=new ArrayList<>();
+        for (int i=0;i<blogIdList.size();i++){
+            blogList.add(findOneById(blogIdList.get(i)));
+        }
+        System.out.println("dsadas  "+blogIdList.size());
+        return blogList;
+    }
+
+    public List<Blog> findBlogsByLabelId(int labelId,int offset){
+        List<Integer> blogIdList=labelService.findBlogIdsByLabelId(labelId,offset);
+        List<Blog> blogList=new ArrayList<>();
+        for (int i=0;i<blogIdList.size();i++){
+            blogList.add(findOneById(blogIdList.get(i)));
+        }
+        return blogList;
+    }
+
+    public List<Blog> findBlogsByCategoryId(int categoryId,int offset){
+        List<Integer> blogIdList=categoryService.findBlogIdsByCategoryId(categoryId,offset);
+        List<Blog> blogList=new ArrayList<>();
+        for (int i=0;i<blogIdList.size();i++){
+            blogList.add(findOneById(blogIdList.get(i)));
+        }
+        System.out.println("category"+blogList.size());
+        return blogList;
     }
 }

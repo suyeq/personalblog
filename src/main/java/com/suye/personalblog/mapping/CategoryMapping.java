@@ -21,4 +21,8 @@ public interface CategoryMapping {
 
     @Select("select * from category where id=#{id}")
     Category findOneById(@Param("id") int id);
+
+    @Select("select blog_id from blog_category where category_id=#{categoryId} limit #{offset},7")
+    List<Integer> findBlogIdsByCategoryId(@Param("categoryId") int labelId,@Param("offset") int offset);
+
 }

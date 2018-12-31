@@ -22,4 +22,12 @@ public class ColumnService {
     public List<Column> getAllColumn(){
         return columnMapping.getAllColumn();
     }
+
+    public List<Integer> findBlogIdsByColumnId(int columnId,int offset){
+        return columnMapping.findBlogIdsByColumnId(columnId,offset);
+    }
+
+    public Column findOneByColumnId(int columnId){
+        return columnMapping.findOneByColumnId(columnId);
+    }
 }

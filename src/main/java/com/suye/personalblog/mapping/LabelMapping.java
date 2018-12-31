@@ -21,4 +21,7 @@ public interface LabelMapping {
 
     @Select("select * from label where id=#{id}")
     Label findLabelById(@Param("id") int id);
+
+    @Select("select blog_id from blog_label where label_id=#{labelId} limit #{offset},7")
+    List<Integer> findBlogIdsByLabelId(@Param("labelId") int labelId,@Param("offset") int offset);
 }

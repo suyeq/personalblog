@@ -48,4 +48,8 @@ public class CategoryService {
         }
         return categoryList;
     }
+
+    public List<Integer> findBlogIdsByCategoryId(int categoryId,int offset){
+        return categoryMapping.findBlogIdsByCategoryId(categoryId,offset);
+    }
 }

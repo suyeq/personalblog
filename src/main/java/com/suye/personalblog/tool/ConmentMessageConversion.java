@@ -34,11 +34,13 @@ public class ConmentMessageConversion {
         for (int i=0;i<list.size();i++){
             Conment conment=list.get(i);
             Visitor visitor=visitorService.findOneById(conment.getVisitor_id());
-            String blogName=blogService.findOneById(conment.getBlog_id()).getTitle();
+            Blog blog=blogService.findOneById(conment.getBlog_id());
+            String blogName=blog.getTitle();
+            int blogId=blog.getId();
             ConmentMessage conmentMessage=new ConmentMessage(conment.getId(),
                                                             conment.getContent(),
                                                             TimeConversion.timeConversion(conment.getConment_time()),
-                                                            visitor,blogName,conment.getVotenum(),conment.getCainum());
+                                                            visitor,blogName,conment.getVotenum(),conment.getCainum(),blogId);
             conmentMessages.add(conmentMessage);
         }
         return conmentMessages;
@@ -99,8 +101,9 @@ public class ConmentMessageConversion {
         private int votenum;
         private int cainum;
         private List<ConmentMessage> child;
+        private int blogId;
 
-        public ConmentMessage(int id,String content,String time,Visitor visitor,String blogName,int votenum,int cainum){
+        public ConmentMessage(int id,String content,String time,Visitor visitor,String blogName,int votenum,int cainum,int blogId){
             this.id=id;
             this.content=content;
             this.time=time;
@@ -108,6 +111,7 @@ public class ConmentMessageConversion {
             this.blogName=blogName;
             this.votenum=votenum;
             this.cainum=cainum;
+            this.blogId=blogId;
         }
 
         public int getId() {
@@ -180,6 +184,14 @@ public class ConmentMessageConversion {
 
         public void setCainum(int cainum) {
             this.cainum = cainum;
+        }
+
+        public int getBlogId() {
+            return blogId;
+        }
+
+        public void setBlogId(int blogId) {
+            this.blogId = blogId;
         }
     }
 }
