@@ -23,9 +23,11 @@ public class Blog {
     private int cainum;
     private int conmentnum;
     private int isTalk;
+    private int isComment;
+    private int isPublish;
 
     public Blog(){}
-    public Blog(int id, String imgUrl, String title, String describ, String content, Date create_time, int readnum, int votenum, int conmentnum, int isTalk,int cainum){
+    public Blog(int id, String imgUrl, String title, String describ, String content, Date create_time, int readnum, int votenum, int conmentnum, int isTalk,int cainum,int isComment,int isPublish){
         this.id=id;
         this.title=title;
         this.imgUrl=imgUrl;
@@ -37,6 +39,8 @@ public class Blog {
         this.conmentnum=conmentnum;
         this.isTalk=isTalk;
         this.cainum=cainum;
+        this.isComment=isComment;
+        this.isPublish=isPublish;
     }
     public int getId() {
         return id;
@@ -124,5 +128,21 @@ public class Blog {
 
     public void setCainum(int cainum) {
         this.cainum = cainum;
+    }
+
+    public int getIsPublish() {
+        return isPublish;
+    }
+
+    public void setIsPublish(int isPublish) {
+        this.isPublish = isPublish;
+    }
+
+    public int getIsComment() {
+        return isComment;
+    }
+
+    public void setIsComment(int isComment) {
+        this.isComment = isComment;
     }
 }

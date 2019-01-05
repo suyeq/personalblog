@@ -6,7 +6,9 @@ import com.suye.personalblog.model.Blog;
 import com.suye.personalblog.model.Label;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,5 +186,41 @@ public class BlogService {
         }
         System.out.println("category"+blogList.size());
         return blogList;
+    }
+
+
+    /**
+     * 新增一个博客
+     * @param title
+     * @param imgurl
+     * @param describ
+     * @param content
+     * @param istalk
+     * @param iscomment
+     * @param ispublish
+     * @return 该新增博客的id
+     */
+    public int addBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish){
+         blogMapping.addBlog(title,imgurl,describ,content,istalk,iscomment,ispublish);
+         return blogMapping.lastBlogID();
+    }
+
+    public int modifyBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,int blogId){
+        return blogMapping.modifyBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,blogId);
+    }
+
+    @Transient
+    public int deleteBlog(int id){
+        deleteBlogAndCategoryByBlogId(id);
+        deleteBlogAndLabelByBlogId(id);
+        return blogMapping.deleteBlog(id);
+    }
+
+    public int deleteBlogAndLabelByBlogId(int blogId){
+        return blogMapping.deleteBlogAndLabelByBlogId(blogId);
+    }
+
+    public int deleteBlogAndCategoryByBlogId(int blogId){
+        return blogMapping.deleteBlogAndCategoryByBlogId(blogId);
     }
 }

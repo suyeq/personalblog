@@ -72,7 +72,6 @@ public class ArchiveMessageConversion {
                             +"("+archiveChildMessageList.get(i).getConmentnum()+"条评论)");
                     listDay.add(archiveMessageDay);
                 }
-
             }
         }
 

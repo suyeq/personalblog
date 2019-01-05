@@ -27,7 +27,17 @@ App = {
             var excerpt = $(this).next('.post-excerpt');
           	excerpt.find('.post-title a')[0].click();
         });
-      	
+
+      	// $(document).on('click','.text-info').click(function () {
+        //     var text = document.getElementById("uniquevontent").innerText;
+        //     //创建实例
+        //     var converter = new showdown.Converter();
+        //     //进行转换
+        //     var html = converter.makeHtml(text);
+        //     //展示到对应的地方  result便是id名称
+        //     document.getElementById("uniquevontent").innerHTML = html;
+        // });
+      	// //
       	// 移除touch二次点击
       	removeTouch();
     	
@@ -281,7 +291,8 @@ App = {
             moveForm : function(commId, parentId, respondId, postId, num) {
                 // alert('llala'+comm)
                 var t = this, div, comm = t.I(commId), respond = t.I(respondId), cancel = t.I('cancel-comment-reply-link'), parent = t.I('comment_parent'), post = t.I('comment_post_ID');
-                // console.log('评论id'+comm)
+                 console.log(post)
+                //alert(post)
                 if ( edit ) PrevEdit();
                 num ? (
                     t.I('comment').value = comm_array[num],
@@ -416,6 +427,18 @@ App = {
         }
 		show_date_time();
     },
+
+    // markdownConversiontoHtml:function () {
+    //     //获取要转换的文字
+    //     // window.onload=function(){
+    //     var text = document.getElementById("uniquevontent").innerText;
+    //     //创建实例
+    //     var converter = new showdown.Converter();
+    //     //进行转换
+    //     var html = converter.makeHtml(text);
+    //     //展示到对应的地方  result便是id名称
+    //     document.getElementById("uniquevontent").innerHTML = html;
+    // }
 }
 
 
@@ -432,12 +455,15 @@ App.photoBox();
 App.owoEmoji();
 App.scrollToTop();
 App.startTime();
+//App.markdownConversiontoHtml();
 
 if (giligiliConfig.loadPjax==1) {
     $(document).pjax('a:not(.post-type-link, .backstage)[target!=_blank]', '#main-part', {fragment:'#main-part', timeout:8000});
     $(document).on('pjax:send', function() {
         $('#main-part').fadeTo(800,0.0);
+
     })
+
     $(document).on('pjax:complete', function() {
         $('#main-part').fadeTo(800,1);
         App.init();
@@ -450,6 +476,14 @@ if (giligiliConfig.loadPjax==1) {
         App.activatePower();
       	App.photoBox();
       	App.owoEmoji();
+        var text = document.getElementById("uniquevontent").innerText;
+        //创建实例
+        var converter = new showdown.Converter();
+        //进行转换
+        var html = converter.makeHtml(text);
+        //展示到对应的地方  result便是id名称
+        document.getElementById("uniquevontent").innerHTML = html;
+      	//App.markdownConversiontoHtml();
     })
     window.addEventListener('popstate',function(e) {
         $('#main-part').fadeTo(800,1);
@@ -464,5 +498,6 @@ if (giligiliConfig.loadPjax==1) {
         App.activatePower();
       	App.photoBox();
       	App.owoEmoji();
+        //App.markdownConversiontoHtml();
     }, false);
 }

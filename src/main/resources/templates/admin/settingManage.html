@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>系统设置 - Tale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta content="biezhi" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="shortcut icon" href="/admin/images/favicon.png"/>
+    <link href="/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet">
+
+    <link href="/admin/css/style.min.css?v=v1.0" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body class="fixed-left">
+<div id="wrapper">
+    <!--顶部菜单栏-->
+    <div th:replace="/admin/topbar::topbar"></div>
+    <!--左部菜单栏-->
+    <div th:replace="/admin/leftbar::leftbar"></div>
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <link href="/static/admin/plugins/toggles/toggles.css" rel="stylesheet">
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <h4 class="page-title">系统设置</h4>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-color panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">站点设置</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" role="form" id="global-form">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">网站地址</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_url" placeholder="网站地址"
+                                                   value="http://localhost:9000" required aria-required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">站点标题</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_title" placeholder="站点子标题"
+                                                   value="hzj" required aria-required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">站点子标题</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_subtitle" placeholder="站点子标题"
+                                                   value="" required aria-required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">站点描述</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_description" placeholder="站点描述"
+                                                   value="博客系统,Blade框架,Tale" required aria-required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">站点关键词</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="site_keywords" placeholder="站点关键词"
+                                                   value="博客系统,Blade框架,Tale" required aria-required="true"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix pull-right">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveSetting()">
+                                            保存设置
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="panel panel-color panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">高级选项设置</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" role="form" id="advanced-form">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">清理缓存</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="cache_key" placeholder="请输入缓存前缀，输入*删除所有缓存"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">黑名单IP列表</label>
+                                        <div class="col-md-9">
+                            <textarea rows="3" class="form-control" name="block_ips"
+                                      placeholder="请输入黑名单IP，如：123.123.33.23,123.123.33.24"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">卸载插件</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="plugin_name" placeholder="请输入插件名，输入*卸载所有插件"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">允许重新安装</label>
+                                        <div class="col-md-9">
+                                            <div class="toggle toggle-success allow-0"
+                                                 onclick="allow_reinstall(this);"></div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="allow_install" id="allow_install" value="0"/>
+
+                                    <div class="clearfix pull-right">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveAdvanced()">
+                                            保存设置
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="col-md-6">
+                        <div class="panel panel-color panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">系统备份（备份文件包含附件和主题）</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form id="backupForm" class="form-inline" role="form">
+                                    <div class="form-group col-md-6">
+                                        <input id="backup_dir" style="width: 100%;" class="form-control" placeholder="请输入备份存放的磁盘路径" required="" aria-required="true" type="text">
+                                    </div>
+
+                                    <button type="button" class="btn btn-success waves-effect waves-light m-l-10" onclick="backup('attach');">备份文件</button>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="backup('db')">导出数据库SQL</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>-->
+
+                </div>
+                <footer class="footer text-right">
+                    2017 © <a href="https://github.com/biezhi" target="_blank">Tale</a>.
+                </footer>
+            </div>
+        </div>
+        <script src="/admin/plugins/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/admin/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js"></script>
+
+        <script src="/admin/js/jquery.app.js?v=v1.0"></script>
+        <script src="/admin/js/base.js?v=v1.0"></script>
+        <script src="/admin/plugins/jquery-toggles/2.0.4/toggles.min.js"></script>
+
+        <script type="text/javascript">
+
+            var tale = new $.tale();
+
+            /**
+             * 保存全局设置
+             */
+            function saveSetting() {
+                var param = $('#global-form').serialize();
+                tale.post({
+                    url : '/admin/setting',
+                    data: param,
+                    success: function (result) {
+                        if(result && result.success){
+                            tale.alertOk('设置保存成功');
+                        } else {
+                            tale.alertError(result.msg || '设置保存失败');
+                        }
+                    }
+                });
+            }
+            /**
+             * 保存高级选项设置
+             */
+            function saveAdvanced() {
+                var param = $('#advanced-form').serialize();
+                tale.post({
+                    url: '/admin/advanced',
+                    data: param,
+                    success: function (result) {
+                        if (result && result.success) {
+                            tale.alertOk('选项保存成功');
+                        } else {
+                            tale.alertError(result.msg || '选项保存失败');
+                        }
+                    }
+                });
+            }
+
+
+            /**
+             * 系统备份
+             * @param type
+             */
+            function backup(type) {
+                var param = {
+                    bk_type: type,
+                    bk_path: $('#backup_dir').val()
+                };
+                tale.post({
+                    url : '/admin/backup',
+                    data: param,
+                    success: function (result) {
+                        if(result && result.success){
+                            if(result.payload && result.payload.attach_path){
+                                swal('备份成功', '您的附件备份在 <mark>'+ result.payload.attach_path +'</mark><br/><br/>' +
+                                    '主题备份存储在 <mark>'+ result.payload.theme_path +'</mark>', 'success');
+                                $('#backup_dir').val('');
+                            }
+                            if(result.payload.sql_path){
+                                window.location.href = result.payload.sql_path;
+                            }
+                        } else {
+                            tale.alertError(result.msg || '备份失败');
+                        }
+                    }
+                });
+            }
+
+            /**
+             * 设置是否允许重新安装
+             */
+            function allow_reinstall(obj) {
+                var isInstall = $('#allow_install').val();
+                if(isInstall==0){
+                    $('#allow_install').val(1);
+                } else {
+                    $('#allow_install').val(0);
+                }
+            }
+
+            $('.allow-1').toggles({
+                on: true,
+                text: {
+                    on: '开启',
+                    off: '关闭'
+                }
+            });
+
+            $('.allow-0').toggles({
+                off: true,
+                text: {
+                    on: '开启',
+                    off: '关闭'
+                }
+            });
+        </script>
+</body>
+</html>

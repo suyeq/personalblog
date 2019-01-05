@@ -1,9 +1,12 @@
 package com.suye.personalblog.mapping;
 
 import com.suye.personalblog.model.Category;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,4 +28,21 @@ public interface CategoryMapping {
     @Select("select blog_id from blog_category where category_id=#{categoryId} limit #{offset},7")
     List<Integer> findBlogIdsByCategoryId(@Param("categoryId") int labelId,@Param("offset") int offset);
 
+    @Select("select * from category where name=#{name}")
+    Category findCategoryByCategoryName(String name);
+
+    @Insert("insert into blog_category(blog_id,category_id) values(#{blogId},#{categoryId})")
+    int insertCategorytoBlog(@Param("blogId") int blogId, @Param("categoryId") int categoryId);
+
+    @Insert("insert into category(name,blognum) values(#{name},0)")
+    int addCategory(@Param("name") String name);
+
+    @Select("select last_insert_id()")
+    int lastCategory();
+
+    @Delete("delete from blog_category where category_id=#{categoryId}")
+    int deleteCategoryWithBlogBy(@Param("categoryId") int categoryId);
+
+    @Delete("delete from category where id=#{categoryId}")
+    int deleteCategoryById(@Param("categoryId")int categoryId);
 }

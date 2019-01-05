@@ -11,12 +11,14 @@ public class Label {
     private int id;
     private String name;
     private String describ;
+    private int blognum;
 
     public Label(){}
-    public Label(int id,String name,String describ){
+    public Label(int id,String name,String describ,int blognum){
         this.id=id;
         this.name=name;
         this.describ=describ;
+        this.blognum=blognum;
     }
     public int getId() {
         return id;
@@ -40,5 +42,13 @@ public class Label {
 
     public void setDescrib(String describ) {
         this.describ = describ;
+    }
+
+    public int getBlognum() {
+        return blognum;
+    }
+
+    public void setBlognum(int blognum) {
+        this.blognum = blognum;
     }
 }

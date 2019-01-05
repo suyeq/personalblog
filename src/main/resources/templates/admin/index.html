@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>管理中心 - Tale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta content="biezhi" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="shortcut icon" href="/static/admin/images/favicon.png"/>
+    <link href="/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet">
+
+    <link href="/admin/css/style.min.css?v=v1.0" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body class="fixed-left">
+<div id="wrapper">
+
+    <!--顶部菜单栏-->
+    <div th:replace="/admin/topbar::topbar"></div>
+    <!--左部菜单栏-->
+    <div th:replace="/admin/leftbar::leftbar"></div>
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">Tale仪表盘</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="mini-stat clearfix bx-shadow bg-info">
+                                <span class="mini-stat-icon"><i class="fa fa-quote-right" aria-hidden="true"></i></span>
+                                <div class="mini-stat-info text-right">
+                                    发表了<span class="counter" th:text="${blogTotal}">4</span>篇文章
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="mini-stat clearfix bg-purple bx-shadow">
+                                <span class="mini-stat-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></span>
+                                <div class="mini-stat-info text-right">
+                                    收到了<span class="counter" th:text="${conmentTotal}">1</span>条留言
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="mini-stat clearfix bg-success bx-shadow">
+                                <span class="mini-stat-icon"><i class="fa fa-cloud-upload" aria-hidden="true"></i></span>
+                                <div class="mini-stat-info text-right">
+                                    上传了<span class="counter">1</span>个附件
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">最新文章</h4>
+                                </div>
+
+                                <div class="panel-body">
+                                    <ul class="list-group">
+
+                                        <th:block th:each="BlogMessage:${recentBlogList}">
+                                            <li class="list-group-item">
+                                                <span class="badge badge-primary" title="0条评论" th:title="${BlogMessage.comments}+'条评论'" th:text="${BlogMessage.comments}">0</span>
+                                                <a target="_blank" href="/blogDetails/7" th:href="'/blogDetails/'+${BlogMessage.id}" th:text="${BlogMessage.title}">21211111</a>
+                                            </li>
+                                        </th:block>
+
+                                        <!--<li class="list-group-item">-->
+                            <!--<span class="badge badge-primary"-->
+                                  <!--title="1条评论">1</span>-->
+                                            <!--<a target="_blank" href="http://localhost:9000/article/6">Java源码分析与思考</a>-->
+                                        <!--</li>-->
+                                        <!---->
+                                        <!--<li class="list-group-item">-->
+                            <!--<span class="badge badge-primary"-->
+                                  <!--title="0条评论">0</span>-->
+                                            <!--<a target="_blank" href="http://localhost:9000/article/5">第二篇文章</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="list-group-item">-->
+                            <!--<span class="badge badge-primary"-->
+                                  <!--title="0条评论">0</span>-->
+                                            <!--<a target="_blank" href="http://localhost:9000/article/2">第一篇文章</a>-->
+                                        <!--</li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">最新留言</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <th:block th:each="ConmentMessage:${recentCommentList}">
+                                            <li class="list-group-item">
+                                                <a href="https://blog.csdn.net/hackersuye" target="_blank" th:text="${ConmentMessage.visitor.name}" th:href="${ConmentMessage.visitor.address}">suye</a>
+                                                <th:block th:text="'于'+${#dates.format(ConmentMessage.date, 'yyyy-MM-dd HH:mm:ss')}+'在'+${ConmentMessage.blogName}+'说:'">
+                                                    于01月01日15:59 ：
+                                                </th:block>
+                                                <a href="http://localhost:9000/article/6#comments" target="_blank"><p th:text="${ConmentMessage.content}">sadcsacacacascsacasc</p>
+                                            </a>
+                                            </li>
+                                        </th:block>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">系统日志</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <span>2019-01-01 15:54:02 => 登录后台</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>2018-11-12 11:18:53 => 登录后台</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>2018-11-12 11:14:02 => 登录后台</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>2018-11-12 11:08:43 => 删除附件</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>2018-11-12 11:06:19 => 删除文章</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>2018-11-12 11:04:59 => 登录后台</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>2018-11-12 10:59:28 => 登录后台</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span>2018-11-12 10:59:17 => 初始化站点</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer text-right">
+                    2018 © <a href="https://github.com/suyeq" target="_blank">Suyeq</a>.
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+        <script src="/admin/plugins/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/admin/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js"></script>
+
+        <script src="/admin/js/jquery.app.js?v=v1.0"></script>
+        <script src="/admin/js/base.js?v=v1.0"></script>
+</body>
+</html>

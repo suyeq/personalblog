@@ -4,6 +4,7 @@ import com.suye.personalblog.model.Blog;
 import com.suye.personalblog.model.Category;
 import com.suye.personalblog.model.Label;
 import com.suye.personalblog.service.CategoryService;
+import com.suye.personalblog.service.ConmentService;
 import com.suye.personalblog.service.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,13 +27,17 @@ public class BlogMessageConversion {
     LabelService labelService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    ConmentService conmentService;
 
     public  List<BlogMessage> getBlogMessageList(List<Blog> list){
         List<BlogMessage> messages=new ArrayList<>();
         for (int i=0;i<list.size();i++){
             Blog blog=list.get(i);
+            int comments=conmentService.conmnetTotal(blog.getId());
             List<Label> labelList=labelService.findLabelsByBlogId(blog.getId());
             List<Category> categoryList=categoryService.findCategoryByBlogId(blog.getId());
+            Date date=new Date(blog.getCreate_time().getTime()-8*60*60*1000);
             BlogMessage blogMessage=new BlogMessage(blog.getId(),
                     blog.getTitle(),blog.getImgUrl(),
                     readnumConversion(blog.getReadnum()),
@@ -40,7 +45,8 @@ public class BlogMessageConversion {
                     conmentnumConversion(blog.getConmentnum()),
                     blog.getVotenum(), blog.getContent(),
                     blog.getIsTalk(),blog.getDescrib(),
-                    labelList,categoryList);
+                    labelList,categoryList,comments,date,
+                    blog.getIsComment(),blog.getIsPublish());
             messages.add(blogMessage);
         }
         return messages;
@@ -48,6 +54,7 @@ public class BlogMessageConversion {
 
     public BlogMessage getOneBlogMessage(Blog blog){
         List<Label> labelList=labelService.findLabelsByBlogId(blog.getId());
+        int comments=conmentService.conmnetTotal(blog.getId());
         List<Category> categoryList=categoryService.findCategoryByBlogId(blog.getId());
         BlogMessage blogMessage=new BlogMessage(blog.getId(),
                 blog.getTitle(),blog.getImgUrl(),
@@ -56,7 +63,7 @@ public class BlogMessageConversion {
                 conmentnumConversion(blog.getConmentnum()),
                 blog.getVotenum(), blog.getContent(),
                 blog.getIsTalk(),blog.getDescrib(),
-                labelList,categoryList);
+                labelList,categoryList,comments,blog.getCreate_time(),blog.getIsComment(),blog.getIsPublish());
         return blogMessage;
     }
 
@@ -80,7 +87,6 @@ public class BlogMessageConversion {
     }
 
 
-
      public static class BlogMessage{
          private int id;
          private String title;
@@ -94,13 +100,18 @@ public class BlogMessageConversion {
          private String describ;
          private List<Label> labelList;
          private List<Category> categoryList;
+         private int comments;
+         private Date date;
+         private int iscomment;
+         private int ispublish;
 
          protected BlogMessage(){}
 
          public BlogMessage(int id,String title,String imgUrl,String readnum,
                             String time,String conmentnum,int votenum,
                             String content,int isTalk,String describ,
-                            List<Label> labelList,List<Category> categoryList){
+                            List<Label> labelList,List<Category> categoryList,
+                            int comments,Date date,int iscomment,int ispublish){
             this.id=id;
             this.time=time;
             this.title=title;
@@ -113,6 +124,10 @@ public class BlogMessageConversion {
             this.describ=describ;
             this.labelList=labelList;
             this.categoryList=categoryList;
+            this.comments=comments;
+            this.date=date;
+            this.iscomment=iscomment;
+            this.ispublish=ispublish;
          }
 
          public int getId() {
@@ -209,6 +224,38 @@ public class BlogMessageConversion {
 
          public void setCategoryList(List<Category> categoryList) {
              this.categoryList = categoryList;
+         }
+
+         public int getComments() {
+             return comments;
+         }
+
+         public void setComments(int comments) {
+             this.comments = comments;
+         }
+
+         public Date getDate() {
+             return date;
+         }
+
+         public void setDate(Date date) {
+             this.date = date;
+         }
+
+         public int getIspublish() {
+             return ispublish;
+         }
+
+         public void setIspublish(int ispublish) {
+             this.ispublish = ispublish;
+         }
+
+         public int getIscomment() {
+             return iscomment;
+         }
+
+         public void setIscomment(int iscomment) {
+             this.iscomment = iscomment;
          }
      }
 }

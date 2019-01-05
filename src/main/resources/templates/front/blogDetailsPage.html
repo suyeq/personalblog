@@ -389,7 +389,10 @@
 
                         <div class="text-info">
                             <h3 class="post-title" th:text="${blogDatailsMessage.title}">WordPress响应式二次元主题Giligili</h3>
-                            <div class="content"  th:text="${blogDatailsMessage.content}" >
+                            <div id="uniquevontent" class="content"  th:text="${blogDatailsMessage.content}">
+                                ```java
+                                int a=10;
+                                ```
                             </div>
 
                             <!--标签-->
@@ -486,7 +489,7 @@
                 <!--评论列表-->
                 <div id="comments">
                     <ol class="giligili-comments">
-                        <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList})"></div>
+                        <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList},${blogDatailsMessage.id})"></div>
                     </ol>
 
                     <div id="pagination">
@@ -630,6 +633,21 @@
 <script type='text/javascript' src='http://localhost:8080/front/js/func.js'></script>
 <script type='text/javascript' src='http://localhost:8080/front/js/support.js'></script>
 <script type='text/javascript' src='http://localhost:8080/front/js/app.js'></script>
+<!--解析markdown语法-->
+<script src="/front/showdown-master/dist/showdown.js" th:src="@{/front/showdown-master/dist/showdown.js}"></script>
+<script type="text/javascript">
+    //获取要转换的文字
+   // window.onload=function(){
+        var text = document.getElementById("uniquevontent").innerText;
+        //创建实例
+        var converter = new showdown.Converter();
+        //进行转换
+        var html = converter.makeHtml(text);
+        //展示到对应的地方  result便是id名称
+        document.getElementById("uniquevontent").innerHTML = html;
+   // }
+</script>
+
 <!--云标签-->
 <script src="http://localhost:8080/front/tagcloud/tagcloud.min.js"></script>
 <script type="text/javascript">

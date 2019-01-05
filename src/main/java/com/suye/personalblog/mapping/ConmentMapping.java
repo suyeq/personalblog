@@ -1,10 +1,7 @@
 package com.suye.personalblog.mapping;
 
 import com.suye.personalblog.model.Conment;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,6 +24,9 @@ public interface ConmentMapping {
     @Select("select * from conment where blog_id=#{blogId} and conment_parent_id=0 order by conment_time desc limit #{offset},5")
     List<Conment> findConmentsIsParentByBlogId(@Param("blogId") int blogId,@Param("offset")int offset);
 
+    @Select("select * from conment order by conment_time desc limit #{offset},7")
+    List<Conment> findSomeConments(@Param("offset") int offset);
+
     @Select("select * from conment where conment_parent_id=#{conmentParentId}")
     List<Conment> findConmentsByConmentPrentId(@Param("conmentParentId") int conmentParentId);
 
@@ -44,4 +44,10 @@ public interface ConmentMapping {
 
     @Update("update conment set cainum=cainum+1 where id=#{conmentId}")
     int increaseConmentCai(@Param("conmentId")int conmentId);
+
+    @Select("select count(*) from conment")
+    int conmnettotal();
+
+    @Delete("delete from conment where id=#{id}")
+    int deleteCommentById(@Param("id") int id);
 }

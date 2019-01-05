@@ -432,7 +432,7 @@
                 <!--评论列表-->
                 <div id="comments">
                     <ol class="giligili-comments">
-                        <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList})"></div>
+                        <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList},${blogMessage.id})"></div>
                     </ol>
 
                     <div id="pagination">

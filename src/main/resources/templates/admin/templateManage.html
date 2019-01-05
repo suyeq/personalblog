@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>编辑模板 - Tale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta content="biezhi" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="shortcut icon" href="/admin/images/favicon.png"/>
+    <link href="/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet">
+
+    <link href="/admin/css/style.min.css?v=v1.0" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body class="fixed-left">
+<div id="wrapper">
+
+    <!--顶部菜单栏-->
+    <div th:replace="/admin/topbar::topbar"></div>
+    <!--左部菜单栏-->
+    <div th:replace="/admin/leftbar::leftbar"></div>
+
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">编辑模板</h4>
+                    </div>
+                    <div class="col-md-12">
+
+                        <select id="tplSelect" onchange="showContent(this)">
+                            <option selected value="">请选择模板文件</option>
+                            <option value="archives.html">archives.html</option>
+                            <option value="index.html">index.html</option>
+                            <option value="page-category.html">page-category.html</option>
+                            <option value="page.html">page.html</option>
+                            <option value="post.html">post.html</option>
+                            <option value="setting.html">setting.html</option>
+                            <option value="partial/comments.html">partial/comments.html</option>
+                            <option value="partial/footer.html">partial/footer.html</option>
+                            <option value="partial/header.html">partial/header.html</option>
+                            <option value="partial/social.html">partial/social.html</option>
+                        </select>
+
+                        <button class="btn btn-primary waves-effect waves-light m-b-5" onclick="saveTpl()">保存修改</button>
+
+                        <div>
+                            <textarea id="tpl-preview" rows="20" cols="100%" placeholder="选择模板后进行修改"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer text-right">
+                    2017 © <a href="https://github.com/biezhi" target="_blank">Tale</a>.
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+        <script src="/admin/plugins/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/admin/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js"></script>
+
+        <script src="/admin/js/jquery.app.js?v=v1.0"></script>
+        <script src="/admin/js/base.js?v=v1.0"></script>
+        <script>
+            var tale = new $.tale();
+
+            function showContent(obj) {
+                var fileName = obj.value;
+                if (fileName && fileName != '') {
+                    $.get('/admin/template/content', {fileName: fileName}, function (data) {
+                        $('#tpl-preview').val(data);
+                    });
+                } else {
+                    $('#tpl-preview').val('');
+                }
+            }
+
+            function saveTpl() {
+                var fileName = $('#tplSelect').val();
+                if (fileName && fileName != '') {
+                    tale.post({
+                        url: '/admin/template/save',
+                        data: {
+                            fileName: fileName,
+                            content: $('#tpl-preview').val()
+                        },
+                        success: function (result) {
+                            if (result && result.success) {
+                                tale.alertOk('模板保存成功');
+                            } else {
+                                tale.alertError(result.msg || '模板保存失败');
+                            }
+                        }
+                    });
+                }
+            }
+        </script>
+</body>
+</html>

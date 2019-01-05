@@ -54,4 +54,30 @@ public class ConmentService {
     public int increaseConmentCai(int conmentId){
         return conmentMapping.increaseConmentCai(conmentId);
     }
+
+    /**
+     * 返回评论的总数
+     * @return
+     */
+    public int conmnettotal(){
+        return conmentMapping.conmnettotal();
+    }
+
+    /**
+     * 根据索引返回7条评论
+     * @param offset
+     * @return
+     */
+    public List<Conment> findSomeConments(int offset){
+        return conmentMapping.findSomeConments(offset);
+    }
+
+    /**
+     * 通过id删除评论
+     * @param id
+     * @return
+     */
+    public int deleteCommentById(int id){
+        return conmentMapping.deleteCommentById(id);
+    }
 }

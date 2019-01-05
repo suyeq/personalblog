@@ -25,6 +25,24 @@ public class PaginationTool {
     @Autowired
     BlogService blogService;
 
+    public static int pageTotal(int total){
+        int pages=0;
+        if (total%7==0){
+            return pages=total/7;
+        }else {
+            return pages=total/7+1;
+        }
+    }
+
+    public static int pageTotal(int total,String message){
+        int pages=0;
+        if (total%12==0){
+            return pages=total/12;
+        }else {
+            return pages=total/12+1;
+        }
+    }
+
     public void setCategorySearch(){
         category=Category.SEARCH;
     }

@@ -37,10 +37,12 @@ public class ConmentMessageConversion {
             Blog blog=blogService.findOneById(conment.getBlog_id());
             String blogName=blog.getTitle();
             int blogId=blog.getId();
+            Date date=new Date(conment.getConment_time().getTime()-8*60*60*1000);
             ConmentMessage conmentMessage=new ConmentMessage(conment.getId(),
                                                             conment.getContent(),
                                                             TimeConversion.timeConversion(conment.getConment_time()),
-                                                            visitor,blogName,conment.getVotenum(),conment.getCainum(),blogId);
+                                                            visitor,blogName,conment.getVotenum(),conment.getCainum(),
+                                                            blogId,date);
             conmentMessages.add(conmentMessage);
         }
         return conmentMessages;
@@ -102,8 +104,9 @@ public class ConmentMessageConversion {
         private int cainum;
         private List<ConmentMessage> child;
         private int blogId;
+        private Date date;
 
-        public ConmentMessage(int id,String content,String time,Visitor visitor,String blogName,int votenum,int cainum,int blogId){
+        public ConmentMessage(int id,String content,String time,Visitor visitor,String blogName,int votenum,int cainum,int blogId,Date date){
             this.id=id;
             this.content=content;
             this.time=time;
@@ -112,6 +115,7 @@ public class ConmentMessageConversion {
             this.votenum=votenum;
             this.cainum=cainum;
             this.blogId=blogId;
+            this.date=date;
         }
 
         public int getId() {
@@ -192,6 +196,14 @@ public class ConmentMessageConversion {
 
         public void setBlogId(int blogId) {
             this.blogId = blogId;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
         }
     }
 }

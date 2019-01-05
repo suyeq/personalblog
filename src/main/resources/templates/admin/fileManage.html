@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>文件管理 - Tale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta content="biezhi" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="shortcut icon" href="/admin/images/favicon.png"/>
+    <link href="/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet">
+
+    <link href="/admin/css/style.min.css?v=v1.0" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body class="fixed-left">
+<div id="wrapper">
+    <!--顶部菜单栏-->
+    <div th:replace="/admin/topbar::topbar"></div>
+    <!--左部菜单栏-->
+    <div th:replace="/admin/leftbar::leftbar"></div>
+
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <link href="/admin/plugins/dropzone/4.3.0/min/dropzone.min.css" rel="stylesheet">
+
+                <style>
+                    #dropzone {
+                        margin-bottom: 3rem;
+                    }
+                    .dropzone {
+                        border: 2px dashed #0087F7;
+                        border-radius: 5px;
+                        background: white;
+                    }
+                    .dropzone .dz-message {
+                        font-weight: 400;
+                    }
+                    .dropzone .dz-message .note {
+                        font-size: 0.8em;
+                        font-weight: 200;
+                        display: block;
+                        margin-top: 1.4rem;
+                    }
+                    .attach-img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 8px #333;
+                    }
+                    .attach-text {
+                        font-size: 12px;
+                        font-weight: 300;
+                    }
+                    .attach-img:hover {
+                        background-color: #f9f9f9;
+                    }
+                </style>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">文件管理</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 portlets">
+                            <!-- Your awesome content goes here -->
+                            <div class="m-b-30">
+                                <form action="#" class="dropzone" id="dropzone">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple="multiple">
+                                    </div>
+                                    <div class="dz-message">
+                                        <p>将文件拖至此处或点击上传.http://localhost:8888</p>
+                                        <p>
+                                            <span style="font-size: 16px; color: #d0d0d0;">一次最多可以上传10个文件</span>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 attach">
+
+                        <th:block th:each="File:${fileList}">
+                            <div class="col-md-2 text-center m-t-10">
+                                <a href="http://localhost:9000/upload/2018/11/s765kle716iisrc86v91upjtd5.md" target="_blank" th:href="${File.url}">
+                                    <img class="attach-img"
+                                         src="/admin/images/attach.png" th:src="${File.url}"
+                                         title="haha.md" th:title="${File.name}"/>
+                                </a>
+                                <div class="clearfix m-t-10">
+                <span class="attach-text" data-toggle="tooltip" data-placement="top"
+                      data-original-title="haha.md" th:text="${File.name}">haha.md</span>
+                                </div>
+                                <div class="clearfix">
+                                    <button url="http://localhost:9000/upload/2018/11/s765kle716iisrc86v91upjtd5.md" type="button"
+                                            class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy" th:attr="url=${File.url}">
+                                        <i class="fa fa-copy"></i> <span>复制</span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm waves-effect waves-light m-t-5"
+                                            onclick="delAttach(2);" th:onclick="'delAttach('+${File.id}+')'">
+                                        <i class="fa fa-trash-o"></i> <span>删除</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </th:block>
+
+
+                        <div class="clearfix"></div>
+
+                        <ul class="pagination m-b-5 pull-right">
+
+                            <th:block th:each="i:${#numbers.sequence(0,pageNum)}">
+                                <li  class="active" th:if="${i} eq 1"><a href="?page=1" th:href="'?page='+(${i}-1)" th:text="${i}">1</a></li>
+                                <li  th:if="${i} > 1"><a href="?page=1" th:href="'?page='+(${i}-1)" th:text="${i}">1</a></li>
+                            </th:block>
+                            <li>
+                                <span th:text="'共'+${pageNum}+'页'">共1页</span>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <footer class="footer text-right">
+                    2018 © <a href="https://github.com/suyeq" target="_blank">Suyeq</a>.
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+        <script src="/admin/plugins/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/admin/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js"></script>
+
+        <script src="/admin/js/jquery.app.js?v=v1.0"></script>
+        <script src="/admin/js/base.js?v=v1.0"></script>
+
+        <script src="/admin/plugins/dropzone/4.3.0/min/dropzone.min.js"></script>
+        <script src="/admin/plugins/clipboard.js/1.6.0/clipboard.min.js"></script>
+
+
+        <script type="text/javascript">
+
+            var tale = new $.tale();
+            Dropzone.autoDiscover = false;
+            $("#dropzone").dropzone({
+                url: "/admin/attach/upload",
+                filesizeBase:1024,//定义字节算法 默认1000
+                maxFiles: 11,//最大文件数量
+                maxFilesize: 20, //MB
+                parallelUploads: 5,
+                fallback:function(){
+                    tale.alertError('暂不支持您的浏览器上传!');
+                },
+                uploadMultiple: false,
+                dictFileTooBig:'您的文件超过'+ 20 +'MB!',
+                dictInvalidInputType:'不支持您上传的类型',
+                dictMaxFilesExceeded:'您的文件超过'+ 11+'个!',
+                init: function() {
+                    this.on('queuecomplete', function (files) {
+                        tale.alertOkAndReload('上传成功');
+                    });
+                    this.on('error', function (a, errorMessage, result) {
+                        if(!result.success && result.msg){
+                            tale.alertError(result.msg || '上传失败');
+                        }
+                    });
+                    this.on('maxfilesreached', function () {
+                        this.removeAllFiles(true);
+                        tale.alertWarn('文件数量超出限制');
+                    });
+                }
+            });
+
+            var clipboard = new Clipboard('button.copy', {
+                text: function (trigger) {
+                    return $(trigger).attr('url');
+                }
+            });
+
+            clipboard.on('success', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+                e.clearSelection();
+            });
+
+            function delAttach(id) {
+                tale.alertConfirm({
+                    title: '确定删除该附件吗?',
+                    then: function () {
+                        tale.post({
+                            url: '/admin/attach/delete',
+                            data: {id: id},
+                            success: function (result) {
+                                if (result && result.success) {
+                                    tale.alertOkAndReload('附件删除成功');
+                                } else {
+                                    tale.alertError(result.msg || '附件删除失败');
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+</body>
+</html>

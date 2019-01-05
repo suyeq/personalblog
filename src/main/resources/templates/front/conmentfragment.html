@@ -75,7 +75,7 @@
         <!--</ul>-->
         <!--&lt;!&ndash; #comment-## &ndash;&gt;-->
     <!--</li>-->
-    <th:block th:fragment="conmentList(conmentLists)">
+    <th:block th:fragment="conmentList(conmentLists,postId)">
         <th:block th:each="ConmentMessage:${conmentLists}">
             <li class="comment-item" id="li-comment-1571" th:id="'li-comment-'+${ConmentMessage.id}">
                 <div class="commentator-avatar">
@@ -122,7 +122,7 @@
                                             </span>
                                 <!--https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1571#respond-->
                                 <a rel='nofollow' class='comment-reply-link' href='https://shawnzeng.com/wordpress-theme-giligili.html?replytocom=1571#respond'
-                                   onclick='return addComment.moveForm( "comment-1", "1", "respond", "2518" )' th:onclick="'return addComment.moveForm(&quot;comment-'+${ConmentMessage.id}+'&quot;,&quot;'+${ConmentMessage.id}+'&quot;,&quot;respond&quot;,&quot;1&quot;)'"
+                                   onclick='return addComment.moveForm( "comment-1", "1", "respond", "2518" )' th:onclick="'return addComment.moveForm(&quot;comment-'+${ConmentMessage.id}+'&quot;,&quot;'+${ConmentMessage.id}+'&quot;,&quot;respond&quot;,&quot;'+${postId}+'&quot;)'"
                                    aria-label='回复给IamMicroCoder'>回复</a>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                 </div>
                 <ul class="children">
                     <th:block th:unless="${#lists.isEmpty(ConmentMessage.child)}">
-                        <div th:replace="/front/conmentfragment::conmentList(${ConmentMessage.child})"></div>
+                        <div th:replace="/front/conmentfragment::conmentList(${ConmentMessage.child},${postId})"></div>
                     </th:block>
                     <!-- .children -->
                 </ul>
