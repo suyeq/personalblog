@@ -42,14 +42,14 @@
                             </div>
                             <div class="panel-body">
                                 <th:block th:each="Category:${categoryList}">
-                                    <th:block th:if="${Category.name} eq '默认分类'">
-                                        <div class="btn-group m-b-10">
-                                            <button type="button" class="btn btn-purple waves-effect waves-light" th:text="${Category.name}+' ('${Category.blognum}+')'">默认分类
-                                                (4)
-                                            </button>
-                                        </div>
-                                    </th:block>
-                                    <th:block th:if="${Category.name} ne '默认分类'">
+                                    <!--<th:block th:if="${Category.name} eq '默认分类'">-->
+                                        <!--<div class="btn-group m-b-10">-->
+                                            <!--<button type="button" class="btn btn-purple waves-effect waves-light" th:text="${Category.name}+' ('${Category.blognum}+')'">默认分类-->
+                                                <!--(4)-->
+                                            <!--</button>-->
+                                        <!--</div>-->
+                                    <!--</th:block>-->
+                                    <!--<th:block th:if="${Category.name} ne '默认分类'">-->
                                             <div class="btn-group m-b-10">
                                                 <th:block th:if="(${CategoryStat.count} %2) eq 0 ">
                                                     <button type="button" class="btn btn-danger dropdown-toggle waves-effect waves-light"
@@ -74,7 +74,7 @@
                                                     <li><a href="javascript:void(0)" mid="5" kmethor="分类" class="del-category" th:attr="mid=${Category.id}">删除</a></li>
                                                 </ul>
                                             </div>
-                                    </th:block>
+                                    <!--</th:block>-->
                                 </th:block>
                             </div>
                         </div>
@@ -113,34 +113,25 @@
                                     </div>
                                 </th:block>
 
-
-                                <!--<div class="btn-group m-b-10">-->
-                                    <!--<button type="button" class="btn btn-inverse dropdown-toggle waves-effect waves-light"-->
-                                            <!--data-toggle="dropdown" aria-expanded="false">测试 (1) <span-->
-                                            <!--class="caret"></span></button>-->
-                                    <!--<ul class="dropdown-menu" role="menu">-->
-                                        <!--<li><a href="javascript:void(0)" mid="2" class="del-category">删除</a></li>-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-
                             </div>
                         </div>
+
                     </div>
 
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-body">
-                                <form id="cform" class="form-inline" role="form">
-                                    <!--<input type="hidden" id="mid"/>-->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="cname" placeholder="请输入分类名称">
-                                    </div>
-                                    <button id="save-category-btn" type="button"
-                                            class="btn btn-success waves-effect waves-light m-l-10">保存分类
-                                    </button>
-                                </form>
-                            </div>
+                        <div class="panel-body">
+                            <form id="cform" class="form-inline" role="form">
+                                <!--<input type="hidden" id="mid"/>-->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="cname" placeholder="请输入分类名称">
+                                </div>
+                                <button id="save-category-btn" type="button"
+                                        class="btn btn-success waves-effect waves-light m-l-10">保存分类
+                                </button>
+                            </form>
                         </div>
+                    </div>
                     </div>
                 </div>
                 <footer class="footer text-right">

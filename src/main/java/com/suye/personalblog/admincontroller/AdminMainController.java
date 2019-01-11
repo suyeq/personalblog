@@ -3,6 +3,7 @@ package com.suye.personalblog.admincontroller;
 import com.suye.personalblog.model.Category;
 import com.suye.personalblog.model.File;
 import com.suye.personalblog.model.Label;
+import com.suye.personalblog.model.LogMessage;
 import com.suye.personalblog.service.*;
 import com.suye.personalblog.tool.BlogMessageConversion;
 import com.suye.personalblog.tool.ConmentMessageConversion;
@@ -41,19 +42,27 @@ public class AdminMainController {
     private BlogMessageConversion blogMessageConversion;
     @Autowired
     private ConmentMessageConversion conmentMessageConversion;
+    @Autowired
+    private LogMessageService logMessageService;
+    @Autowired
+    private SensitiveService sensitiveService;
 
     @RequestMapping("/admin/index")
     public ModelAndView index(Model model){
         int conmentTotal=conmentService.conmnettotal();
         int blogTotal=blogService.blogTotal();
+        int fileTotal=fileService.fileTotal();
         List<BlogMessageConversion.BlogMessage> recentBlogList=
                 blogMessageConversion.getBlogMessageList(blogService.recentBlogs());
         List<ConmentMessageConversion.ConmentMessage> recentCommentList=
                 conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+        List<LogMessage> logMessageList=logMessageService.getLogMessage();
         model.addAttribute("conmentTotal",conmentTotal);
         model.addAttribute("blogTotal",blogTotal);
+        model.addAttribute("fileTotal",fileTotal);
         model.addAttribute("recentBlogList",recentBlogList);
         model.addAttribute("recentCommentList",recentCommentList);
+        model.addAttribute("logMessageList",logMessageList);
         return new ModelAndView("/admin/index","index",model);
     }
 
@@ -86,7 +95,7 @@ public class AdminMainController {
         if (page!=null){
             blogMessageList= blogMessageConversion.getBlogMessageList(blogService.loadMoreRecentBlogs(Integer.parseInt(page)*7));
         }else {
-            blogMessageList=blogMessageConversion.getBlogMessageList(blogService.recentBlogs());
+            blogMessageList=blogMessageConversion.getBlogMessageList(blogService.loadMoreRecentBlogs(0));
         }
         int pagenum= PaginationTool.pageTotal(blogService.blogTotal());
         System.out.println(blogMessageList.size());
@@ -127,6 +136,8 @@ public class AdminMainController {
     public ModelAndView categoryManage(Model model){
         List<Category> categoryList=categoryService.getAllCategory();
         List<Label> labelList=labelService.getAllLabels();
+        System.out.println("dahdajjj");
+        System.out.println(labelList.size());
         model.addAttribute("categoryList",categoryList);
         model.addAttribute("labelList",labelList);
         return new ModelAndView("/admin/categoryManage","categoryManage",model);
@@ -145,5 +156,12 @@ public class AdminMainController {
     @RequestMapping("/admin/setting")
     public ModelAndView settingManage(Model model){
         return new ModelAndView("/admin/settingManage","settingManage",model);
+    }
+
+    @RequestMapping("/admin/sensitiveWord")
+    public ModelAndView sensitiveWord(Model model){
+        List<String> sensitiveWordList=sensitiveService.findSensitiveWords();
+        model.addAttribute("sensitiveWordList",sensitiveWordList);
+        return new ModelAndView("/admin/SensitiveWordManage","sensitiveManage",model);
     }
 }

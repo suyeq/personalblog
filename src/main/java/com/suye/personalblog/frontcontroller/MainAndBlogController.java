@@ -51,6 +51,7 @@ public class MainAndBlogController {
                                    Model model){
         System.out.println("lall");
         paginationTool.reset();
+        paginationTool.setCategoryAll();
         List<BlogMessageConversion.BlogMessage> recentBlogList=null;
         if (searchContent!=null){
             paginationTool.setCategorySearch();
@@ -76,8 +77,10 @@ public class MainAndBlogController {
         model.addAttribute("popularBlogList",popularBlogList);
         model.addAttribute("recentConmentList",recentConmentList);
         model.addAttribute("recentBlogList",recentBlogList);
+        model.addAttribute("action","loadMoreAll");
         if (searchContent!=null){
-            return new ModelAndView("front/searchshow","allMessge",model);
+            model.addAttribute("action","/loadMoreSearch");
+            return new ModelAndView("index","allMessge",model);
         }
         return new ModelAndView("index","allMessge",model);
     }
@@ -112,6 +115,7 @@ public class MainAndBlogController {
         model.addAttribute("columnList",columnList);
         model.addAttribute("popularBlogList",popularBlogList);
         model.addAttribute("recentConmentList",recentConmentList);
+        model.addAttribute("action","loadMoreBlog");
         return new ModelAndView("index","allMessge",model);
     }
 
@@ -144,7 +148,8 @@ public class MainAndBlogController {
         model.addAttribute("categoryList",categoryList);
         model.addAttribute("columnList",columnList);
         model.addAttribute("popularBlogList",popularBlogList);
-        return new ModelAndView("front/indexshuoshuo","allMessge",model);
+        model.addAttribute("action","loadMoreShuoShuo");
+        return new ModelAndView("index","allMessge",model);
     }
 
     /**
@@ -160,6 +165,7 @@ public class MainAndBlogController {
         List<BlogMessageConversion.BlogMessage> recentBlogList=
                 blogMessageConversion.getBlogMessageList(paginationTool.blogList());
         model.addAttribute("recentBlogList",recentBlogList);
+        model.addAttribute("action","loadMoreAll");
         return new ModelAndView("index","allMessge",model);
     }
 
@@ -181,7 +187,8 @@ public class MainAndBlogController {
 
         //loadMoreBlog++;
         model.addAttribute("recentBlogList",recentBlogList);
-        return new ModelAndView("front/indexblog","allMessge",model);
+        model.addAttribute("action","loadMoreBlog");
+        return new ModelAndView("index","allMessge",model);
     }
 
     /**
@@ -195,7 +202,8 @@ public class MainAndBlogController {
         List<BlogMessageConversion.BlogMessage> recentBlogList=
                 blogMessageConversion.getBlogMessageList(paginationTool.blogList());
         model.addAttribute("recentBlogList",recentBlogList);
-        return new ModelAndView("front/indexshuoshuo","allMessge",model);
+        model.addAttribute("action","loadMoreShuoShuo");
+        return new ModelAndView("index","allMessge",model);
     }
 
     @GetMapping("/loadMoreSearch")
@@ -204,7 +212,8 @@ public class MainAndBlogController {
         List<BlogMessageConversion.BlogMessage> recentBlogList=
                 blogMessageConversion.getBlogMessageList(paginationTool.blogList());
         model.addAttribute("recentBlogList",recentBlogList);
-        return new ModelAndView("front/searchshow","allMessage",model);
+        model.addAttribute("action","loadMoreSearch");
+        return new ModelAndView("index","allMessage",model);
     }
 
     @RequestMapping("/blogDetails/{blogid}")
@@ -212,6 +221,10 @@ public class MainAndBlogController {
         System.out.println("blogdatails");
         int blogTotal=blogService.blogTotal();
         blogService.increaseReadNum(blogId);
+        String classicLanguage=ClassicAuotation.getAAuotation();
+        int num1=ClassicAuotation.getANum();
+        int num2=ClassicAuotation.getANum();
+
         List<Label> labelList=labelService.getAllLabels();
         List<Category> categoryList=categoryService.getAllCategory();
         List<Column> columnList=columnService.getAllColumn();
@@ -227,6 +240,10 @@ public class MainAndBlogController {
                 conmentMessageConversion.findAllConmentsByBlogId(blogId,0);
         List<Object> conmentPages=conmentMessageConversion.conversionTotal(conmentService.conmnetTotal(blogId));
 
+        model.addAttribute("classicLanguage",classicLanguage);
+        model.addAttribute("sum",num1+num2);
+        model.addAttribute("num1",num1);
+        model.addAttribute("num2",num2);
         model.addAttribute("blogTotal",blogTotal);
         model.addAttribute("labelList",labelList);
         model.addAttribute("categoryList",categoryList);
@@ -243,20 +260,30 @@ public class MainAndBlogController {
     @RequestMapping("/archive")
     public ModelAndView showarchivePage(Model model){
         System.out.println("archive");
-        blogService.increaseReadNum(10);
+        blogService.increaseReadNum(87);
+        //System.out.println("1");
         int blogTotal=blogService.blogTotal();
+       // System.out.println("2");
         List<Label> labelList=labelService.getAllLabels();
+       // System.out.println("3");
         List<Category> categoryList=categoryService.getAllCategory();
+       // System.out.println("4");
         List<Column> columnList=columnService.getAllColumn();
+        //System.out.println("5");
         List<BlogMessageConversion.BlogMessage> popularBlogList=
                 blogMessageConversion.getBlogMessageList(blogService.mostPopularBlog());
+       // System.out.println("6");
         List<ConmentMessageConversion.ConmentMessage> recentConmentList=
                 conmentMessageConversion.conmentMessageList(conmentService.recentConment());
+       // System.out.println("7");
         BlogMessageConversion.BlogMessage blogMessage=
                 blogMessageConversion.getOneBlogMessage(blogService.findArchive());
+       // System.out.println("8");
         List<ArchiveMessageConversion.ArchiveMessage> archiveMessageList=
                 archiveMessageConversion.archiveMessageList(blogService.findAllBlogTimeDesc());
+        System.out.println("9");
         List<RunningTrackStack.RunningTrack> runningTrackList=RunningTrackStack.getRunningTrackStack();
+        System.out.println("10");
         model.addAttribute("blogMessage",blogMessage);
         model.addAttribute("archiveMessageList",archiveMessageList);
         model.addAttribute("blogTotal",blogTotal);
@@ -271,6 +298,9 @@ public class MainAndBlogController {
 
     @RequestMapping("/friend")
     public  ModelAndView showFriendChain(Model model){
+        String classicLanguage=ClassicAuotation.getAAuotation();
+        int num1=ClassicAuotation.getANum();
+        int num2=ClassicAuotation.getANum();
         int blogTotal=blogService.blogTotal();
         List<Visitor> friendList=visitorService.findAllFriends();
         List<Label> labelList=labelService.getAllLabels();
@@ -284,8 +314,11 @@ public class MainAndBlogController {
                 blogMessageConversion.getOneBlogMessage(blogService.findFirends());
 
         List<ConmentMessageConversion.ConmentMessage> recentAllConmentList=
-                conmentMessageConversion.findAllConmentsByBlogId(11,0);
-
+                conmentMessageConversion.findAllConmentsByBlogId(88,0);
+        model.addAttribute("classicLanguage",classicLanguage);
+        model.addAttribute("sum",num1+num2);
+        model.addAttribute("num1",num1);
+        model.addAttribute("num2",num2);
         List<Object> conmentPages=conmentMessageConversion.conversionTotal(conmentService.conmnetTotal(11));
         model.addAttribute("blogMessage",blogMessage);
         model.addAttribute("blogTotal",blogTotal);
@@ -302,7 +335,10 @@ public class MainAndBlogController {
 
     @RequestMapping("/aboutme")
     public  ModelAndView showAboutMe(Model model){
-        blogService.increaseReadNum(12);
+        String classicLanguage=ClassicAuotation.getAAuotation();
+        int num1=ClassicAuotation.getANum();
+        int num2=ClassicAuotation.getANum();
+        blogService.increaseReadNum(89);
         int blogTotal=blogService.blogTotal();
         List<Label> labelList=labelService.getAllLabels();
         List<Category> categoryList=categoryService.getAllCategory();
@@ -315,9 +351,13 @@ public class MainAndBlogController {
                 blogMessageConversion.getOneBlogMessage(blogService.findAboutMe());
 
         List<ConmentMessageConversion.ConmentMessage> recentAllConmentList=
-                conmentMessageConversion.findAllConmentsByBlogId(12,0);
+                conmentMessageConversion.findAllConmentsByBlogId(89,0);
 
-        List<Object> conmentPages=conmentMessageConversion.conversionTotal(conmentService.conmnetTotal(12));
+        List<Object> conmentPages=conmentMessageConversion.conversionTotal(conmentService.conmnetTotal(89));
+        model.addAttribute("classicLanguage",classicLanguage);
+        model.addAttribute("sum",num1+num2);
+        model.addAttribute("num1",num1);
+        model.addAttribute("num2",num2);
         model.addAttribute("blogMessage",blogMessage);
         model.addAttribute("blogTotal",blogTotal);
         model.addAttribute("labelList",labelList);

@@ -17,9 +17,10 @@ public class Visitor {
     private String address;
     private String describ;
     private int isFriend;
+    private int isAdmin;
 
     public Visitor(){}
-    public Visitor(int id,String name,String avatar,String email,String address,String describ,int isFriend){
+    public Visitor(int id,String name,String avatar,String email,String address,String describ,int isFriend,int isAdmin){
         this.id=id;
         this.names=name;
         this.avatar=avatar;
@@ -27,6 +28,7 @@ public class Visitor {
         this.address=address;
         this.describ=describ;
         this.isFriend=isFriend;
+        this.isAdmin=isAdmin;
     }
 
     public int getId() {
@@ -83,5 +85,13 @@ public class Visitor {
 
     public void setIsFriend(int isFriend) {
         this.isFriend = isFriend;
+    }
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

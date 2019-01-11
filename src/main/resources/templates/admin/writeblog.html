@@ -113,17 +113,18 @@
                     </div>
                     <div class="col-md-12">
 
-                        <input type="hidden" id="attach_url" value="http://localhost:9000" />
+                        <input type="hidden" id="attach_url" value="http://localhost:8888" />
 
                         <form id="articleForm">
                             <input type="hidden" name="categories" id="categories"/>
                             <input type="hidden" name="cid" value="" id="cid"/>
                             <input type="hidden" name="status" value="draft" id="status"/>
                             <input type="hidden" name="allowComment" value="true" id="allowComment"/>
-                            <input type="hidden" name="isShuoShuo" value="false" id="allowPing"/>
+                            <input type="hidden" name="isShuoShuo" value="true" id="allowPing"/>
                             <input type="hidden" name="allowFeed" value="true" id="allowFeed"/>
                             <input type="hidden" name="content" id="content-editor"/>
                             <input type="hidden" name="fmtType" id="fmtType" value="markdown"/>
+                            <input type="hidden" name="htmlcontent" id="htmlcontent">
 
                             <div class="form-group col-md-6" style="padding: 0 10px 0 0;">
                                 <input class="form-control" placeholder="请输入文章标题（必须）" name="title" required
@@ -154,7 +155,9 @@
 
                             <div class="form-group col-xs-12">
                                 <div class="pull-right">
-                                    <a id="switch-btn" href="javascript:void(0);" class="btn btn-purple btn-sm waves-effect waves-light switch-editor"> 切换为富文本编辑器 </a>
+                                    <!--id="switch-btn"-->
+                                    <!--<a  href="javascript:void(0);" class="btn btn-purple btn-sm waves-effect waves-light switch-editor"> 切换为富文本编辑器 </a>-->
+                                <!---->
                                 </div>
                             </div>
 
@@ -244,5 +247,11 @@
         <script src="/admin/plugins/dropzone/4.3.0/min/dropzone.min.js"></script>
         <script src="/admin/plugins/to-markdown/3.1.0/to-markdown.min.js"></script>
         <script src="/admin/js/article.js?v=v1.0" type="text/javascript"></script>
+<script type="text/javascript">
+    // var ele_textarea = document.getElementById('md-editor');
+    // //实例化Mditor
+    // var editor = new mditor(ele_textarea);
+    // editor.toHtml()
+</script>
 </body>
 </html>

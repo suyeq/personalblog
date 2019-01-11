@@ -1,8 +1,11 @@
 package com.suye.personalblog.admincontroller;
 
+import com.suye.personalblog.StaticField;
+import com.suye.personalblog.model.Blog;
 import com.suye.personalblog.service.BlogService;
 import com.suye.personalblog.service.CategoryService;
 import com.suye.personalblog.service.LabelService;
+import com.suye.personalblog.service.LogMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +32,9 @@ public class AdminBlogController {
     private CategoryService categoryService;
     @Autowired
     private LabelService labelService;
+    @Autowired
+    private LogMessageService logMessageService;
+
     /**
      * 新增博客
      * @param categoties 分类
@@ -56,18 +62,31 @@ public class AdminBlogController {
                           @RequestParam("title")String title,
                           @RequestParam("slug")String slug,
                           @RequestParam("tags")List<String> tags,
-                          @RequestParam("thumbImg")String img){
+                          @RequestParam("thumbImg")String img,
+                          @RequestParam("htmlcontent")String htmlcontent){
         int isPublish=0;
+        int id=0;
         if (stauts.equals("publish")){
             isPublish=1;
         }
-        if (categoties.size()==0){
+        System.out.println(htmlcontent+"dsad");
+        if ((categoties.size()==0)&& !isShuoShuo){
             categoties.add("默认分类");
         }
-        int blogId=blogService.addBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish);
+
+        for (int i=0;i<categoties.size();i++){
+            id=categoryService.findCategoryByCategoryName(categoties.get(i)).getId();
+            categoryService.increaseBlogNum(id);
+        }
+        int blogId=blogService.addBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,htmlcontent);
         categoryService.insertCategorytoBlog(blogId,categoties);
         labelService.insertLabeltoBlog(blogId,tags);
-        return "{\n" + "  \"success\":\"保存成功\"\n" + "}";
+        logMessageService.addALog(StaticField.ADD_BLOG);
+        for (int i=0;i<tags.size();i++){
+            id=labelService.findLabelByLabelName(tags.get(i)).getId();
+            labelService.increaseBlogNum(id);
+        }
+        return "{\n" + "  \"success\":\""+blogId+"\"\n" + "}";
     }
 
     @RequestMapping("/admin/blog/modify")
@@ -83,18 +102,26 @@ public class AdminBlogController {
                              @RequestParam("slug")String slug,
                              @RequestParam("tags")List<String> tags,
                              @RequestParam("thumbImg")String img,
-                             @RequestParam("cid")int blogId){
+                             @RequestParam("cid")int blogId,
+                             @RequestParam("htmlcontent")String htmlcontent){
         int isPublish=0;
         if (stauts.equals("publish")){
             isPublish=1;
         }
-        System.out.println("djasjdjaj");
+        Blog blog=blogService.findOneById(blogId);
+//        if (blog.getImgUrl()!=null){
+//            img=blog.getImgUrl();
+//        }
+        if ((categoties.size()==0)&& !isShuoShuo){
+            categoties.add("默认分类");
+        }
         blogService.deleteBlogAndLabelByBlogId(blogId);
         blogService.deleteBlogAndCategoryByBlogId(blogId);
         categoryService.insertCategorytoBlog(blogId,categoties);
         labelService.insertLabeltoBlog(blogId,tags);
-        if (blogService.modifyBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,blogId)>0){
-            return "{\n" + "  \"success\":\"修改成功\"\n" + "}";
+        if (blogService.modifyBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,blogId,htmlcontent)>0){
+            logMessageService.addALog(StaticField.MODIFY_BLOG);
+            return "{\n" + "  \"success\":\""+blogId+"\"\n" + "}";
         }else {
             return "{\n" + "  \"msg\":\"网络错误\"\n" + "}";
         }
@@ -104,6 +131,7 @@ public class AdminBlogController {
     @ResponseBody
     public String deleteBlog(@RequestParam("cid")int id){
         if (blogService.deleteBlog(id)>0){
+            logMessageService.addALog(StaticField.DELETE_BLOG);
             return "{\n" + "  \"success\":\"删除成功\"\n" + "}";
         }else {
             return "{\n" + "  \"message\":\"网络错误\"\n" + "}";

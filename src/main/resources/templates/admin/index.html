@@ -59,7 +59,7 @@
                             <div class="mini-stat clearfix bg-success bx-shadow">
                                 <span class="mini-stat-icon"><i class="fa fa-cloud-upload" aria-hidden="true"></i></span>
                                 <div class="mini-stat-info text-right">
-                                    上传了<span class="counter">1</span>个附件
+                                    上传了<span class="counter" th:text="${fileTotal}">1</span>个附件
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                                                 <th:block th:text="'于'+${#dates.format(ConmentMessage.date, 'yyyy-MM-dd HH:mm:ss')}+'在'+${ConmentMessage.blogName}+'说:'">
                                                     于01月01日15:59 ：
                                                 </th:block>
-                                                <a href="http://localhost:9000/article/6#comments" target="_blank"><p th:text="${ConmentMessage.content}">sadcsacacacascsacasc</p>
+                                                <a href="#"  target="_blank"><p th:text="${ConmentMessage.content}">sadcsacacacascsacasc</p>
                                             </a>
                                             </li>
                                         </th:block>
@@ -135,30 +135,33 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <span>2019-01-01 15:54:02 => 登录后台</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>2018-11-12 11:18:53 => 登录后台</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>2018-11-12 11:14:02 => 登录后台</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>2018-11-12 11:08:43 => 删除附件</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>2018-11-12 11:06:19 => 删除文章</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>2018-11-12 11:04:59 => 登录后台</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>2018-11-12 10:59:28 => 登录后台</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span>2018-11-12 10:59:17 => 初始化站点</span>
-                                        </li>
+                                        <th:block th:each="LogMessage:${logMessageList}">
+                                            <li class="list-group-item">
+                                                <span th:text="${LogMessage.date}+' => '+${LogMessage.action}">2019-01-01 15:54:02 => 登录后台</span>
+                                            </li>
+                                        </th:block>
+
+                                        <!--<li class="list-group-item">-->
+                                            <!--<span>2018-11-12 11:18:53 => 登录后台</span>-->
+                                        <!--</li>-->
+                                        <!--<li class="list-group-item">-->
+                                            <!--<span>2018-11-12 11:14:02 => 登录后台</span>-->
+                                        <!--</li>-->
+                                        <!--<li class="list-group-item">-->
+                                            <!--<span>2018-11-12 11:08:43 => 删除附件</span>-->
+                                        <!--</li>-->
+                                        <!--<li class="list-group-item">-->
+                                            <!--<span>2018-11-12 11:06:19 => 删除文章</span>-->
+                                        <!--</li>-->
+                                        <!--<li class="list-group-item">-->
+                                            <!--<span>2018-11-12 11:04:59 => 登录后台</span>-->
+                                        <!--</li>-->
+                                        <!--<li class="list-group-item">-->
+                                            <!--<span>2018-11-12 10:59:28 => 登录后台</span>-->
+                                        <!--</li>-->
+                                        <!--<li class="list-group-item">-->
+                                            <!--<span>2018-11-12 10:59:17 => 初始化站点</span>-->
+                                        <!--</li>-->
                                     </ul>
                                 </div>
                             </div>

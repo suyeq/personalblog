@@ -1,3 +1,5 @@
+document.write("<script type='text/javascript' src='front/showdown-master/dist/showdown.js'></script>");
+
 // 加载动画
 function loading_start(item) {
     var loading_tmp = '<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
@@ -107,6 +109,29 @@ function pageReadMore() {
                 success: function(data) {
                     loading_finish($('#index-pagination'));
                     var $result = $(data).find("#main-content .giligili-item");
+                    //markdown转化
+                    var list=$result.find(".uniquevontent");
+                    //创建实例
+                        //alert(list.length)
+                        for (var i=0;i<list.length;i++){
+                            var text=list[i].innerText;
+                            var converter = new showdown.Converter();
+                            //进行转换
+                            var html = converter.makeHtml(text);
+                            //展示到对应的地方  result便是id名称
+                            list[i].innerHTML = html;
+                        }
+
+                    var list=$result.find(".unique");
+                    for (var i=0;i<list.length;i++){
+                        var text=list[i].innerText;
+                        var converter = new showdown.Converter();
+                        //进行转换
+                        var html = converter.makeHtml(text);
+                        //展示到对应的地方  result便是id名称
+                        list[i].innerHTML = html;
+                    }
+
                     console.log($result.length)
                     $('#main-content').append($result.fadeIn(1000));
                     var nexthref = $(data).find("#index-pagination a").attr("href");

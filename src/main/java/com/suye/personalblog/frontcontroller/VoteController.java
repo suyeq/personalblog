@@ -31,7 +31,9 @@ public class VoteController {
             blogService.increaseVotenum(Integer.parseInt(Id));
             return blogService.findOneById(Integer.parseInt(Id)).getVotenum();
         }else if (action.equals("conment_zan")){
+            System.out.println(Id+action);
             conmentService.increaseConmentZan(Integer.parseInt(Id));
+            System.out.println(conmentService.findOneConmentById(Integer.parseInt(Id)).getVotenum());
             return conmentService.findOneConmentById(Integer.parseInt(Id)).getVotenum();
         }else if (action.equals("conment_cai")){
             conmentService.increaseConmentCai(Integer.parseInt(Id));

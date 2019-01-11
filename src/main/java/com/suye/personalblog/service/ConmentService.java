@@ -1,7 +1,9 @@
 package com.suye.personalblog.service;
 
 import com.suye.personalblog.mapping.ConmentMapping;
+import com.suye.personalblog.mapping.VisitorMapping;
 import com.suye.personalblog.model.Conment;
+import com.suye.personalblog.redisrepository.CommentRedisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,17 +18,28 @@ import java.util.List;
 @Service
 public class ConmentService {
 
+    private static int TIME_UNIT=1000;
     @Autowired
     private ConmentMapping conmentMapping;
+    @Autowired
+    private VisitorMapping visitorMapping;
+    @Autowired
+    private CommentRedisRepository commentRedisRepository;
 
+    /**
+     * 最近的评论
+     * @return
+     */
     public List<Conment> recentConment(){
         return conmentMapping.recentConment();
     }
 
-    public Conment findOneConmentById(int id){
-        return conmentMapping.findOneConmentById(id);
-    }
-
+    /**
+     * 通过博客id查找是父评论的评论
+     * @param blogId
+     * @param offset
+     * @return
+     */
     public List<Conment> findConmentIsParentByBlogId(int blogId,int offset){
         return conmentMapping.findConmentsIsParentByBlogId(blogId,offset);
     }
@@ -72,12 +85,47 @@ public class ConmentService {
         return conmentMapping.findSomeConments(offset);
     }
 
+
+    public String findEmailByCommentId(int id){
+        int visitorId=conmentMapping.findOneConmentById(id).getVisitor_id();
+        return visitorMapping.findOneById(visitorId).getEmail();
+    }
+
     /**
-     * 通过id删除评论
+     * 带缓存的获取
+     * @param id
+     * @return
+     */
+    public Conment findOneConmentById(int id){
+        Conment  conment= commentRedisRepository.getConment(id);
+        if (conment!=null){
+            return conment;
+        }
+        return conmentMapping.findOneConmentById(id);
+    }
+
+    /**
+     * 带缓存的保存评论
+     * @param conment
+     * @return
+     */
+    public Conment saveConment(Conment conment){
+        if (conment==null)
+            return null;
+        commentRedisRepository.addComment(conment,TIME_UNIT);
+        conmentMapping.saveConment(conment);
+        return findOneConmentById(conment.getId());
+    }
+
+    /**
+     * 通过id删除评论,带缓存
      * @param id
      * @return
      */
     public int deleteCommentById(int id){
+        commentRedisRepository.delComment(id);
         return conmentMapping.deleteCommentById(id);
     }
+
+
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 public class BeanFactory implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;

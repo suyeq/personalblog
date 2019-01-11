@@ -4,6 +4,7 @@ import org.apache.catalina.LifecycleState;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Date: 2018-12-22
  * Time: 22:37
  */
-@Component
+@Repository
 public interface BlogCategoryMapping {
 
     @Select("select category_id from blog_category where blog_id=#{id}")

@@ -1,11 +1,9 @@
 package com.suye.personalblog.mapping;
 
 import com.suye.personalblog.model.Category;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.List;
  * Date: 2018-12-20
  * Time: 22:56
  */
-@Component
+@Repository
 public interface CategoryMapping {
 
     @Select("select * from category")
@@ -45,4 +43,7 @@ public interface CategoryMapping {
 
     @Delete("delete from category where id=#{categoryId}")
     int deleteCategoryById(@Param("categoryId")int categoryId);
+
+    @Update("update category set blognum=blognum+1 where id=#{categoryId}")
+    int increaseBlogNum(@Param("categoryId") int categoryId);
 }

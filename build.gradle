@@ -42,5 +42,18 @@ dependencies {
     //对IO的依赖
     compile('commons-fileupload:commons-fileupload:1.2.1')
     compile('commons-io:commons-io:2.3')
+//    compile('javax.mail:mail:1.4.7')
+    compile('org.springframework.boot:spring-boot-starter-mail')
+    //对jedis的支持
+    compile ('redis.clients:jedis:2.8.1')
+    //对service层的单元测试支持
+    compile('org.mockito:mockito-all:1.9.5:test')
+    //compile('junit:junit')
+    compile('org.jsoup:jsoup:1.10.2')
+    //邮件
+    comile('org.springframework.boot:spring-boot-starter-mail')
+
+    
+
     
 }

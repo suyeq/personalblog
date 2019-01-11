@@ -81,6 +81,11 @@ public class FileService {
         return fileMapping.findFileIdByFileName(fileName);
     }
 
+    /**
+     * 根据id查找file
+     * @param id
+     * @return
+     */
     public File findOneById(int id){
         return fileMapping.findOneById(id);
     }

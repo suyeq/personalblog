@@ -29,6 +29,11 @@ public class ConmentMessageConversion {
     @Autowired
     ConmentService conmentService;
 
+    /**
+     * 获取评论信息列表
+     * @param list
+     * @return
+     */
     public  List<ConmentMessage> conmentMessageList(List<Conment> list){
         List<ConmentMessage> conmentMessages=new ArrayList<>();
         for (int i=0;i<list.size();i++){
@@ -48,6 +53,12 @@ public class ConmentMessageConversion {
         return conmentMessages;
     }
 
+    /**
+     * 通过博客id找到所有没有父评论的评论
+     * @param blogId
+     * @param offset
+     * @return
+     */
     public List<ConmentMessage> findAllConmentsByBlogId(int blogId,int offset){
         List<Conment> parentConments=conmentService.findConmentIsParentByBlogId(blogId,offset);
         List<ConmentMessage> parentConmentMessages=conmentMessageList(parentConments);
@@ -55,6 +66,10 @@ public class ConmentMessageConversion {
         return parentConmentMessages;
     }
 
+    /**
+     * 找寻该评论下的子评论
+     * @param parentConments
+     */
     private void findChilds(List<ConmentMessage> parentConments){
         if (parentConments==null){
             return;
@@ -70,6 +85,11 @@ public class ConmentMessageConversion {
         }
     }
 
+    /**
+     * 页面转化
+     * @param total
+     * @return
+     */
     public  List<Object> conversionTotal(int total){
         int pages=0;
         if (total%5==0){

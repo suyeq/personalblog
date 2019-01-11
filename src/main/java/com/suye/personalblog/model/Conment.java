@@ -1,5 +1,6 @@
 package com.suye.personalblog.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ import java.util.Date;
  * Time: 20:56
  */
 //评论
-public class Conment {
+public class Conment implements Serializable {
     private int id;
     private String content;
     private Date conment_time;

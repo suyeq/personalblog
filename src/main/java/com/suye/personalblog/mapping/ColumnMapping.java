@@ -4,6 +4,7 @@ import com.suye.personalblog.model.Column;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Date: 2018-12-21
  * Time: 10:16
  */
-@Component
+@Repository
 public interface ColumnMapping {
 
     @Select("select * from columns")

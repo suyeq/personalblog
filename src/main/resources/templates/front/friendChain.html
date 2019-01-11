@@ -332,7 +332,7 @@
                 <div class="content">
                     <div class="frient-link-intro giligili-item"><p>欢迎大家来进行友链交换啊，谢谢大家~</p>
                         <p><strong>PS：对于无任何通知就删除本站友链的行为，我会同样直接删除友链并不予通知。</strong></p>
-                        <p>友链最后一次检查时间：2018年7月13日。<br/> 友链最后一次检查备注：删除了一些删除本站友链的网站，另外不显示已经挂了的小伙伴，如果需要恢复请联系我。
+                        <p>友链最后一次检查时间：2019年1月11日。<br/> 友链最后一次检查备注：删除了一些删除本站友链的网站，另外不显示已经挂了的小伙伴，如果需要恢复请联系我。
                         </p>
                     </div>
                     <h4>大佬</h4>
@@ -350,6 +350,19 @@
                         </div>
                     </th:block>
                     </div>
+
+                    <div style="display: flex;flex-direction: row">
+                 
+                        <div class="friend-link">
+                            <div><img src="https://shawnzeng.com/wp-content/uploads/2017/08/lanling.jpg"  alt="兰陵" 
+                                      class="avatar">
+                                <span class="link-title">兰陵</span>
+                                <a href="https://blog.thkira.com/"  class="link-href no-touch" target="_blank" title="兰陵" >访问</a>
+                            </div>
+                            <p class="link-description">Tech Otakus Save The World</p>
+                        </div>
+                    </div>
+
                     <!--<div class="friend-link">-->
                         <!--<div><img src="https://shawnzeng.com/wp-content/uploads/2017/08/lanling.jpg" alt="兰陵"-->
                                   <!--class="avatar">-->
@@ -448,16 +461,16 @@
                             </div>
                             <div class="comment-text">
                                 <div class="comment-input">
-                                    <input type="text" name="author" value="suye" class="text-input" id="comment-author" placeholder="昵称 *">
-                                    <input type="text" name="email" value="473721601@qq.com" class="text-input" id="comment-email" placeholder="邮箱 *">
-                                    <input type="text" name="url" value="http://suyeq.com" class="text-input" id="comment-url" placeholder="网址">
-                                    <input type='text' name='sum' class='text-input sum' id='comment-validate' value='' placeholder='4 + 0 = ?'>
-                                    <input type='hidden' name='num1' value='4'>
+                                    <input type="text" name="author" value="" class="text-input" id="comment-author" placeholder="昵称 *">
+                                    <input type="text" name="email" value="" class="text-input" id="comment-email" placeholder="邮箱 *">
+                                    <input type="text" name="url" value="" class="text-input" id="comment-url" placeholder="网址">
+                                    <input type='text' name='sum' class='text-input sum' id='comment-validate' value='' placeholder='4 + 0 = ?' th:placeholder="${num1}+' + '+${num2}+' = ？'">
+                                    <input type='hidden' name='num1' value='4' th:value="${sum}">
                                     <input type='hidden' name='num2' value='0'>
                                 </div>
 
                                 <div class="comment-s">
-                                    <textarea class="text-input error" id="comment" name="comment" rows="8" cols="45" aria-required="true" placeholder="一言：努力是不会背叛自己的，虽然梦想有时会背叛自己。"></textarea>
+                                    <textarea class="text-input error" id="comment"  name="comment" rows="8" cols="45" aria-required="true" th:placeholder="'一言：'+${classicLanguage}" placeholder="一言：努力是不会背叛自己的，虽然梦想有时会背叛自己。"></textarea>
                                     <div class="OwO no-touch"></div>
                                     <button type="submit" name="submit" class="comment-submit push-status">发表评论</button>
                                 </div>

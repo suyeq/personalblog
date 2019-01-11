@@ -4,6 +4,7 @@ import com.suye.personalblog.model.File;
 import org.apache.catalina.LifecycleState;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Date: 2019-01-04
  * Time: 12:32
  */
-@Component
+@Repository
 public interface FileMapping {
     @Select("select * from file limit #{offset},12")
     List<File> findFileByOffset(@Param("offset") int offset);
@@ -38,4 +39,5 @@ public interface FileMapping {
 
     @Select("select * from file where id=#{id}")
     File findOneById(@Param("id") int id);
+
 }

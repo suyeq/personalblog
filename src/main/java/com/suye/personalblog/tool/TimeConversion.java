@@ -9,6 +9,7 @@ import java.util.Date;
  * Date: 2018-12-21
  * Time: 22:37
  */
+//时间的转化
 public class TimeConversion {
     static final long SECOND=1000;
     static final long MINUTE=SECOND*60;

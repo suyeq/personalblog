@@ -1,6 +1,8 @@
 package com.suye.personalblog.admincontroller;
 
 
+import com.suye.personalblog.StaticField;
+import com.suye.personalblog.service.LogMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ public class LoginController {
     private String name;
     @Value("${admin.password}")
     private String password;
+    @Autowired
+    private LogMessageService logMessageService;
 
     @RequestMapping("/admin/logins")
     public ModelAndView login(Model model){
@@ -38,6 +42,7 @@ public class LoginController {
         System.out.println(username+password);
         if (username.equals(name)&&password.equals(password)){
             request.getSession().setAttribute("isLogin","success");
+            logMessageService.addALog(StaticField.LOGIN_ACTION);
             return "{\n" + "  \"success\":\"1\"\n" + "}";
         }
         return "{\n" + "  \"msg\":\"账户或密码错误\"\n"+"}";
@@ -46,6 +51,7 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
+        logMessageService.addALog(StaticField.LOGOUT_ACTION);
         return "redirect:/index";
     }
 

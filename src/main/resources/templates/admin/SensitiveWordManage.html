@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>敏感词管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta content="biezhi" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="shortcut icon" href="/admin/images/favicon.png"/>
+    <link href="/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet">
+
+    <link href="/admin/css/style.min.css?v=v1.0" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body class="fixed-left">
+<div id="wrapper">
+    <!--顶部菜单栏-->
+    <div th:replace="/admin/topbar::topbar"></div>
+    <!--左部菜单栏-->
+    <div th:replace="/admin/leftbar::leftbar"></div>
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">敏感词管理</h4>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel  panel-purple">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">敏感词列表</h1>
+                            </div>
+                            <div class="panel-body">
+                                <th:block th:each="Word:${sensitiveWordList}">
+                                    <div class="btn-group m-b-10">
+                                        <th:block th:if="(${WordStat.count}%2) eq 0">
+                                            <button type="button" class="btn btn-info dropdown-toggle waves-effect waves-light"
+                                                    data-toggle="dropdown" aria-expanded="false">
+                                                <th:block th:text="${Word}">
+                                                    java (1)
+                                                </th:block>
+                                                <span class="caret"></span>
+                                            </button>
+                                        </th:block>
+                                        <th:block th:if="(${WordStat.count}%2) ne 0">
+                                            <button type="button" class="btn btn-inverse dropdown-toggle waves-effect waves-light"
+                                                    data-toggle="dropdown" aria-expanded="false">
+                                                <th:block th:text="${Word}">
+                                                    java (1)
+                                                </th:block>
+                                                <span class="caret"></span>
+                                            </button>
+                                        </th:block>
+
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="javascript:void(0)" mid="3" kmethor="标签" th:attr="mid=${Word}" class="del-category">删除</a></li>
+                                        </ul>
+                                    </div>
+                                </th:block>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default" style="width: 48%">
+                            <div class="panel-body" >
+                                <form id="cform" class="form-inline" role="form">
+                                    <!--<input type="hidden" id="mid"/>-->
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="cname" placeholder="请输入分类名称">
+                                    </div>
+                                    <button id="save-category-btn" type="button"
+                                            class="btn btn-success waves-effect waves-light m-l-10">保存敏感词
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer text-right">
+                    2018 © <a href="https://github.com/suyeq" target="_blank">Suyeq</a>.
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+        <script src="/admin/plugins/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/admin/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js"></script>
+
+        <script src="/admin/js/jquery.app.js?v=v1.0"></script>
+        <script src="/admin/js/base.js?v=v1.0"></script>
+        <script type="text/javascript">
+
+            var tale = new $.tale();
+
+            $('#save-category-btn').click(function () {
+                var cname = $('#cform #cname').val();
+                alert(cname)
+               // var mid = $('#cform #mid').val();
+                if (cname && cname != '') {
+                    tale.post({
+                        url : '/admin/sensitiveword/save',
+                        data: {cname: cname},
+                        success: function (result) {
+                            //$('#cform #mid').val('');
+                            $('#cform #cname').val('');
+                            if(result && result.success){
+                                tale.alertOkAndReload('敏感词保存成功');
+                            } else {
+                                tale.alertError(result.msg || '敏感词保存失败');
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('.edit-category').click(function () {
+                var mid = $(this).attr('mid');
+                var cname = $(this).attr('cname');
+                $('#cform #mid').val(mid);
+                $('#cform #cname').val(cname);
+
+            });
+
+            $('.del-category').click(function () {
+                var mid = $(this).attr('mid');
+                alert(mid)
+               // var kmethor=$(this).attr('kmethor');
+                tale.alertConfirm({
+                    title:'确定删除该项吗?',
+                    then: function () {
+                        tale.post({
+                            url : '/admin/sensitiveword/delete',
+                            data: {
+                                    cname: mid
+                                  },
+                            success: function (result) {
+                                if(result && result.success){
+                                    tale.alertOkAndReload('删除成功');
+                                } else {
+                                    tale.alertError(result.msg || '删除失败');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+        </script>
+</body>
+</html>

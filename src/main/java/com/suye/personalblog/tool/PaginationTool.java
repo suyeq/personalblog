@@ -83,7 +83,7 @@ public class PaginationTool {
     public  List<Blog> blogList(){
         List<Blog> blogList;
         if (category==Category.ALL){
-            blogList=blogService.loadMoreRecentBlogs(offset*7);
+            blogList=blogService.loadMoreBlogsHadPublish(offset*7);
             offset++;
             return blogList;
         }else if (category==Category.BLOG){

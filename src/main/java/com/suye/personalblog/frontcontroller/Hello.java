@@ -3,8 +3,7 @@ package com.suye.personalblog.frontcontroller;
 import com.suye.personalblog.FileClient.work.FileUploadClient;
 import com.suye.personalblog.model.Conment;
 import com.suye.personalblog.model.FileUploadFile;
-import com.suye.personalblog.model.Label;
-import com.suye.personalblog.model.Visitor;
+import com.suye.personalblog.redisrepository.BlogRedisRepository;
 import com.suye.personalblog.service.*;
 import com.suye.personalblog.tool.ConmentMessageConversion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.util.Date;
@@ -38,16 +36,17 @@ public class Hello {
     @Autowired
     private BlogService blogService;
     @Autowired
+    private BlogRedisRepository blogRedisRepository;
+    @Autowired
     ConmentMessageConversion conmentMessageConversion;
     @Autowired
     private FileService fileService;
 
 
     @GetMapping("/visitor")
-    @ResponseBody
-    public int getAlls(){
-
-       return 1;
+    public String getAlls(){
+       //blogService.set();
+       return "test";
     }
 
     @GetMapping("/label")

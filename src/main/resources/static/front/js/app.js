@@ -143,6 +143,30 @@ App = {
                             loading_finish($('.loading'));
                           	$('.loading').remove();
                             var $result = $(data).find("#main-content .giligili-item");
+
+                            //markdown转化
+                            var list=$result.find(".uniquevontent");
+                            //创建实例
+                            //alert(list.length)
+                            for (var i=0;i<list.length;i++){
+                                var text=list[i].innerText;
+                                var converter = new showdown.Converter();
+                                //进行转换
+                                var html = converter.makeHtml(text);
+                                //展示到对应的地方  result便是id名称
+                                list[i].innerHTML = html;
+                            }
+
+                            var list=$result.find(".unique");
+                            for (var i=0;i<list.length;i++){
+                                var text=list[i].innerText;
+                                var converter = new showdown.Converter();
+                                //进行转换
+                                var html = converter.makeHtml(text);
+                                //展示到对应的地方  result便是id名称
+                                list[i].innerHTML = html;
+                            }
+
                             $('#main-content').append($result.fadeIn(1000));
                             var nexthref = $(data).find("#index-pagination a").attr("href");
                           	//alert(nexthref);
@@ -226,64 +250,97 @@ App = {
         push_status = $('#comment-form .comment-submit.push-status');      
         $submit.attr('disabled', false);
         comm_array.push(''); //重新编辑不显示内容
+
         // submit
         $('#comment-form').submit(function() {
           	push_status.html('提交中...');
-            $submit.attr('disabled', true).fadeTo('slow', 0.5);
-            if ( edit ) $('#comment').after('<input type="text" name="edit_id" id="edit_id" value="' + edit + '" style="display:none;" />');
-            // Ajax
-            $.ajax({
-                url: "/addConmentAndVisitor",
-                data: $(this).serialize()+ "&action=ajax_comment",
-                // data: $(this).serialize() + "&action=ajax_comment",
-                type: $(this).attr('method'),
-                error: function(XmlHttpRequest, textStatus, errorThrown) {
-                    push_status.html('重新提交');
-                  	createMessage(XmlHttpRequest.responseText, 3000);
-                    setTimeout(function() {
-                        $submit.attr('disabled', false).fadeTo('slow', 1);
-                    }, 3000);
-                },
-                success: function(data) {
-                    // console.log(data)
-                    comm_array.push($('#comment').val());
-                  	$('textarea').each(function() {this.value = ''});
-                    var t = addComment, cancel = t.I('cancel-comment-reply-link'), temp = t.I('wp-temp-form-div'), respond = t.I(t.respondId), post = t.I('comment_post_ID').value, parent = t.I('comment_parent').value;
-                    // comments
-                    if ( ! edit && $comments.length ) {
-                        n = parseInt($comments.text().match(/\d+/));
-                        $comments.text($comments.text().replace( n, n + 1 ));
-                    }
-                    // show comment
-                    new_item = '"id="new-comment-' + num + '"></';
-                    new_item = ( parent == '0' ) ? ('\n<div class="new-comment' + new_item + 'div>') : ('\n<ol class="children' + new_item + 'ol>');
-                    cue = '\n <div class="ajax-edit"><span class="edit-info" id="success-' + num + '">';
-                    if ( edit_again == 1 ) {
-                        div_ = (document.body.innerHTML.indexOf('div-comment-') == -1) ? '' : ((document.body.innerHTML.indexOf('li-comment-') == -1) ? 'div-' : '');
-                        cue = cue.concat(edt1, div_, 'comment-', parent, '", "', parent, '", "respond", "', post, '", ', num, edt2);
-                    }
-                    cue += '</span></div>\n';
-                    if ( ( parent == '0' ) ) {
-                        if ( $( '.no-comment' )[0] ) {
-                            $( '.no-comment' )[0].remove();
+          	var submitstatus=0;
+            var sum=$(" input[ name='sum' ]").val()
+            var sum1=$(" input[ name='num1']").val()
+            var email=$(" input[ name='email' ]").val()
+            var author=$(" input[ name='author' ]").val()
+            var comment=$("#comment").val()
+            //alert(com)
+           //alert(author)
+            var reg = new RegExp("(^[\\w.\\-]+@(?:[a-z0-9]+(?:-[a-z0-9]+)*\\.)+[a-z]{2,3}$)");
+            if (sum1!=sum){
+                push_status.html('重新提交');
+                createMessage("验证码错误",1000)
+                submitstatus++;
+            }
+            if (!reg.test(email)){
+                push_status.html('重新提交');
+                createMessage("请输入正确的邮箱",1000)
+                submitstatus++;
+            }
+            if (author==''){
+                push_status.html('重新提交')
+                createMessage("请输入昵称",1000)
+                submitstatus++
+            }
+            if (comment==''){
+                push_status.html('重新提交')
+                createMessage("请输入内容",1000)
+                submitstatus++
+            }
+            if (submitstatus==0){
+                $submit.attr('disabled', true).fadeTo('slow', 0.5);
+                if ( edit ) $('#comment').after('<input type="text" name="edit_id" id="edit_id" value="' + edit + '" style="display:none;" />');
+                // Ajax
+                $.ajax({
+                    url: "/addConmentAndVisitor",
+                    data: $(this).serialize()+ "&action=ajax_comment",
+                    // data: $(this).serialize() + "&action=ajax_comment",
+                    type: $(this).attr('method'),
+                    error: function(XmlHttpRequest, textStatus, errorThrown) {
+                        push_status.html('重新提交');
+                        createMessage(XmlHttpRequest.responseText, 3000);
+                        setTimeout(function() {
+                            $submit.attr('disabled', false).fadeTo('slow', 1);
+                        }, 3000);
+                    },
+                    success: function(data) {
+                        // console.log(data)
+                        comm_array.push($('#comment').val());
+                        $('textarea').each(function() {this.value = ''});
+                        var t = addComment, cancel = t.I('cancel-comment-reply-link'), temp = t.I('wp-temp-form-div'), respond = t.I(t.respondId), post = t.I('comment_post_ID').value, parent = t.I('comment_parent').value;
+                        // comments
+                        if ( ! edit && $comments.length ) {
+                            n = parseInt($comments.text().match(/\d+/));
+                            $comments.text($comments.text().replace( n, n + 1 ));
                         }
-                        $( 'ol.giligili-comments' ).prepend(new_item);
-                    } else {
-                        $('#respond').before(new_item);
+                        // show comment
+                        new_item = '"id="new-comment-' + num + '"></';
+                        new_item = ( parent == '0' ) ? ('\n<div class="new-comment' + new_item + 'div>') : ('\n<ol class="children' + new_item + 'ol>');
+                        cue = '\n <div class="ajax-edit"><span class="edit-info" id="success-' + num + '">';
+                        if ( edit_again == 1 ) {
+                            div_ = (document.body.innerHTML.indexOf('div-comment-') == -1) ? '' : ((document.body.innerHTML.indexOf('li-comment-') == -1) ? 'div-' : '');
+                            cue = cue.concat(edt1, div_, 'comment-', parent, '", "', parent, '", "respond", "', post, '", ', num, edt2);
+                        }
+                        cue += '</span></div>\n';
+                        if ( ( parent == '0' ) ) {
+                            if ( $( '.no-comment' )[0] ) {
+                                $( '.no-comment' )[0].remove();
+                            }
+                            $( 'ol.giligili-comments' ).prepend(new_item);
+                        } else {
+                            $('#respond').before(new_item);
+                        }
+                        $('#new-comment-' + num).hide().append(data).fadeIn(400); //插入新提交评论
+                        $('#new-comment-' + num + ' li .comment-comment').prepend(cue);
+                        CountDown(); num++ ; edit = ''; $('*').remove('#edit_id');
+                        cancel.style.display = 'none';//“取消回复”消失
+                        cancel.onclick = null;
+                        t.I('comment_parent').value = '0';
+                        if ( temp && respond ) {
+                            temp.parentNode.insertBefore(respond, temp);
+                            temp.parentNode.removeChild(temp)
+                        }
+                        $('#comment-validate').each(function() {this.value = ''});
                     }
-                    $('#new-comment-' + num).hide().append(data).fadeIn(400); //插入新提交评论
-                    $('#new-comment-' + num + ' li .comment-comment').prepend(cue);
-                    CountDown(); num++ ; edit = ''; $('*').remove('#edit_id');
-                    cancel.style.display = 'none';//“取消回复”消失
-                    cancel.onclick = null;
-                    t.I('comment_parent').value = '0';
-                    if ( temp && respond ) {
-                        temp.parentNode.insertBefore(respond, temp);
-                        temp.parentNode.removeChild(temp)
-                    }
-                    $('#comment-validate').each(function() {this.value = ''});
-                }
-            }); // end Ajax
+                }); // end Ajax
+            }
+
           return false;
         }); // end submit
         // comment-reply.dev.js
@@ -476,13 +533,39 @@ if (giligiliConfig.loadPjax==1) {
         App.activatePower();
       	App.photoBox();
       	App.owoEmoji();
-        var text = document.getElementById("uniquevontent").innerText;
+      	//做简单的markdown转化为html
+        var text = document.getElementById("uniquevontent");
+        if(text!=undefined){
+            var text = document.getElementById("uniquevontent").innerText;
+            var converter = new showdown.Converter();
+            //进行转换
+            var html = converter.makeHtml(text);
+            //展示到对应的地方  result便是id名称
+            document.getElementById("uniquevontent").innerHTML = html;
+        }
         //创建实例
-        var converter = new showdown.Converter();
-        //进行转换
-        var html = converter.makeHtml(text);
-        //展示到对应的地方  result便是id名称
-        document.getElementById("uniquevontent").innerHTML = html;
+
+        var list=document.getElementsByClassName("uniquevontent");
+        //创建实例
+        //alert(list.length)
+        for (var i=0;i<list.length;i++){
+            var text=list[i].innerText;
+            var converter = new showdown.Converter();
+            //进行转换
+            var html = converter.makeHtml(text);
+            //展示到对应的地方  result便是id名称
+            list[i].innerHTML = html;
+        }
+
+        var list=document.getElementsByClassName("unique");
+        for (var i=0;i<list.length;i++){
+            var text=list[i].innerText;
+            var converter = new showdown.Converter();
+            //进行转换
+            var html = converter.makeHtml(text);
+            //展示到对应的地方  result便是id名称
+            list[i].innerHTML = html;
+        }
       	//App.markdownConversiontoHtml();
     })
     window.addEventListener('popstate',function(e) {

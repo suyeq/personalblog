@@ -58,8 +58,8 @@
                                         <td th:text="${BlogMessage.readnum}">2</td>
                                         <td>
                                             <th:block th:each="Category:${BlogMessage.categoryList}">
-                                                <th:block th:if="${CategoryStat.count} eq 1" th:text="${Category.name}+','"></th:block>
-                                                <th:block th:if="${CategoryStat.count} gt ${CategoryStat.size}" th:text="${Category.name}"></th:block>
+                                                <th:block th:if="${CategoryStat.count} lt ${CategoryStat.size}" th:text="${Category.name}+','"></th:block>
+                                                <th:block th:if="${CategoryStat.count} eq ${CategoryStat.size}" th:text="${Category.name}"></th:block>
                                             </th:block>
                                         </td>
                                         <td>

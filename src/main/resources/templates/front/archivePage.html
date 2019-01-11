@@ -26,7 +26,7 @@
 <header id="header">
     <div id="menu-blur-bg"></div>
     <div id="menu-blur"></div>
-    <div id="menu-pc"><h1 id="logo"><a href="https://shawnzeng.com/">阑珊处</a></h1> <span id="mobile-menu"> <i
+    <div id="menu-pc"><h1 id="logo"><a href="/index">阑珊处</a></h1> <span id="mobile-menu"> <i
             class="giligili giligili-menu"></i> </span>
         <div id="menu-main" class="menu-main">
             <ul>
@@ -318,7 +318,7 @@
     <div id="main-part" class="giligili-left">
         <div class="giligili-item breadcrumbs">当前位置：
             <div itemscope itemtype="http://schema.org/WebPage" id="crumbs"><a itemprop="breadcrumb"
-                                                                               href="https://shawnzeng.com">首页</a> >
+                                                                               href="/index">首页</a> >
                 <span class="current">归档</span></div>
         </div>
         <div id="main-content">
@@ -332,7 +332,9 @@
                         <time itemprop="datePublished" th:text="${blogMessage.time}">4月前</time> &nbsp;•&nbsp; <span class="post-view"><i
                             class="giligili giligili-view"></i> <th:block th:text="${blogMessage.readnum}">1.03k</th:block></span>&nbsp;•&nbsp;
                         <span class="post-comment-num">
-        <i class="giligili giligili-comment"></i> <span>评论已关闭</span></span> <span></span>
+                            <i class="giligili giligili-comment"></i>
+                            <span>评论已关闭</span>
+                        </span> <span></span>
                     </div>
                     <div class="post-preface"></div>
 

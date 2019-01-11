@@ -3,7 +3,9 @@ package com.suye.personalblog.mapping;
 import com.suye.personalblog.model.Conment;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ import java.util.List;
  * Date: 2018-12-21
  * Time: 21:57
  */
-@Component
+@Repository
 public interface ConmentMapping {
 
     @Select("select * from conment order by conment_time desc limit 0,5")
@@ -50,4 +52,11 @@ public interface ConmentMapping {
 
     @Delete("delete from conment where id=#{id}")
     int deleteCommentById(@Param("id") int id);
+
+
+    @Insert("insert into conment(content,conment_time,visitor_id,blog_id," +
+            "conment_parent_id,votenum,cainum) values(#{content},NOW()," +
+            "#{visitor_id},#{blog_id},#{conment_parent_id},0,0)")
+    @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
+    int saveConment(Conment conment);
 }

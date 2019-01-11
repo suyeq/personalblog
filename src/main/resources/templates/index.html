@@ -56,7 +56,7 @@
                                        src='front/img/lem6.jpg'
                                        srcset='front/img/lem6.jpg'
                                        class='avatar avatar-100 photo mobile-user-avatar' height='100' width='100'/>
-        <h3 class="mobile-user-name">Shawn</h3>
+        <h3 class="mobile-user-name">Suyeq</h3>
         <div class="mobile-menu-container">
             <ul>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1404">
@@ -228,6 +228,7 @@
 
             </ul>
         </div>
+
         <!--最近评论-->
         <div class="giligili-item">
             <header class="giligili-item-header"><h3 class="giligili-item-title"><i
@@ -236,7 +237,7 @@
                 <li th:each="ConmentMessage:${recentConmentList}">
                     <a href="" th:href="'/blogDetails/'+${ConmentMessage.blogId}+'/#comments'"
                        title="suye" th:title="${ConmentMessage.blogName}"> <img alt=''
-                                          src='front/img/avatar.png'
+                                          src='front/img/avatar.png' th:src="${ConmentMessage.visitor.avatar}"
                                           class='avatar avatar-36 photo' height='36' width='36'/>
                     <div class="right-box"><span class="author" th:text="${ConmentMessage.visitor.name}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
                         <br/><span class="recent-comment" th:text="${ConmentMessage.content}">OωO</span></div>
@@ -245,75 +246,76 @@
             </ul>
         </div>
 
-        <div class="giligili-item">
-            <div id="calendar_wrap" class="calendar_wrap">
-                <table id="wp-calendar">
-                    <caption>2018年十一月</caption>
-                    <thead>
-                    <tr>
-                        <th scope="col" title="星期一">一</th>
-                        <th scope="col" title="星期二">二</th>
-                        <th scope="col" title="星期三">三</th>
-                        <th scope="col" title="星期四">四</th>
-                        <th scope="col" title="星期五">五</th>
-                        <th scope="col" title="星期六">六</th>
-                        <th scope="col" title="星期日">日</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <td colspan="3" id="prev"><a href="#">&laquo; 10月</a></td>
-                        <td class="pad">&nbsp;</td>
-                        <td colspan="3" id="next" class="pad">&nbsp;</td>
-                    </tr>
-                    </tfoot>
-                    <tbody>
-                    <tr>
-                        <td colspan="3" class="pad">&nbsp;</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td id="today">6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                        <td>10</td>
-                        <td>11</td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>14</td>
-                        <td>15</td>
-                        <td>16</td>
-                        <td>17</td>
-                        <td>18</td>
-                    </tr>
-                    <tr>
-                        <td>19</td>
-                        <td>20</td>
-                        <td>21</td>
-                        <td>22</td>
-                        <td>23</td>
-                        <td>24</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>26</td>
-                        <td>27</td>
-                        <td>28</td>
-                        <td>29</td>
-                        <td>30</td>
-                        <td class="pad" colspan="2">&nbsp;</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <!--<div class="giligili-item">-->
+            <!--<div id="calendar_wrap" class="calendar_wrap">-->
+                <!--<table id="wp-calendar">-->
+                    <!--<caption>2019年一月</caption>-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th scope="col" title="星期一">一</th>-->
+                        <!--<th scope="col" title="星期二">二</th>-->
+                        <!--<th scope="col" title="星期三">三</th>-->
+                        <!--<th scope="col" title="星期四">四</th>-->
+                        <!--<th scope="col" title="星期五">五</th>-->
+                        <!--<th scope="col" title="星期六">六</th>-->
+                        <!--<th scope="col" title="星期日">日</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tfoot>-->
+                    <!--<tr>-->
+                        <!--<td colspan="3" id="prev"><a href="#">&laquo; 10月</a></td>-->
+                        <!--<td class="pad">&nbsp;</td>-->
+                        <!--<td colspan="3" id="next" class="pad">&nbsp;</td>-->
+                    <!--</tr>-->
+                    <!--</tfoot>-->
+                    <!--<tbody>-->
+                    <!--<tr>-->
+                        <!--<td colspan="3" class="pad">&nbsp;</td>-->
+                        <!--<td>1</td>-->
+                        <!--<td>2</td>-->
+                        <!--<td>3</td>-->
+                        <!--<td>4</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>5</td>-->
+                        <!--<td id="today">6</td>-->
+                        <!--<td>7</td>-->
+                        <!--<td>8</td>-->
+                        <!--<td>9</td>-->
+                        <!--<td>10</td>-->
+                        <!--<td>11</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>12</td>-->
+                        <!--<td>13</td>-->
+                        <!--<td>14</td>-->
+                        <!--<td>15</td>-->
+                        <!--<td>16</td>-->
+                        <!--<td>17</td>-->
+                        <!--<td>18</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>19</td>-->
+                        <!--<td>20</td>-->
+                        <!--<td>21</td>-->
+                        <!--<td>22</td>-->
+                        <!--<td>23</td>-->
+                        <!--<td>24</td>-->
+                        <!--<td>25</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>26</td>-->
+                        <!--<td>27</td>-->
+                        <!--<td>28</td>-->
+                        <!--<td>29</td>-->
+                        <!--<td>30</td>-->
+                        <!--<td class="pad" colspan="2">&nbsp;</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+
     </div>
 
     <div id="main-part" class="giligili-left">
@@ -323,7 +325,7 @@
                                        class="post-type-link">全部</a></li>
                 <li><a ajaxhref="/blogs" class="post-type-link">博客</a></li>
                 <li><a ajaxhref="/shuoshuos" class="post-type-link">说说</a></li>
-                <li><a ajaxhref="/shares" class="post-type-link">分享</a></li>
+                <!--<li><a ajaxhref="/shares" class="post-type-link">分享</a></li>-->
             </ul>
             <div id="post-type-line"></div>
         </div>
@@ -344,7 +346,7 @@
                             </div>
                             <div class="post-content">
                                 <a data-pjax = "0" href="#" th:href="'/blogDetails/'+${BlogMessage.id}">
-                                    <p th:text="${BlogMessage.content}">
+                                    <p class="uniquevontent" th:text="${BlogMessage.htmlcontent}">
                                         大家好，我是埃及法老，相信大家昨天都听到“埃及牛逼”的呼喊了吧，是的，我要复活了，现在只差100人民币即可，如果你愿意助我复活，给我发100元红包，等我统治世界之后，你就是我的左护法！
                                     </p>
                                 </a>
@@ -382,10 +384,9 @@
 
                             <div class="post-preface">
                             <th:block th:each="Label:${BlogMessage.labelList}">
-                                <span class="tags">
-                                    <a href="#" rel="tag"  th:text="${Label.name}">Giligili</a>
-                                </span>
+                                <span class="tags"><a href="#" rel="tag"  th:text="${Label.name}"></a></span>
                             </th:block>
+
                         <!--<span class="tags" th:each="Label:${BlogMessage.labelList}">-->
                             <!--<a href="#" rel="tag"  th:text="${Label.name}">Giligili</a>-->
                         <!--</span>-->
@@ -395,12 +396,12 @@
                             </div>
                             <div class="post-excerpt no-touch">
                                 <div class="post-thumbnail"
-                                     style="background-image:url(front/img/rem.jpg)" th:style="'background-image:url(' + ${BlogMessage.imgUrl}+')'"></div>
+                                     style="background-image:url(front/img/rem.jpg)" th:style="'background-image:url(&quot;' + ${BlogMessage.imgUrl}+'&quot;)'"></div>
                                 <div class="post-thumbnail-shadow"></div>
                                 <div class="text-info"><a href="#"
                                                           rel="bookmark" title="WordPress响应式二次元主题Giligili" th:href="'/blogDetails/'+${BlogMessage.id}"><h3
                                         class="post-title" th:text="${BlogMessage.title}">WordPress响应式二次元主题Giligili</h3>
-                                    <div class="excerpt"><p th:text="${BlogMessage.content}">
+                                    <div class="excerpt"><p th:text="${BlogMessage.htmlcontent}" class="unique">
                                         redis是一个键值对的数据库服务器，服务器中包含着若干个非空的数据库，每个非空数据库里又包含着若干个键值[&hellip;]</p></div>
                                 </a>
                                     <span class="category">
@@ -431,7 +432,7 @@
             </th:block>
 
         </div>
-        <div id="index-pagination" class="giligili-item"><a href="/loadMoreAll" class="read-more">(｡・`ω´･)点我查看更多！</a>
+        <div id="index-pagination" class="giligili-item"><a href="/loadMoreAll" th:href="${action}" class="read-more">(｡・`ω´･)点我查看更多！</a>
         </div>
     </div>
 
@@ -490,15 +491,6 @@
                 <div style="float: left;margin-left: 5px"><a href="#" th:href="'/category/'+${Category.id}" title=""  th:title="${Category.name}" th:text="${Category.name}">JavaWeb</a></div>
                 <div style="float: right;"><p th:text="${Category.blognum}+' 篇'">12篇</p></div>
             </div>
-            <!--<div class="row">-->
-                <!--<div style="float: left;"><a href="#" title="">Linux</a></div>-->
-                <!--<div style="float: right;"><p>10篇</p></div>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-                <!--<div style="float: left;"><a href="#" title="">Redis</a></div>-->
-                <!--<div style="float: right;"><p>9篇</p></div>-->
-            <!--</div>-->
-
         </div>
 
     </div>
@@ -527,7 +519,7 @@
         <div class="live_ico_box">
             <div class="live_ico_item type_info" id="showInfoBtn"></div>
             <div class="live_ico_item type_talk" id="showTalkBtn"></div>
-            <div class="live_ico_item type_music" id="musicButton"></div>
+            <!--<div class="live_ico_item type_music" id="musicButton"></div>-->
             <div class="live_ico_item type_youdu" id="youduButton"></div>
             <div class="live_ico_item type_quit" id="hideButton"></div>
             <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
@@ -543,7 +535,7 @@
 <div id="layout-shadow"></div>
 <script type='text/javascript'>var giligiliConfig = {
     // "siteUrl": "https:\/\/shawnzeng.com\/wp-content\/themes\/Giligili",
-    "siteStartTime": "2018-12-20",
+    "siteStartTime": "2018-12-27",
     "ajaxUrl": "https:\/\/localhost:8080\/",
     // "commentEditAgain": "1",
     "loadPjax": "1"
@@ -556,15 +548,88 @@
 <!--解析markdown语法-->
 <script src="/front/showdown-master/dist/showdown.js" th:src="@{/front/showdown-master/dist/showdown.js}"></script>
 <script type="text/javascript">
+
+    var list=document.getElementsByClassName("uniquevontent");
+    //alert('list'+list.length)
+    for (var i=0;i<list.length;i++){
+        var text=list[i].innerText;
+        var converter = new showdown.Converter();
+        //进行转换
+        var html = converter.makeHtml(text);
+        //展示到对应的地方  result便是id名称
+        list[i].innerHTML = html;
+    }
+
+    var list=document.getElementsByClassName("unique");
+    for (var i=0;i<list.length;i++){
+        var text=list[i].innerText;
+        var converter = new showdown.Converter();
+        //进行转换
+        var html = converter.makeHtml(text);
+        //展示到对应的地方  result便是id名称
+        list[i].innerHTML = html;
+    }
+
     //获取要转换的文字
+   //  var listernow = document.body;
+   // // listernow.addEventListener('click', function() {
+   //      var list=document.getElementsByClassName("uniquevontent");
+   //      //创建实例
+   //  document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法.
+   //  function subSomething()
+   //  {
+   //      if(document.readyState == 'complete') //当页面加载状态
+   //      {
+   //          var list=document.getElementsByClassName("uniquevontent");
+   //          //alert('list'+list.length)
+   //          for (var i=0;i<list.length;i++){
+   //              var text=list[i].innerText;
+   //              var converter = new showdown.Converter();
+   //              //进行转换
+   //              var html = converter.makeHtml(text);
+   //              //展示到对应的地方  result便是id名称
+   //              list[i].innerHTML = html;
+   //          }
+   //
+   //          var list=document.getElementsByClassName("unique");
+   //          for (var i=0;i<list.length;i++){
+   //              var text=list[i].innerText;
+   //              var converter = new showdown.Converter();
+   //              //进行转换
+   //              var html = converter.makeHtml(text);
+   //              //展示到对应的地方  result便是id名称
+   //              list[i].innerHTML = html;
+   //          }
+   //      }
+   //
+   //  }
+        // document.onload=function () {
+        //     var list=document.getElementsByClassName("uniquevontent");
+        //     alert('list'+list.length)
+        //     for (var i=0;i<list.length;i++){
+        //         var text=list[i].innerText;
+        //         var converter = new showdown.Converter();
+        //         //进行转换
+        //         var html = converter.makeHtml(text);
+        //         //展示到对应的地方  result便是id名称
+        //         list[i].innerHTML = html;
+        //     }
+        // }
+
+   // }, false);
+    // mypara.addEventListener('click', console.log, false);
     // window.onload=function(){
-    var text = document.getElementById("uniquevontent").innerText;
-    //创建实例
-    var converter = new showdown.Converter();
-    //进行转换
-    var html = converter.makeHtml(text);
-    //展示到对应的地方  result便是id名称
-    document.getElementById("uniquevontent").innerHTML = html;
+    //var text = document.getElementsByClassName("uniquevontent").innerText;
+    // var list=document.getElementsByClassName("uniquevontent");
+    // //alert(list.length)
+    // //创建实例
+    // for (var i=0;i<list.length;i++){
+    //     var text=list[i].innerText;
+    //     var converter = new showdown.Converter();
+    //     //进行转换
+    //     var html = converter.makeHtml(text);
+    //     //展示到对应的地方  result便是id名称
+    //     list[i].innerHTML = html;
     // }
 </script>
 

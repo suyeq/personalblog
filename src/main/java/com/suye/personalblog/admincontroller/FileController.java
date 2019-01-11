@@ -1,7 +1,9 @@
 package com.suye.personalblog.admincontroller;
 
 import com.suye.personalblog.FileClient.task.UploadTask;
+import com.suye.personalblog.StaticField;
 import com.suye.personalblog.service.FileService;
+import com.suye.personalblog.service.LogMessageService;
 import com.suye.personalblog.tool.FileNameConversion;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,15 +41,25 @@ public class FileController {
     private String temp;
     @Value("${img.temp.server}")
     private String tempIp;
+    @Value("${img.address}")
+    private String finalIp;
 
     @Autowired
     private FileService fileService;
+    @Autowired
+    private LogMessageService logMessageService;
 
     @RequestMapping("/admin/attach/delete")
     @ResponseBody
     public String deleteFile(@RequestParam("id")int id){
-        System.out.println("123");
+        //System.out.println("123");
         if (fileService.deleteFileById(id)>0){
+//            String name=fileService.findOneById(id).getName();
+//            File fileTemp=new File(temp,name);
+//            if (fileTemp.exists()){
+//                fileTemp.delete();
+//            }
+            logMessageService.addALog(StaticField.DELETE_FILE);
             return "{\n" + "  \"success\":\"删除成功\"\n" + "}";
         }
         return "{\n" + "  \"msg\":\"删除异常\"\n" + "}";
@@ -57,7 +69,7 @@ public class FileController {
     @ResponseBody
     public String uploadFile(MultipartFile file) throws IOException {
         //byte []b=file.getBytes();
-        System.out.println(file.getOriginalFilename());
+        //System.out.println(file.getOriginalFilename());
         String origName=file.getOriginalFilename();
         File imgFile=new File(temp,origName);
         while (imgFile.exists()){
@@ -69,13 +81,17 @@ public class FileController {
         }
         System.out.println(imgFile.getAbsoluteFile());
         OutputStream outputStream=new FileOutputStream(imgFile);
+        InputStream inputStream=file.getInputStream();
         IOUtils.copy(file.getInputStream(),outputStream);
         outputStream.flush();
         fileService.addFile(imgFile.getName(),tempIp+imgFile.getName());
         //threadPool.submit(new UploadTask(imgFile));
         int fileId=fileService.findFileIdByFileName(imgFile.getName());
         new UploadTask(imgFile,fileId).run();
+        outputStream.close();
+        inputStream.close();
         //System.out.println("kakkakak");
-        return "{\n" + "  \"success\":\"上传成功\"\n" + "}";
+        logMessageService.addALog(StaticField.ADD_FILE);
+        return "{\n" + "  \"success\":\""+tempIp+imgFile.getName()+"\"\n" + "}";
     }
 }

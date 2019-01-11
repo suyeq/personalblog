@@ -29,7 +29,10 @@ $(document).ready(function () {
                     success: function(result) {
                         tale.hideLoading();
                         if(result && result.success){
-                            var url = $('#attach_url').val() + result.payload[0].fkey;
+                            //var url = $('#attach_url').val() + result.payload[0].fkey;
+                            var url=eval(result).success;
+                            alert(url)
+                            console.log(url)
                             console.log('url =>' + url);
                             htmlEditor.summernote('insertImage', url);
                         } else {
@@ -130,6 +133,7 @@ $(document).ready(function () {
         $('#dropzone').css('background-image', 'url('+ $('#thumb-container').attr('thumb_url') +')');
         $('#dropzone').css('background-size', 'cover');
         $('#dropzone-container').show();
+
     } else {
         $('#thumb-toggle').toggles({
             off: true,
@@ -148,23 +152,27 @@ $(document).ready(function () {
     $("#dropzone").dropzone({
         url: "/admin/attach/upload",
         filesizeBase:1024,//定义字节算法 默认1000
-        maxFilesize: '10', //MB
+        maxFilesize: '20', //MB
+        // params: {blogId: "名称"},
         fallback:function(){
             tale.alertError('暂不支持您的浏览器上传!');
         },
         acceptedFiles: 'image/*',
-        dictFileTooBig:'您的文件超过10MB!',
+        dictFileTooBig:'您的文件超过20MB!',
         dictInvalidInputType:'不支持您上传的类型',
         init: function() {
             this.on('success', function (files, result) {
                 console.log("upload success..");
                 console.log(" result => " + result);
                 if(result && result.success){
-                    var url = attach_url + result.payload[0].fkey;
+                    //var url = attach_url + result.payload[0].fkey;
+                    var url=eval(result).success;
+                    //alert(url)
                     console.log('url => ' + url);
-                    thumbdropzone.css('background-image', 'url('+ url +')');
+                    thumbdropzone.css('background-image', 'url('+ url+')');
+                        //thumbdropzone.css('background-image', 'url(&quot;http://localhost:8888/temp/697788(70).png&quot;)');
                     thumbdropzone.css('background-size', 'cover');
-                    $('.dz-image').hide();
+                    //$('.dz-image').hide();
                     $('#thumbImg').val(url);
                 }
             });
@@ -187,6 +195,12 @@ function  autoSave() {
     if (title != '' && content != '') {
         $('#content-editor').val(content);
         $("#articleForm #categories").val($('#multiple-sel').val());
+        //alert('1')
+        var htmlcontent=document.getElementsByClassName("markdown-body")[0].innerHTML
+        //alert('2')
+        //alert(htmlcontent+"dasasd")
+        $('#htmlcontent').val(htmlcontent)
+        //alert('3')
         var params = $("#articleForm").serialize();
         var url = $('#articleForm #cid').val() != '' ? '/admin/blog/modify' : '/admin/blog/publish';
         tale.post({
@@ -194,7 +208,8 @@ function  autoSave() {
             data: params,
             success: function (result) {
                 if (result && result.success) {
-                    $('#articleForm #cid').val(result.payload);
+                    alert(result.success)
+                    $('#articleForm #cid').val(result.success);
                 } else {
                     tale.alertError(result.msg || '保存文章失败');
                 }
@@ -208,6 +223,7 @@ function  autoSave() {
  * @param status
  */
 function subArticle(status) {
+    var htmlcontent=document.getElementsByClassName("markdown-body")[0].innerHTML
     var content = $('#fmtType').val() == 'markdown' ? mditor.value : htmlEditor.summernote('code');
     var title = $('#articleForm input[name=title]').val();
     if (title == '') {
@@ -219,6 +235,8 @@ function subArticle(status) {
         return;
     }
     clearInterval(refreshIntervalId);
+
+    $('#htmlcontent').val(htmlcontent)
     $('#content-editor').val(content);
     $("#articleForm #status").val(status);
     $("#articleForm #categories").val($('#multiple-sel').val());

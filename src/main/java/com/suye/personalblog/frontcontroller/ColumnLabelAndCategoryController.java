@@ -99,6 +99,21 @@ public class ColumnLabelAndCategoryController {
 
     @RequestMapping("/category/{categoryId}")
     public ModelAndView showCategory(@PathVariable("categoryId")int categoryId,Model model){
+//       paginationTool.reset();
+//       paginationTool.setCategoryCategory();
+//       paginationTool.setCategoryId(categoryId);
+//       String loadMoreHref="/loadMoreCategory";
+//       Category categor=categoryService.findOneById(categoryId);
+//       RunningTrackStack.addRunningStack(categor.getName(),"/category"+categor.getId());
+//       List<RunningTrackStack.RunningTrack> runningTrackList=RunningTrackStack.getRunningTrackStack();
+//       List<BlogMessageConversion.BlogMessage> blogMessageList=
+//               blogMessageConversion.getBlogMessageList(paginationTool.blogList());
+//        model.addAttribute("blogMessage",blogMessageList);
+//        model.addAttribute("runningTrackList",runningTrackList);
+//        model.addAttribute("loadMorehref",loadMoreHref);
+//        return new ModelAndView("front/columnpage","allMessage",model);
+
+
         paginationTool.reset();
         paginationTool.setCategoryCategory();
         paginationTool.setCategoryId(categoryId);
@@ -112,6 +127,7 @@ public class ColumnLabelAndCategoryController {
         model.addAttribute("recentBlogList",recentBlogList);
         model.addAttribute("runningTrackList",runningTrackList);
         return new ModelAndView("front/columnpage","allMessge",model);
+
     }
 
     @RequestMapping("/loadMoreCategory")

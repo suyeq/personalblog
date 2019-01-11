@@ -6,7 +6,7 @@ package com.suye.personalblog.tool;
  * Date: 2019-01-05
  * Time: 14:55
  */
-//用来转化文件名字
+//用来转化文件名字,当名字重复时
 public class FileNameConversion {
 
     public static String fileNameConversion(String name){

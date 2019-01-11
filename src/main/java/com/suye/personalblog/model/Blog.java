@@ -1,5 +1,6 @@
 package com.suye.personalblog.model;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
  * Time: 20:02
  */
 //博客
-public class Blog {
+public class Blog implements Serializable,BlogMessageInterface {
     private int id;
     private String title;
     private String imgUrl;
@@ -25,9 +26,11 @@ public class Blog {
     private int isTalk;
     private int isComment;
     private int isPublish;
+    private String htmlcontent;
+
 
     public Blog(){}
-    public Blog(int id, String imgUrl, String title, String describ, String content, Date create_time, int readnum, int votenum, int conmentnum, int isTalk,int cainum,int isComment,int isPublish){
+    public Blog(int id, String imgUrl, String title, String describ, String content, Date create_time, int readnum, int votenum, int conmentnum, int isTalk,int cainum,int isComment,int isPublish,String htmlcontent){
         this.id=id;
         this.title=title;
         this.imgUrl=imgUrl;
@@ -41,6 +44,7 @@ public class Blog {
         this.cainum=cainum;
         this.isComment=isComment;
         this.isPublish=isPublish;
+        this.htmlcontent=htmlcontent;
     }
     public int getId() {
         return id;
@@ -144,5 +148,13 @@ public class Blog {
 
     public void setIsComment(int isComment) {
         this.isComment = isComment;
+    }
+
+    public String getHtmlcontent() {
+        return htmlcontent;
+    }
+
+    public void setHtmlcontent(String htmlcontent) {
+        this.htmlcontent = htmlcontent;
     }
 }

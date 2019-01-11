@@ -120,11 +120,11 @@
                             <input type="hidden" name="cid" value="" id="cid" th:value="${blogMessage.id}"/>
                             <input type="hidden" name="status" value="draft" id="status"/>
                             <input type="hidden" name="allowComment" value="true" id="allowComment"/>
-                            <input type="hidden" name="isShuoShuo" value="false" id="allowPing"/>
+                            <input type="hidden" name="isShuoShuo" value="true" id="allowPing"/>
                             <input type="hidden" name="allowFeed" value="true" id="allowFeed"/>
                             <input type="hidden" name="content" id="content-editor"/>
                             <input type="hidden" name="fmtType" id="fmtType" value="markdown"/>
-
+                            <input type="hidden" name="htmlcontent" id="htmlcontent">
                             <div class="form-group col-md-6" style="padding: 0 10px 0 0;">
                                 <input class="form-control" placeholder="请输入文章标题（必须）" name="title" required
                                        value="" th:value="${blogMessage.title}"/>
@@ -154,7 +154,8 @@
 
                             <div class="form-group col-xs-12">
                                 <div class="pull-right">
-                                    <a id="switch-btn" href="javascript:void(0);" class="btn btn-purple btn-sm waves-effect waves-light switch-editor"> 切换为富文本编辑器 </a>
+                                    <!--<a id="switch-btn" href="javascript:void(0);" class="btn btn-purple btn-sm waves-effect waves-light switch-editor"> 切换为富文本编辑器 </a>-->
+                                <!---->
                                 </div>
                             </div>
 

@@ -37,6 +37,7 @@ public class FileUploadServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("服务端：channelInactive()");
     	ctx.flush();
     	ctx.close();
+    	//手动获取bean类
         FileService fileService=BeanFactory.getApplicationContext().getBean(FileService.class);
         String fileName=fileService.findOneById(fileId).getName();
         File file=new File(file_temp,fileName);

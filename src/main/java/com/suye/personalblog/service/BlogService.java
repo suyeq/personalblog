@@ -1,14 +1,11 @@
 package com.suye.personalblog.service;
 
-import com.suye.personalblog.mapping.BlogLabelMapping;
 import com.suye.personalblog.mapping.BlogMapping;
 import com.suye.personalblog.model.Blog;
-import com.suye.personalblog.model.Label;
-import org.apache.ibatis.annotations.Select;
+import com.suye.personalblog.redisrepository.BlogRedisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,7 @@ import java.util.List;
 @Service
 public class BlogService {
 
+    private static int TIME_UNIT=10000;
     @Autowired
     private BlogMapping blogMapping;
     @Autowired
@@ -30,6 +28,8 @@ public class BlogService {
     private LabelService labelService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private BlogRedisRepository blogRedisRepository;
 
     /**
      * 返回最受欢迎的5篇博客
@@ -37,15 +37,6 @@ public class BlogService {
      */
     public List<Blog> mostPopularBlog(){
         return blogMapping.mostPopularBlg();
-    }
-
-    /**
-     * 根据博客的id查询博客信息
-     * @param id
-     * @return
-     */
-    public Blog findOneById(int id){
-        return blogMapping.findOneBlog(id);
     }
 
     /**
@@ -87,6 +78,15 @@ public class BlogService {
      */
     public List<Blog> loadMoreRecentBlogs(int offset){
         return blogMapping.loadMoreBlogs(offset);
+    }
+
+    /**
+     * 返回更多的已发布的博客
+     * @param offset
+     * @return
+     */
+    public List<Blog> loadMoreBlogsHadPublish(int offset){
+        return blogMapping.loadMoreBlogsHadPublish(offset);
     }
 
     /**
@@ -159,6 +159,12 @@ public class BlogService {
         return blogMapping.increaseConmentNum(blogId);
     }
 
+    /**
+     * 通过专栏id寻找该专栏的博客
+     * @param columnId
+     * @param offset
+     * @return
+     */
     public List<Blog> findBlogsByColumnId(int columnId,int offset){
         List<Integer> blogIdList=columnService.findBlogIdsByColumnId(columnId,offset);
         List<Blog> blogList=new ArrayList<>();
@@ -169,6 +175,12 @@ public class BlogService {
         return blogList;
     }
 
+    /**
+     * 通过标签id返回含有该标签的博客
+     * @param labelId
+     * @param offset
+     * @return
+     */
     public List<Blog> findBlogsByLabelId(int labelId,int offset){
         List<Integer> blogIdList=labelService.findBlogIdsByLabelId(labelId,offset);
         List<Blog> blogList=new ArrayList<>();
@@ -178,6 +190,12 @@ public class BlogService {
         return blogList;
     }
 
+    /**
+     * 通过分类id返回已发布且不为说说的博客
+     * @param categoryId
+     * @param offset
+     * @return
+     */
     public List<Blog> findBlogsByCategoryId(int categoryId,int offset){
         List<Integer> blogIdList=categoryService.findBlogIdsByCategoryId(categoryId,offset);
         List<Blog> blogList=new ArrayList<>();
@@ -200,14 +218,28 @@ public class BlogService {
      * @param ispublish
      * @return 该新增博客的id
      */
-    public int addBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish){
-         blogMapping.addBlog(title,imgurl,describ,content,istalk,iscomment,ispublish);
+    public int addBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,String htmlcontent){
+         blogMapping.addBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,htmlcontent);
          return blogMapping.lastBlogID();
     }
 
-    public int modifyBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,int blogId){
-        return blogMapping.modifyBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,blogId);
+    /**
+     * 修改一篇博客
+     * @param title
+     * @param imgurl
+     * @param describ
+     * @param content
+     * @param istalk
+     * @param iscomment
+     * @param ispublish
+     * @param blogId
+     * @param htmlcontent
+     * @return
+     */
+    public int modifyBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,int blogId,String htmlcontent){
+        return blogMapping.modifyBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,blogId,htmlcontent);
     }
+
 
     @Transient
     public int deleteBlog(int id){
@@ -223,4 +255,47 @@ public class BlogService {
     public int deleteBlogAndCategoryByBlogId(int blogId){
         return blogMapping.deleteBlogAndCategoryByBlogId(blogId);
     }
+
+    /**
+     * 有缓存的保存博客
+     * @param blog
+     * @return
+     */
+    public Blog saveBlog(Blog blog){
+        blogMapping.saveBlog(blog);
+        blog=findOneById(blog.getId());
+        blogRedisRepository.addBlog(blog,TIME_UNIT);
+        return blog;
+    }
+
+    /**
+     * 有缓存的更新博客
+     * @param blog
+     * @return
+     */
+    public Blog updateBlog(Blog blog){
+        if (blog.getId()==0 || blog==null)
+            return null;
+        int blogId=blog.getId();
+        modifyBlog(blog.getTitle(),blog.getImgUrl(),blog.getDescrib(),blog.getContent(),blog.getIsTalk(),
+                blog.getIsComment(),blog.getIsPublish(),blogId,blog.getHtmlcontent());
+        blog=findOneById(blogId);
+        blogRedisRepository.addBlog(blog,blogId);
+        return blog;
+    }
+
+    /**
+     * 根据博客的id查询博客信息
+     * @param id
+     * @return
+     */
+    public Blog findOneById(int id){
+        Blog blog=blogRedisRepository.getBlog(id);
+        if (blog!=null){
+            return blog;
+        }
+        return blogMapping.findOneBlog(id);
+    }
+
+
 }

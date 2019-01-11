@@ -1,6 +1,7 @@
 package com.suye.personalblog.tool;
 
 import com.suye.personalblog.model.Blog;
+import com.suye.personalblog.model.BlogMessageInterface;
 import com.suye.personalblog.model.Category;
 import com.suye.personalblog.model.Label;
 import com.suye.personalblog.service.CategoryService;
@@ -21,7 +22,7 @@ import java.util.List;
  * Time: 16:30
  */
 @Component
-public class BlogMessageConversion {
+public class BlogMessageConversion implements BlogMessageInterface {
 
     @Autowired
     LabelService labelService;
@@ -30,6 +31,11 @@ public class BlogMessageConversion {
     @Autowired
     ConmentService conmentService;
 
+    /**
+     * 获取所有的博客信息
+     * @param list
+     * @return
+     */
     public  List<BlogMessage> getBlogMessageList(List<Blog> list){
         List<BlogMessage> messages=new ArrayList<>();
         for (int i=0;i<list.size();i++){
@@ -46,12 +52,17 @@ public class BlogMessageConversion {
                     blog.getVotenum(), blog.getContent(),
                     blog.getIsTalk(),blog.getDescrib(),
                     labelList,categoryList,comments,date,
-                    blog.getIsComment(),blog.getIsPublish());
+                    blog.getIsComment(),blog.getIsPublish(),blog.getHtmlcontent());
             messages.add(blogMessage);
         }
         return messages;
     }
 
+    /**
+     * 获取单个博客信息
+     * @param blog
+     * @return
+     */
     public BlogMessage getOneBlogMessage(Blog blog){
         List<Label> labelList=labelService.findLabelsByBlogId(blog.getId());
         int comments=conmentService.conmnetTotal(blog.getId());
@@ -63,10 +74,16 @@ public class BlogMessageConversion {
                 conmentnumConversion(blog.getConmentnum()),
                 blog.getVotenum(), blog.getContent(),
                 blog.getIsTalk(),blog.getDescrib(),
-                labelList,categoryList,comments,blog.getCreate_time(),blog.getIsComment(),blog.getIsPublish());
+                labelList,categoryList,comments,blog.getCreate_time(),
+                blog.getIsComment(),blog.getIsPublish(),blog.getHtmlcontent());
         return blogMessage;
     }
 
+    /**
+     * 阅读数转化
+     * @param readnum
+     * @return
+     */
     public static String readnumConversion(int readnum){
         if (readnum<0){
             return "0";
@@ -104,6 +121,7 @@ public class BlogMessageConversion {
          private Date date;
          private int iscomment;
          private int ispublish;
+         private String htmlcontent;
 
          protected BlogMessage(){}
 
@@ -111,7 +129,7 @@ public class BlogMessageConversion {
                             String time,String conmentnum,int votenum,
                             String content,int isTalk,String describ,
                             List<Label> labelList,List<Category> categoryList,
-                            int comments,Date date,int iscomment,int ispublish){
+                            int comments,Date date,int iscomment,int ispublish,String htmlcontent){
             this.id=id;
             this.time=time;
             this.title=title;
@@ -128,6 +146,7 @@ public class BlogMessageConversion {
             this.date=date;
             this.iscomment=iscomment;
             this.ispublish=ispublish;
+            this.htmlcontent=htmlcontent;
          }
 
          public int getId() {
@@ -256,6 +275,14 @@ public class BlogMessageConversion {
 
          public void setIscomment(int iscomment) {
              this.iscomment = iscomment;
+         }
+
+         public String getHtmlcontent() {
+             return htmlcontent;
+         }
+
+         public void setHtmlcontent(String htmlcontent) {
+             this.htmlcontent = htmlcontent;
          }
      }
 }
