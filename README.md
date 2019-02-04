@@ -9,6 +9,7 @@
 [Shawnzeng](https://shawnzeng.com)大佬的博客是wordpress的一个主题。如果感兴趣可以去他的博客网购买：https://shawnzeng.com <br>
 而tale开源项目的github地址为：https://github.com/otale/tale <br>
 本项目的预览地址为：http://suyeq.com:8080 <br>
+ps：本项目会持续更新以及优化。。。。bug还是有些的，哈哈哈
 
 # 包含的功能
 * 文章展示，文章分为说说与博客两类
