@@ -11,8 +11,13 @@
 本项目的预览地址为：http://suyeq.com:8080 <br>
 ps：本项目会持续更新以及优化。。。。图片太大以及服务器不好，所以加载慢的一批，也许优化做的不好，bug还是有些的，哈哈哈<br>
 
-上一张效果图：
-![首页图](https://github.com/suyeq/personalblog/blob/master/1.png)
+上几张效果图：
+![首页图](https://github.com/suyeq/personalblog/blob/master/image/1.png)
+![首页图](https://github.com/suyeq/personalblog/blob/master/image/2.png)
+![首页图](https://github.com/suyeq/personalblog/blob/master/image/3.png)
+![首页图](https://github.com/suyeq/personalblog/blob/master/image/4.png)
+![首页图](https://github.com/suyeq/personalblog/blob/master/image/5.png)
+![首页图](https://github.com/suyeq/personalblog/blob/master/image/6.png)
 
 # 运行
 1. 运行本项目下的名为Sql语句文件里的语句，创建数据库以及对应的表，里面已经含有预览地址网站的数据
