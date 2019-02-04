@@ -51,7 +51,7 @@
 </header>
 <header id="mobile-header">
     <div class="mobile-user-info"><img alt=''
-                                       src='http://localhost:8080/front/img/lem6.jpg'
+                                       src='http://localhost:8080/front/img/lem6.jpg' th:src="@{front/img/lem6.jpg}"
                                        srcset='front/img/lem6.jpg'
                                        class='avatar avatar-100 photo mobile-user-avatar' height='100' width='100'/>
         <h3 class="mobile-user-name">Shawn</h3>
@@ -90,7 +90,7 @@
                 </a>
             </div>
             <img alt=''
-                 src='http://localhost:8080/front/img/lem6.jpg'
+                 src='http://localhost:8080/front/img/lem6.jpg' th:src="@{front/img/lem6.jpg}"
                  srcset='front/img/lem6.jpg 2x'
                  class='avatar avatar-56 photo user-card-avatar' height='56' width='56' /> <i
                 class="giligili giligili-certify-3"></i>
@@ -233,7 +233,7 @@
                 <li th:each="ConmentMessage:${recentConmentList}">
                     <a href="https://shawnzeng.com/wordpress-theme-memory.html/comment-page-10#comment-1590"
                        title="suye"> <img alt=''
-                                          src='http://localhost:8080/front/img/avatar.png'
+                                          src='http://localhost:8080/front/img/avatar.png' th:src="@{front/img/avatar.png}"
                                           class='avatar avatar-36 photo' height='36' width='36'/>
                         <div class="right-box"><span class="author" th:text="${ConmentMessage.visitor.name}">suye</span>于<span th:text="${ConmentMessage.time}">3分钟前</span>在<span class="title" th:text="${ConmentMessage.blogName}">「WordPress响应式主题Memory」</span>中说:
                             <br/><span class="recent-comment" th:text="${ConmentMessage.content}">OωO</span></div>
@@ -484,7 +484,7 @@
                 <!--评论列表-->
                 <div id="comments">
                     <ol class="giligili-comments">
-                        <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList},${blogMessage.id})"></div>
+                        <div th:replace="front/conmentfragment::conmentList(${recentAllConmentList},${blogMessage.id})"></div>
                     </ol>
 
                     <div id="pagination">

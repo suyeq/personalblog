@@ -18,11 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 public class InterceptorAllRequestImpl implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //System.out.println("1");
+        System.out.println("1");
         if ((request.getSession().getAttribute("isLogin")!=null)
                 &&request.getSession().getAttribute("isLogin").equals("success")){
             return true;
         }else {
+            System.out.println("2");
             response.sendRedirect("/admin/logins");
             return false;
         }

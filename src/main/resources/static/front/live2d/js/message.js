@@ -1,5 +1,5 @@
-var home_Path = document.location.protocol +'//' + window.document.location.hostname +'/';
-
+var home_Path = document.location.protocol +'//' + window.document.location.hostname +':'+window.document.location.port;
+//alert(home_Path)
 // var home_Path='http://localhost:63342/';
 var userAgent = window.navigator.userAgent.toLowerCase();
 //console.log(userAgent);
@@ -61,7 +61,7 @@ if(!norunFlag){
 		function initTips(){
 			$.ajax({
 				cache: true,
-				url: 'http://localhost:8080/front/live2d/message.json',
+				url: home_Path+'/front/live2d/message.json',
 				dataType: "json",
 				success: function (result){
 					$.each(result.mouseover, function (index, tips){
@@ -447,7 +447,7 @@ if(!norunFlag){
 	}
 	$(document).ready(function() {
 		var AIimgSrc = [
-            'http://localhost:8080/front/live2d/' + "model/rem/remu2048/texture_00.png"
+            home_Path+'/front/live2d/' + "model/rem/remu2048/texture_00.png"
 		]
 		var images = [];
 		var imgLength = AIimgSrc.length;
@@ -469,7 +469,7 @@ if(!norunFlag){
 						},1300);
 					}
 					setTimeout(function(){
-						loadlive2d("live2d", 'http://localhost:8080/front/live2d/'+"model/rem/rem.json");
+						loadlive2d("live2d", home_Path+'/front/live2d/'+"model/rem/rem.json");
 					},1000);
 					initLive2d ();
 					images = null;

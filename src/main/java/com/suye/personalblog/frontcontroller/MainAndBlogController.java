@@ -4,12 +4,17 @@ import com.suye.personalblog.model.*;
 import com.suye.personalblog.service.*;
 import com.suye.personalblog.tool.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,6 +24,11 @@ import java.util.List;
  */
 @Controller
 public class MainAndBlogController {
+
+    @Value("${net.address}")
+    private String ip;
+    @Value("${net.port}")
+    private String port;
 
     @Autowired
     private CategoryService categoryService;
@@ -48,20 +58,36 @@ public class MainAndBlogController {
 
     @RequestMapping("/index")
     public ModelAndView allMessage(@RequestParam(name = "search",required = false)String searchContent,
+                                   HttpServletRequest request, HttpServletResponse response,
                                    Model model){
         System.out.println("lall");
-        paginationTool.reset();
-        paginationTool.setCategoryAll();
+        //paginationTool.reset();
+        //paginationTool.setCategoryAll();
+        paginationTool.reset(request,PaginationTool.Category.ALL);
         List<BlogMessageConversion.BlogMessage> recentBlogList=null;
         if (searchContent!=null){
-            paginationTool.setCategorySearch();
-            paginationTool.setContent(searchContent);
+            //paginationTool.setCategorySearch();
+            //paginationTool.setContent(searchContent);
+            paginationTool.reset(request, PaginationTool.Category.SEARCH);
+            paginationTool.setContent(searchContent,request);
             recentBlogList= blogMessageConversion.getBlogMessageList(blogService.searchContent(searchContent));
         }else {
-            paginationTool.setCategoryAll();
+            //System.out.println("1");
+            //paginationTool.setCategoryAll();
             recentBlogList= blogMessageConversion.getBlogMessageList(blogService.recentBlogs());
+            //System.out.println("2");
         }
-        RunningTrackStack.clearRunningTrackStack();
+
+        //RunningTrackStack.clearRunningTrackStack();
+        //RunningTrackStacks.resetRuningTrack();
+          RunningTrackStacks.resetRuningTrack(request);
+//        List<RunningTrackStacks.RunningTrack> runningTrackList=(List<RunningTrackStacks.RunningTrack>) request.getSession().getAttribute("runningTrack");
+//        if (runningTrackList==null){
+//            runningTrackList=new ArrayList<>();
+//        }
+//        runningTrackList.clear();
+
+
         int blogTotal=blogService.blogTotal();
         List<Label> labelList=labelService.getAllLabels();
         List<Category> categoryList=categoryService.getAllCategory();
@@ -78,6 +104,7 @@ public class MainAndBlogController {
         model.addAttribute("recentConmentList",recentConmentList);
         model.addAttribute("recentBlogList",recentBlogList);
         model.addAttribute("action","loadMoreAll");
+       // model.addAttribute("address",ip+":"+port);
         if (searchContent!=null){
             model.addAttribute("action","/loadMoreSearch");
             return new ModelAndView("index","allMessge",model);
@@ -91,11 +118,17 @@ public class MainAndBlogController {
      * @return
      */
     @GetMapping("/blogs")
-    public ModelAndView indexBlog(Model model){
+    public ModelAndView indexBlog(Model model,HttpServletRequest request){
         System.out.println("blogs");
-        paginationTool.reset();
-        paginationTool.setCategoryBlog();
-        RunningTrackStack.addRunningStack(0,"博客","/blogs");
+        //paginationTool.reset();
+        //paginationTool.setCategoryBlog();
+        paginationTool.reset(request, PaginationTool.Category.BLOG);
+        //RunningTrackStack.addRunningStack(0,"博客","/blogs");
+        //RunningTrackStacks.resetRuningTrack();
+        //RunningTrackStacks.addRunningTrack("博客","/blogs");
+        RunningTrackStacks.resetRuningTrack(request);
+        RunningTrackStacks.addRunningTrack(request,"博客","/blogs");
+
         int blogTotal=blogService.blogTotal();
         List<Label> labelList=labelService.getAllLabels();
         List<Category> categoryList=categoryService.getAllCategory();
@@ -125,11 +158,17 @@ public class MainAndBlogController {
      * @return
      */
     @GetMapping("/shuoshuos")
-    public ModelAndView indexShuoShuo(Model model){
+    public ModelAndView indexShuoShuo(Model model,HttpServletRequest request){
         System.out.println("shuosshuos");
-        paginationTool.reset();
-        paginationTool.setCategoryShuoShuo();
-        RunningTrackStack.addRunningStack(1,"说说","/shuoshuos");
+        //paginationTool.reset();
+        //paginationTool.setCategoryShuoShuo();
+        paginationTool.reset(request, PaginationTool.Category.SHUOSHUO);
+        //RunningTrackStack.addRunningStack(1,"说说","/shuoshuos");
+        //RunningTrackStacks.resetRuningTrack();
+        //RunningTrackStacks.addRunningTrack("说说","/shuoshuos");
+        RunningTrackStacks.resetRuningTrack(request);
+        RunningTrackStacks.addRunningTrack(request,"说说","/shuoshuos");
+
         int blogTotal=blogService.blogTotal();
         List<Label> labelList=labelService.getAllLabels();
         List<Category> categoryList=categoryService.getAllCategory();
@@ -158,12 +197,12 @@ public class MainAndBlogController {
      * @return
      */
     @GetMapping("/loadMoreAll")
-    public ModelAndView loadMoreAll(Model model){
+    public ModelAndView loadMoreAll(HttpServletRequest request,Model model){
         System.out.println("loadMoreAll");
 //        List<BlogMessageConversion.BlogMessage> recentBlogList=
 //                blogMessageConversion.getBlogMessageList(blogService.loadMoreRecentBlogs(loadMoreAll*7));
         List<BlogMessageConversion.BlogMessage> recentBlogList=
-                blogMessageConversion.getBlogMessageList(paginationTool.blogList());
+                blogMessageConversion.getBlogMessageList(paginationTool.blogList(request));
         model.addAttribute("recentBlogList",recentBlogList);
         model.addAttribute("action","loadMoreAll");
         return new ModelAndView("index","allMessge",model);
@@ -175,7 +214,7 @@ public class MainAndBlogController {
      * @return
      */
     @GetMapping("/loadMoreBlog")
-    public ModelAndView loadMoreBlog(Model model){
+    public ModelAndView loadMoreBlog(HttpServletRequest request,Model model){
         System.out.println("loadMoreBlog");
         //loadMoreAll=1;
         //loadMoreShuoShuo=1;
@@ -183,7 +222,7 @@ public class MainAndBlogController {
 //                blogMessageConversion.getBlogMessageList(blogService.loadMoreRecentNotShuoShuo(loadMoreBlog*7));
 //
         List<BlogMessageConversion.BlogMessage> recentBlogList=
-                blogMessageConversion.getBlogMessageList(paginationTool.blogList());
+                blogMessageConversion.getBlogMessageList(paginationTool.blogList(request));
 
         //loadMoreBlog++;
         model.addAttribute("recentBlogList",recentBlogList);
@@ -197,10 +236,10 @@ public class MainAndBlogController {
      * @return
      */
     @GetMapping("/loadMoreShuoShuo")
-    public ModelAndView loadMoreShuoShuo(Model model){
+    public ModelAndView loadMoreShuoShuo(HttpServletRequest request,Model model){
         System.out.println("loadMoreShuoShuo");
         List<BlogMessageConversion.BlogMessage> recentBlogList=
-                blogMessageConversion.getBlogMessageList(paginationTool.blogList());
+                blogMessageConversion.getBlogMessageList(paginationTool.blogList(request));
         model.addAttribute("recentBlogList",recentBlogList);
         model.addAttribute("action","loadMoreShuoShuo");
         return new ModelAndView("index","allMessge",model);
@@ -217,7 +256,8 @@ public class MainAndBlogController {
     }
 
     @RequestMapping("/blogDetails/{blogid}")
-    public ModelAndView showBlogDetails(@PathVariable("blogid")int blogId, Model model){
+    public ModelAndView showBlogDetails(@PathVariable("blogid")int blogId, Model model,
+                                        HttpServletRequest request){
         System.out.println("blogdatails");
         int blogTotal=blogService.blogTotal();
         blogService.increaseReadNum(blogId);
@@ -234,7 +274,11 @@ public class MainAndBlogController {
                 conmentMessageConversion.conmentMessageList(conmentService.recentConment());
         BlogMessageConversion.BlogMessage blogMessage=
                 blogMessageConversion.getOneBlogMessage(blogService.findOneById(blogId));
-        List<RunningTrackStack.RunningTrack> runningTrackList=RunningTrackStack.getRunningTrackStack();
+
+        //List<RunningTrackStack.RunningTrack> runningTrackList=RunningTrackStack.getRunningTrackStack();
+
+        //Set<RunningTrackStacks.RunningTrack> runningTrackList=RunningTrackStacks.getRunningTrackSet();
+        List<RunningTrackStacks.RunningTrack> runningTrackList=RunningTrackStacks.getRunningTrackList(request);
 
         List<ConmentMessageConversion.ConmentMessage> recentAllConmentList=
                 conmentMessageConversion.findAllConmentsByBlogId(blogId,0);
@@ -254,11 +298,12 @@ public class MainAndBlogController {
         model.addAttribute("runningTrackList",runningTrackList);
         model.addAttribute("recentAllConmentList",recentAllConmentList);
         model.addAttribute("conmentPages",conmentPages);
+        model.addAttribute("address",ip+":"+port);
         return new ModelAndView("front/blogDetailsPage","blogMessage",model);
     }
 
     @RequestMapping("/archive")
-    public ModelAndView showarchivePage(Model model){
+    public ModelAndView showarchivePage(HttpServletRequest request,Model model){
         System.out.println("archive");
         blogService.increaseReadNum(87);
         //System.out.println("1");
@@ -281,9 +326,10 @@ public class MainAndBlogController {
        // System.out.println("8");
         List<ArchiveMessageConversion.ArchiveMessage> archiveMessageList=
                 archiveMessageConversion.archiveMessageList(blogService.findAllBlogTimeDesc());
-        System.out.println("9");
-        List<RunningTrackStack.RunningTrack> runningTrackList=RunningTrackStack.getRunningTrackStack();
-        System.out.println("10");
+       // System.out.println("9");
+        RunningTrackStacks.resetRuningTrack(request);
+        List<RunningTrackStacks.RunningTrack> runningTrackList=RunningTrackStacks.getRunningTrackList(request);
+        //System.out.println("10");
         model.addAttribute("blogMessage",blogMessage);
         model.addAttribute("archiveMessageList",archiveMessageList);
         model.addAttribute("blogTotal",blogTotal);

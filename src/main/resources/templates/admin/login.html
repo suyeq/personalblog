@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="shortcut icon" href="/static/admin/images/favicon.png" th:href="@{/admin/images/favicon.png}"/>
+    <link rel="shortcut icon" href="admin/images/favicon.png" th:href="@{/admin/images/favicon.png}"/>
     <title>Tale - 用户登录</title>
-    <link href="/static/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" th:href="@{/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css}">
-    <link href="/static/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link href="/static/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet" th:href="@{/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css}">
+    <link href="admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" th:href="@{/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css}">
 
-    <link href="/static/admin/css/style.min.css?v=v1.0" rel="stylesheet" type="text/css" th:href="@{/admin/css/style.min.css?v=v1.0}">
+    <link href="admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link href="admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet" th:href="@{/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css}">
+
+    <link href="admin/css/style.min.css?v=v1.0" rel="stylesheet" type="text/css" th:href="@{/admin/css/style.min.css?v=v1.0}">
     <style type="text/css">
         body,html {
             background: url("/admin/images/bg/2.png") no-repeat;
@@ -32,7 +33,7 @@
             top: 0;
             width: 100%;
         }
-        .input-border {b1.png
+        .input-border {
             font-size: 14px;
             width: 100%;
             height: 40px;
@@ -49,8 +50,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js" ></script>
-    <script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>
+    <!--<script src="admin/plugins/html5shiv/3.7.0/html5shiv.js" ></script>-->
+    <!--<script src="admin/plugins/respond.js/1.3.0/respond.min.js"></script>-->
 
     <![endif]-->
 
@@ -102,10 +103,11 @@
 </div>
 
 <!-- Main  -->
-<script src="/static/admin/plugins/jquery/3.2.1/jquery.min.js" th:src="@{/admin/plugins/jquery/3.2.1/jquery.min.js}"></script>
-<script src="/static/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js" th:src="@{/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js}"></script>
+<script src="admin/plugins/jquery/3.2.1/jquery.min.js" th:src="@{/admin/plugins/jquery/3.2.1/jquery.min.js}"></script>
 
-<script src="/admin/js/base.js"></script>
+<script src="admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js" th:src="@{/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.js}"></script>
+
+<script src="admin/js/base.js" th:src="@{/admin/js/base.js}"></script>
 <script type="text/javascript">
     var tale = new $.tale();
     function checkForm() {

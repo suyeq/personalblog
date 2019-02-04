@@ -235,7 +235,7 @@
                     class="giligili giligili-comments"></i> 最近评论</h3></header>
             <ul class="recentcomments">
                 <li th:each="ConmentMessage:${recentConmentList}">
-                    <a href="" th:href="'/blogDetails/'+${ConmentMessage.blogId}+'/#comments'"
+                    <a  href="" th:href="'/blogDetails/'+${ConmentMessage.blogId}+'/#comments'"
                        title="suye" th:title="${ConmentMessage.blogName}"> <img alt=''
                                           src='front/img/avatar.png' th:src="${ConmentMessage.visitor.avatar}"
                                           class='avatar avatar-36 photo' height='36' width='36'/>

@@ -3,6 +3,7 @@ package com.suye.personalblog.FileClient.task;
 import com.suye.personalblog.FileClient.work.FileUploadClient;
 import com.suye.personalblog.model.FileUploadFile;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 
@@ -13,20 +14,23 @@ import java.io.File;
  * Time: 16:19
  */
 //上传任务
+@Component
 public class UploadTask implements Runnable{
 
-    private String ip="127.0.0.1";
-    private int port=9991;
+    @Value("${netty.server.host}")
+    private String ip;
+    @Value("${netty.client.port}")
+    private int port;
 //    private static final int FILE_PORT = 9991;
     private File file;
     private int fileId;
     //private String fileName;
 
-    public  UploadTask(File file,int fileID){
-        this.file=file;
-        this.fileId=fileID;
-        //this.fileName=fileName;
-    }
+//    public  UploadTask(File file,int fileID){
+//        this.file=file;
+//        this.fileId=fileID;
+//        //this.fileName=fileName;
+//    }
 
     @Override
     public void run() {
@@ -44,4 +48,11 @@ public class UploadTask implements Runnable{
         }
     }
 
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 }

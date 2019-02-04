@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta content="biezhi" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <link rel="shortcut icon" href="/static/admin/images/favicon.png"/>
+    <link rel="shortcut icon" href="/admin/images/favicon.png"/>
     <link href="/admin/plugins/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="/admin/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/admin/plugins/limonte-sweetalert2/6.4.1/sweetalert2.min.css" rel="stylesheet">
@@ -16,8 +16,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>
+    <!--<script src="/admin/plugins/html5shiv/3.7.0/html5shiv.js"></script>-->
+    <!--<script src="/admin/plugins/respond.js/1.3.0/respond.min.js"></script>-->
 
     <![endif]-->
 </head>
@@ -25,9 +25,9 @@
 <div id="wrapper">
 
     <!--顶部菜单栏-->
-    <div th:replace="/admin/topbar::topbar"></div>
+    <div th:replace="admin/topbar::topbar"></div>
     <!--左部菜单栏-->
-    <div th:replace="/admin/leftbar::leftbar"></div>
+    <div th:replace="admin/leftbar::leftbar"></div>
 
     <div class="content-page">
         <div class="content">

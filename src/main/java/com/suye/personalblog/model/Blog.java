@@ -27,10 +27,12 @@ public class Blog implements Serializable,BlogMessageInterface {
     private int isComment;
     private int isPublish;
     private String htmlcontent;
+    private int imgid;
 
 
     public Blog(){}
-    public Blog(int id, String imgUrl, String title, String describ, String content, Date create_time, int readnum, int votenum, int conmentnum, int isTalk,int cainum,int isComment,int isPublish,String htmlcontent){
+
+    public Blog(int id, String imgUrl, String title, String describ, String content, Date create_time, int readnum, int votenum, int conmentnum, int isTalk,int cainum,int isComment,int isPublish,String htmlcontent,int imgid){
         this.id=id;
         this.title=title;
         this.imgUrl=imgUrl;
@@ -45,6 +47,7 @@ public class Blog implements Serializable,BlogMessageInterface {
         this.isComment=isComment;
         this.isPublish=isPublish;
         this.htmlcontent=htmlcontent;
+        this.imgid=imgid;
     }
     public int getId() {
         return id;
@@ -156,5 +159,13 @@ public class Blog implements Serializable,BlogMessageInterface {
 
     public void setHtmlcontent(String htmlcontent) {
         this.htmlcontent = htmlcontent;
+    }
+
+    public int getImgid() {
+        return imgid;
+    }
+
+    public void setImgid(int imgid) {
+        this.imgid = imgid;
     }
 }

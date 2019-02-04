@@ -130,7 +130,7 @@
                 </div>
                 <ul class="children">
                     <th:block th:unless="${#lists.isEmpty(ConmentMessage.child)}">
-                        <div th:replace="/front/conmentfragment::conmentList(${ConmentMessage.child},${postId})"></div>
+                        <div th:replace="front/conmentfragment::conmentList(${ConmentMessage.child},${postId})"></div>
                     </th:block>
                     <!-- .children -->
                 </ul>

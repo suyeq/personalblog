@@ -1,11 +1,9 @@
 package com.suye.personalblog.tool;
 
-import com.suye.personalblog.model.Blog;
-import com.suye.personalblog.model.BlogMessageInterface;
-import com.suye.personalblog.model.Category;
-import com.suye.personalblog.model.Label;
+import com.suye.personalblog.model.*;
 import com.suye.personalblog.service.CategoryService;
 import com.suye.personalblog.service.ConmentService;
+import com.suye.personalblog.service.FileService;
 import com.suye.personalblog.service.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,6 +28,8 @@ public class BlogMessageConversion implements BlogMessageInterface {
     CategoryService categoryService;
     @Autowired
     ConmentService conmentService;
+    @Autowired
+    FileService fileService;
 
     /**
      * 获取所有的博客信息
@@ -44,8 +44,14 @@ public class BlogMessageConversion implements BlogMessageInterface {
             List<Label> labelList=labelService.findLabelsByBlogId(blog.getId());
             List<Category> categoryList=categoryService.findCategoryByBlogId(blog.getId());
             Date date=new Date(blog.getCreate_time().getTime()-8*60*60*1000);
+            File file=fileService.findOneById(blog.getImgid());
+            String imgUrl=null;
+            if (file!=null){
+                imgUrl=file.getUrl();
+            }
+           // String imgUrl=fileService.findOneById(blog.getImgid()).getUrl();
             BlogMessage blogMessage=new BlogMessage(blog.getId(),
-                    blog.getTitle(),blog.getImgUrl(),
+                    blog.getTitle(),imgUrl,
                     readnumConversion(blog.getReadnum()),
                     TimeConversion.timeConversion(blog.getCreate_time()),
                     conmentnumConversion(blog.getConmentnum()),
@@ -67,8 +73,16 @@ public class BlogMessageConversion implements BlogMessageInterface {
         List<Label> labelList=labelService.findLabelsByBlogId(blog.getId());
         int comments=conmentService.conmnetTotal(blog.getId());
         List<Category> categoryList=categoryService.findCategoryByBlogId(blog.getId());
+
+        File file=fileService.findOneById(blog.getImgid());
+        String imgUrl=null;
+        if (file!=null){
+            imgUrl=file.getUrl();
+        }
+        //String imgUrl=fileService.findOneById(blog.getImgid()).getUrl();
+
         BlogMessage blogMessage=new BlogMessage(blog.getId(),
-                blog.getTitle(),blog.getImgUrl(),
+                blog.getTitle(),imgUrl,
                 readnumConversion(blog.getReadnum()),
                 TimeConversion.timeConversion(blog.getCreate_time()),
                 conmentnumConversion(blog.getConmentnum()),

@@ -13,19 +13,21 @@ import javax.servlet.MultipartConfigElement;
 @SpringBootApplication
 @MapperScan("com.suye.personalblog.mapping")
 public class PersonalblogApplication {
-    private static final int FILE_PORT = 9991;
+
+    //private static final int FILE_PORT = 9991;
 
     public static void main(String[] args) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    new FileUploadServer().bind(FILE_PORT);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        //启动netty图片服务器
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    new FileUploadServer().bind(FILE_PORT);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
         SpringApplication.run(PersonalblogApplication.class, args);
     }
 

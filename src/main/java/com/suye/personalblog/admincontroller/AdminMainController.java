@@ -63,14 +63,14 @@ public class AdminMainController {
         model.addAttribute("recentBlogList",recentBlogList);
         model.addAttribute("recentCommentList",recentCommentList);
         model.addAttribute("logMessageList",logMessageList);
-        return new ModelAndView("/admin/index","index",model);
+        return new ModelAndView("admin/index","index",model);
     }
 
     @RequestMapping("/admin/article/publish")
     public ModelAndView writeblog(Model model){
         List<Category> categoryList=categoryService.getAllCategory();
         model.addAttribute("categoryList",categoryList);
-        return new ModelAndView("/admin/writeblog","write",model);
+        return new ModelAndView("admin/writeblog","write",model);
     }
 
     @RequestMapping("/admin/blog/{blogId}")
@@ -80,12 +80,12 @@ public class AdminMainController {
                 blogMessageConversion.getOneBlogMessage(blogService.findOneById(blogId));
         model.addAttribute("blogMessage",blogMessage);
         model.addAttribute("categoryList",categoryList);
-        return new ModelAndView("/admin/modifyblog","modify",model);
+        return new ModelAndView("admin/modifyblog","modify",model);
     }
 
     @RequestMapping("/admin/page")
     public ModelAndView pageManage(Model model){
-        return new ModelAndView("/admin/pageManage","pageManage",model);
+        return new ModelAndView("admin/pageManage","pageManage",model);
     }
 
     @RequestMapping("/admin/blog")
@@ -101,7 +101,7 @@ public class AdminMainController {
         System.out.println(blogMessageList.size());
         model.addAttribute("blogMessageList",blogMessageList);
         model.addAttribute("pageNum",pagenum);
-        return new ModelAndView("/admin/articleManage","articleManage",model);
+        return new ModelAndView("admin/articleManage","articleManage",model);
     }
 
     @RequestMapping("/admin/attach")
@@ -115,7 +115,7 @@ public class AdminMainController {
         int pagenum= PaginationTool.pageTotal(fileService.fileTotal(),"file");
         model.addAttribute("fileList",fileList);
         model.addAttribute("pageNum",pagenum);
-        return new ModelAndView("/admin/fileManage","/admin/fileManage",model);
+        return new ModelAndView("admin/fileManage","/admin/fileManage",model);
     }
 
     @RequestMapping("/admin/comments")
@@ -129,7 +129,7 @@ public class AdminMainController {
         }
         model.addAttribute("conmentMessageList",conmentMessageList);
         model.addAttribute("pageNum",pagenum);
-        return new ModelAndView("/admin/commentManage","commentManage",model);
+        return new ModelAndView("admin/commentManage","commentManage",model);
     }
 
     @RequestMapping("/admin/category")
@@ -140,28 +140,28 @@ public class AdminMainController {
         System.out.println(labelList.size());
         model.addAttribute("categoryList",categoryList);
         model.addAttribute("labelList",labelList);
-        return new ModelAndView("/admin/categoryManage","categoryManage",model);
+        return new ModelAndView("admin/categoryManage","categoryManage",model);
     }
 
     @RequestMapping("/admin/template")
     public ModelAndView templateManage(Model model){
-        return new ModelAndView("/admin/templateManage","templateManage",model);
+        return new ModelAndView("admin/templateManage","templateManage",model);
     }
 
     @RequestMapping("/admin/themes")
     public ModelAndView themesManage(Model model){
-        return new ModelAndView("/admin/themesManage","themesManage",model);
+        return new ModelAndView("admin/themesManage","themesManage",model);
     }
 
     @RequestMapping("/admin/setting")
     public ModelAndView settingManage(Model model){
-        return new ModelAndView("/admin/settingManage","settingManage",model);
+        return new ModelAndView("admin/settingManage","settingManage",model);
     }
 
     @RequestMapping("/admin/sensitiveWord")
     public ModelAndView sensitiveWord(Model model){
         List<String> sensitiveWordList=sensitiveService.findSensitiveWords();
         model.addAttribute("sensitiveWordList",sensitiveWordList);
-        return new ModelAndView("/admin/SensitiveWordManage","sensitiveManage",model);
+        return new ModelAndView("admin/SensitiveWordManage","sensitiveManage",model);
     }
 }

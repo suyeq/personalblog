@@ -1,5 +1,6 @@
 var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
-           
+var home_Path = document.location.protocol +'//' + window.document.location.hostname +':'+window.document.location.port;
+//alert(home_Path)       
 App = {
 	init:function() {
       	$('.social-share').each(function() {
@@ -432,6 +433,7 @@ App = {
     },
   
   	owoEmoji:function() {
+	   // alert(home_Path)
       	$('.OwO').each(function(i, block) {
             var s = new OwO({
                 logo: '<i class="giligili giligili-emoji"></i> 表情',
@@ -441,7 +443,7 @@ App = {
                 width: '100%',
                 maxHeight: '200px',
                 // api: giligiliConfig.siteUrl + "/emoji/OwO.min.json"
-                api: "http://localhost:8080/front/OwO/OwO.min.json"
+                api: home_Path+"/front/OwO/OwO.min.json"
 
 			});
 		});

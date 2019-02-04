@@ -17,10 +17,10 @@
           href="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-180x180.png"/>
     <meta name="msapplication-TileImage"
           content="https://shawnzeng.com/wp-content/uploads/2018/02/cropped-logo-270x270.png"/>
-    <link href="http://localhost:8080/front/css/Column.css" rel="stylesheet">
-    <link type="text/css" media="all" href="http://localhost:8080/front/css/allPage.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="http://localhost:8080/front/tagcloud/tagcloud.min.css">
-    <link rel="stylesheet" href="http://localhost:8080/front/live2d/css/live2d.css" />
+    <link href="http://localhost:8080/front/css/Column.css" rel="stylesheet" th:href="@{/front/css/Column.css}">
+    <link type="text/css" media="all" href="http://localhost:8080/front/css/allPage.css" th:href="@{/front/css/allPage.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="http://localhost:8080/front/tagcloud/tagcloud.min.css" th:href="@{/front/tagcloud/tagcloud.min.css}">
+    <link rel="stylesheet" href="http://localhost:8080/front/live2d/css/live2d.css" th:href="@{/front/live2d/css/live2d.css}"/>
     <title>一两清风，半盏明月</title></head>
 <body>
 <header id="header">
@@ -51,7 +51,7 @@
 </header>
 <header id="mobile-header">
     <div class="mobile-user-info"><img alt=''
-                                       src='http://localhost:8080/front/img/lem6.jpg'
+                                       src='http://localhost:8080/front/img/lem6.jpg' th:src="@{/front/img/lem6.jpg}"
                                        srcset='front/img/lem6.jpg'
                                        class='avatar avatar-100 photo mobile-user-avatar' height='100' width='100'/>
         <h3 class="mobile-user-name">Shawn</h3>
@@ -90,7 +90,7 @@
                 </a>
             </div>
             <img alt=''
-                 src='http://localhost:8080/front/img/lem6.jpg'
+                 src='http://localhost:8080/front/img/lem6.jpg' th:src="@{/front/img/lem6.jpg}"
                  srcset='front/img/lem6.jpg 2x'
                  class='avatar avatar-56 photo user-card-avatar' height='56' width='56' /> <i
                 class="giligili giligili-certify-3"></i>
@@ -403,7 +403,7 @@
                         </div>
                     </div>
                 </div>
-                <img alt="" src="http://localhost:8080/front/img/lem6.jpg"  class="avatar avatar-48 photo post-author-avatar" height="48" width="48">
+                <img alt="" src="http://localhost:8080/front/img/lem6.jpg"  th:src="@{/front/img/lem6.jpg}" class="avatar avatar-48 photo post-author-avatar" height="48" width="48">
                 <i class="giligili giligili-certify-3"></i>
             </article>
 
@@ -459,7 +459,7 @@
                     </span>
                 </div>
                 <img alt=''
-                     src='http://localhost:8080/front/img/lem6.jpg'
+                     src='http://localhost:8080/front/img/lem6.jpg' th:src="@{/front/img/lem6.jpg}"
                      class='avatar avatar-48 photo post-author-avatar' height='48' width='48'/> <i
                     class="giligili giligili-certify-3"></i>
             </article>
@@ -544,7 +544,7 @@
                     </div>
                     <div id="comments">
                         <ol class="giligili-comments">
-                            <div th:replace="/front/conmentfragment::conmentList(${recentAllConmentList},${blogDatailsMessage.id})"></div>
+                            <div th:replace="front/conmentfragment::conmentList(${recentAllConmentList},${blogDatailsMessage.id})"></div>
                         </ol>
 
                         <div id="pagination">
@@ -679,11 +679,11 @@
     "commentEditAgain": "0",
     "loadPjax": "1"
 };</script>
-<script type='text/javascript' src='http://localhost:8080/front/js/jquery-3.2.1.min.js'></script>
-<script type='text/javascript' src='http://localhost:8080/front/js/wp-embed.min.js'></script>
-<script type='text/javascript' src='http://localhost:8080/front/js/func.js'></script>
-<script type='text/javascript' src='http://localhost:8080/front/js/support.js'></script>
-<script type='text/javascript' src='http://localhost:8080/front/js/app.js'></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/jquery-3.2.1.min.js' th:src="@{/front/js/jquery-3.2.1.min.js}"></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/wp-embed.min.js' th:href="@{/front/js/wp-embed.min.js}"></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/func.js' th:href="@{/front/js/func.js}"></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/support.js' th:href="@{/front/js/support.js}"></script>
+<script type='text/javascript' src='http://localhost:8080/front/js/app.js' th:href="@{/front/js/app.js}"></script>
 <!--解析markdown语法-->
 <script src="http://localhost:8080/front/showdown-master/dist/showdown.js" th:src="@{/front/showdown-master/dist/showdown.js}"></script>
 <script type="text/javascript">
@@ -700,7 +700,10 @@
 </script>
 
 <!--云标签-->
-<script src="http://localhost:8080/front/tagcloud/tagcloud.min.js"></script>
+<!--<script src="http://localhost:8080/front/tagcloud/tagcloud.min.js" th:src="@{/front/tagcloud/tagcloud.min.js}"></script>-->
+
+<script src="http://localhost:8080/front/tagcloud/tagcloud.min.js" th:src="@{/front/tagcloud/tagcloud.min.js}"></script>
+
 <script type="text/javascript">
     // window.onload=function(){
     tagcloud();
@@ -712,8 +715,12 @@
     var message_Path = '/live2d/';//资源目录，如果目录不对请更改
     var talkAPI = "";//如果有类似图灵机器人的聊天接口请填写接口路径
 </script>
-<script type="text/javascript" src="http://localhost:8080/front/live2d/js/live2d.js"></script>
-<script type="text/javascript" src="http://localhost:8080/front/live2d/js/message.js"></script>
+<script type="text/javascript" src="http://localhost:8080/front/live2d/js/live2d.js" th:src="@{/front/live2d/js/live2d.js}"></script>
+<script type="text/javascript" src="http://localhost:8080/front/live2d/js/message.js" th:src="@{/front/live2d/js/message.js}"></script>
+
+<!--<script type="text/javascript" src="http://localhost:8080/front/live2d/js/live2d.js"></script>-->
+<!--<script type="text/javascript" src="http://localhost:8080/front/live2d/js/message.js"></script>-->
+
 </body>
 
 </html>

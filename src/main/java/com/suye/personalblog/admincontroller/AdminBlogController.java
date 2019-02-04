@@ -78,7 +78,10 @@ public class AdminBlogController {
             id=categoryService.findCategoryByCategoryName(categoties.get(i)).getId();
             categoryService.increaseBlogNum(id);
         }
-        int blogId=blogService.addBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,htmlcontent);
+
+       // int blogId=blogService.addBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,htmlcontent);
+        int blogId=blogService.addBlog(title,Integer.parseInt(img),slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,htmlcontent);
+
         categoryService.insertCategorytoBlog(blogId,categoties);
         labelService.insertLabeltoBlog(blogId,tags);
         logMessageService.addALog(StaticField.ADD_BLOG);
@@ -119,7 +122,13 @@ public class AdminBlogController {
         blogService.deleteBlogAndCategoryByBlogId(blogId);
         categoryService.insertCategorytoBlog(blogId,categoties);
         labelService.insertLabeltoBlog(blogId,tags);
-        if (blogService.modifyBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,blogId,htmlcontent)>0){
+//        if (blogService.modifyBlog(title,img,slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,blogId,htmlcontent)>0){
+//            logMessageService.addALog(StaticField.MODIFY_BLOG);
+//            return "{\n" + "  \"success\":\""+blogId+"\"\n" + "}";
+//        }else {
+//            return "{\n" + "  \"msg\":\"网络错误\"\n" + "}";
+//        }
+        if (blogService.modifyBlog(title,Integer.parseInt(img),slug,content,boolConversion(isShuoShuo),boolConversion(allowComment),isPublish,blogId,htmlcontent)>0){
             logMessageService.addALog(StaticField.MODIFY_BLOG);
             return "{\n" + "  \"success\":\""+blogId+"\"\n" + "}";
         }else {

@@ -210,7 +210,7 @@ public class BlogService {
     /**
      * 新增一个博客
      * @param title
-     * @param imgurl
+     * @param imgid
      * @param describ
      * @param content
      * @param istalk
@@ -218,15 +218,20 @@ public class BlogService {
      * @param ispublish
      * @return 该新增博客的id
      */
-    public int addBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,String htmlcontent){
-         blogMapping.addBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,htmlcontent);
-         return blogMapping.lastBlogID();
+//    public int addBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,String htmlcontent){
+//         blogMapping.addBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,htmlcontent);
+//         return blogMapping.lastBlogID();
+//    }
+
+    public int addBlog(String title,int imgid,String describ,String content,int istalk,int iscomment,int ispublish,String htmlcontent){
+        blogMapping.addBlog(title,null,describ,content,istalk,iscomment,ispublish,htmlcontent,imgid);
+        return blogMapping.lastBlogID();
     }
 
     /**
      * 修改一篇博客
      * @param title
-     * @param imgurl
+     * @param imgid
      * @param describ
      * @param content
      * @param istalk
@@ -236,10 +241,13 @@ public class BlogService {
      * @param htmlcontent
      * @return
      */
-    public int modifyBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,int blogId,String htmlcontent){
-        return blogMapping.modifyBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,blogId,htmlcontent);
-    }
+//    public int modifyBlog(String title,String imgurl,String describ,String content,int istalk,int iscomment,int ispublish,int blogId,String htmlcontent){
+//        return blogMapping.modifyBlog(title,imgurl,describ,content,istalk,iscomment,ispublish,blogId,htmlcontent);
+//    }
 
+    public int modifyBlog(String title,int imgid,String describ,String content,int istalk,int iscomment,int ispublish,int blogId,String htmlcontent){
+        return blogMapping.modifyBlog(title,describ,content,istalk,iscomment,ispublish,blogId,htmlcontent,imgid);
+    }
 
     @Transient
     public int deleteBlog(int id){
@@ -277,7 +285,7 @@ public class BlogService {
         if (blog.getId()==0 || blog==null)
             return null;
         int blogId=blog.getId();
-        modifyBlog(blog.getTitle(),blog.getImgUrl(),blog.getDescrib(),blog.getContent(),blog.getIsTalk(),
+        modifyBlog(blog.getTitle(),blog.getImgid(),blog.getDescrib(),blog.getContent(),blog.getIsTalk(),
                 blog.getIsComment(),blog.getIsPublish(),blogId,blog.getHtmlcontent());
         blog=findOneById(blogId);
         blogRedisRepository.addBlog(blog,blogId);

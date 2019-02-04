@@ -40,4 +40,5 @@ public class StaticField {
     public static String SENSITIVE_WORD="[一两清风，半盏明月]";
 
     public static char[] IgnoreWords={'`','~','!','@','#','$','%','^','&','*','(',')',' ','.','。','·'};
+
 }

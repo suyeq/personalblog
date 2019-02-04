@@ -32,7 +32,8 @@ public class LoginController {
 
     @RequestMapping("/admin/logins")
     public ModelAndView login(Model model){
-        return new ModelAndView("/admin/login","login",model);
+        System.out.println("zzz1");
+        return new ModelAndView("admin/login","login",model);
     }
 
     @RequestMapping("/admin/login")
@@ -40,6 +41,7 @@ public class LoginController {
     public String loginVerification(HttpServletRequest request, @RequestParam("username")String username,
                                     @RequestParam("password")String password, Model model){
         System.out.println(username+password);
+        System.out.println("zzz2");
         if (username.equals(name)&&password.equals(password)){
             request.getSession().setAttribute("isLogin","success");
             logMessageService.addALog(StaticField.LOGIN_ACTION);

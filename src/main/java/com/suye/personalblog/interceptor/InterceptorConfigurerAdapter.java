@@ -22,6 +22,7 @@ public class InterceptorConfigurerAdapter extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        System.out.println("进来了");
         // addPathPatterns 添加路径
         // excludePathPatterns 排除路径
         registry.addInterceptor(interceptorAllRequest).addPathPatterns("/admin/**")

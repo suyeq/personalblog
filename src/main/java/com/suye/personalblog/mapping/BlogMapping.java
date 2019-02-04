@@ -80,15 +80,28 @@ public interface BlogMapping {
     @Update("update blog set conmentnum=conmentnum+1 where id=#{blogId}")
     int increaseConmentNum(int blogId);
 
-    @Insert("insert into blog(title,imgurl,describ,content,create_time,readnum,votenum,conmentnum,istalk,cainum,iscomment,ispublish,htmlcontent) " +
-            "values(#{title},#{imgurl},#{describ},#{content},NOW(),0,0,0,#{istalk},0,#{iscomment},#{ispublish},#{htmlcontent})")
+//    @Insert("insert into blog(title,imgurl,describ,content,create_time,readnum,votenum,conmentnum,istalk,cainum,iscomment,ispublish,htmlcontent) " +
+//            "values(#{title},#{imgurl},#{describ},#{content},NOW(),0,0,0,#{istalk},0,#{iscomment},#{ispublish},#{htmlcontent})")
+//    int addBlog(@Param("title") String title, @Param("imgurl") String imgurl, @Param("describ") String describ,
+//                @Param("content") String content, @Param("istalk") int istalk, @Param("iscomment") int iscomment,
+//                @Param("ispublish")int ispublish,@Param("htmlcontent")String htmlcontent);
+
+    @Insert("insert into blog(title,imgurl,describ,content,create_time,readnum,votenum,conmentnum,istalk,cainum,iscomment,ispublish,htmlcontent,imgid) " +
+            "values(#{title},#{imgurl},#{describ},#{content},NOW(),0,0,0,#{istalk},0,#{iscomment},#{ispublish},#{htmlcontent},#{imgid})")
     int addBlog(@Param("title") String title, @Param("imgurl") String imgurl, @Param("describ") String describ,
                 @Param("content") String content, @Param("istalk") int istalk, @Param("iscomment") int iscomment,
-                @Param("ispublish")int ispublish,@Param("htmlcontent")String htmlcontent);
+                @Param("ispublish")int ispublish,@Param("htmlcontent")String htmlcontent,@Param("imgid")int imgid);
 
-    @Update("update blog set title=#{title},imgurl=#{imgurl},describ=#{describ},content=#{content},istalk=#{istalk},iscomment=#{iscomment},ispublish=#{ispublish},htmlcontent=#{htmlcontent} where id=#{blogId}")
-    int modifyBlog(@Param("title") String title, @Param("imgurl") String imgurl, @Param("describ") String describ,
-                   @Param("content") String content, @Param("istalk") int istalk, @Param("iscomment") int iscomment,@Param("ispublish")int ispublish,@Param("blogId")int blogId,@Param("htmlcontent")String htmlcontent);
+
+
+//    @Update("update blog set title=#{title},imgurl=#{imgurl},describ=#{describ},content=#{content},istalk=#{istalk},iscomment=#{iscomment},ispublish=#{ispublish},htmlcontent=#{htmlcontent} where id=#{blogId}")
+//    int modifyBlog(@Param("title") String title, @Param("imgurl") String imgurl, @Param("describ") String describ,
+//                   @Param("content") String content, @Param("istalk") int istalk, @Param("iscomment") int iscomment,@Param("ispublish")int ispublish,@Param("blogId")int blogId,@Param("htmlcontent")String htmlcontent);
+
+    @Update("update blog set title=#{title},describ=#{describ},content=#{content},istalk=#{istalk},iscomment=#{iscomment},ispublish=#{ispublish},htmlcontent=#{htmlcontent},imgid=#{imgid} where id=#{blogId}")
+    int modifyBlog(@Param("title") String title,  @Param("describ") String describ,
+                   @Param("content") String content, @Param("istalk") int istalk, @Param("iscomment") int iscomment,@Param("ispublish")int ispublish,@Param("blogId")int blogId,@Param("htmlcontent")String htmlcontent,@Param("imgid")int imgid);
+
 
     @Select("select last_insert_id()")
     int lastBlogID();

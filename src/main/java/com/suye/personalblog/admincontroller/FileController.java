@@ -37,17 +37,23 @@ public class FileController {
 
    // ExecutorService threadPool=Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    @Value("${img.temp.address}")
-    private String temp;
-    @Value("${img.temp.server}")
-    private String tempIp;
+//    @Value("${img.temp.address}")
+//    private String temp;
+//    @Value("${img.temp.server}")
+//    private String tempIp;
+//    @Value("${img.address}")
+//    private String finalIp;
     @Value("${img.address}")
-    private String finalIp;
+    private String temp;
+    @Value("${img.server}")
+    private String tempIp;
 
     @Autowired
     private FileService fileService;
     @Autowired
     private LogMessageService logMessageService;
+    @Autowired
+    private UploadTask uploadTask;
 
     @RequestMapping("/admin/attach/delete")
     @ResponseBody
@@ -87,11 +93,16 @@ public class FileController {
         fileService.addFile(imgFile.getName(),tempIp+imgFile.getName());
         //threadPool.submit(new UploadTask(imgFile));
         int fileId=fileService.findFileIdByFileName(imgFile.getName());
-        new UploadTask(imgFile,fileId).run();
+        //netty传输
+        //new UploadTask(imgFile,fileId).run();
+        //uploadTask.setFile(imgFile);
+       // uploadTask.setFileId(fileId);
+        //uploadTask.run();
         outputStream.close();
         inputStream.close();
         //System.out.println("kakkakak");
         logMessageService.addALog(StaticField.ADD_FILE);
-        return "{\n" + "  \"success\":\""+tempIp+imgFile.getName()+"\"\n" + "}";
+        return "{\n" + "  \"success\":\""+fileId+"\"\n" + "}";
+        //return "{\n" + "  \"success\":\""+tempIp+imgFile.getName()+"\"\n" + "}";
     }
 }

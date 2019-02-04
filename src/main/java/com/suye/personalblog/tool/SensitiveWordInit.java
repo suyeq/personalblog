@@ -80,7 +80,7 @@ public class SensitiveWordInit {
     }
 
     /**
-     * 将敏感关键词建立起一颗搜索树，以HashMap存贮
+     * 将敏感关键词建立起多颗搜索树，以HashMap存贮
      * @param keyWordSet
      * @return
      */
@@ -110,6 +110,8 @@ public class SensitiveWordInit {
                 }
             }
         }
+//        System.out.println("语法树");
+//        System.out.println(keyWordMap);
     }
 
     /**
@@ -125,6 +127,7 @@ public class SensitiveWordInit {
         char temp=0;
         for (int i=beginIndex;i<text.length();i++){
             temp=text.charAt(i);
+            //忽略无效字符
             if (ignoreWord.get(temp)!=null){
                 indexCount++;
                 continue;
@@ -143,7 +146,7 @@ public class SensitiveWordInit {
         if (indexCount<2 || !isContainSensitiveWord){
             indexCount=0;
         }
-        System.out.println(indexCount+"jjjj");
+        //System.out.println(indexCount+"jjjj");
         return indexCount;
     }
 
@@ -225,5 +228,7 @@ public class SensitiveWordInit {
         }
         return result;
     }
+
+
 
 }
