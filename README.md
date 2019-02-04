@@ -1,5 +1,9 @@
 # personalblog
-一个二次元的个人博客网站，基于SpringBoot+Mybatis开发
+一个二次元的个人博客网站，基于SpringBoot+Mybatis开发，语言采用的是Java<br>
+
+运行环境需要：Intellij IDEA、MySql、Redis<br>
+
+项目管理工具为Gradle
 # 写在前面
 此项目页面采取了[Shawnzeng](https://shawnzeng.com)大佬的博客前端（做了几个地方的修改）以及开源博客tale博客的后端页面<br>
 [Shawnzeng](https://shawnzeng.com)大佬的博客是wordpress的一个主题。如果感兴趣可以去他的博客网购买：https://shawnzeng.com <br>
