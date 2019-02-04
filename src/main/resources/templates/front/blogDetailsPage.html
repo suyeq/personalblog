@@ -394,11 +394,14 @@
                                 <p id="uniquevontent" th:text="${blogDatailsMessage.htmlcontent}">
                                     女朋友萌化了怎么办？<br> PS:不要不要催更了已经在写了……<br>
                                 </p>
-                                <div>
-                                    <a href="https://shawnzeng.com/wp-content/uploads/2018/10/0CC153A8DBAD366734A9D100ECF17583-1.jpg" th:href="${blogDatailsMessage.imgUrl}" data-fancybox="gallery" class="no-des">
-                                        <img src="https://shawnzeng.com/wp-content/uploads/2018/10/0CC153A8DBAD366734A9D100ECF17583-1.jpg" th:src="${blogDatailsMessage.imgUrl}" alt="" width="auto" height="250px">
-                                    </a>
-                                </div>
+                                <th:block th:if="${blogDatailsMessage.imgUrl}">
+                                    <div>
+                                        <a href="https://shawnzeng.com/wp-content/uploads/2018/10/0CC153A8DBAD366734A9D100ECF17583-1.jpg" th:href="${blogDatailsMessage.imgUrl}" data-fancybox="gallery" class="no-des">
+                                            <img src="https://shawnzeng.com/wp-content/uploads/2018/10/0CC153A8DBAD366734A9D100ECF17583-1.jpg" th:src="${blogDatailsMessage.imgUrl}" alt="" width="auto" height="250px">
+                                        </a>
+                                    </div>
+                                </th:block>
+
                             </div>
                         </div>
                     </div>
