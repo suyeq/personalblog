@@ -13,6 +13,8 @@ ps：本项目会持续更新以及优化。。。。图片太大以及服务器
 
 上一张效果图：
 ![首页图](https://github.com/suyeq/personalblog/blob/master/image/1.png)
+![首页图](https://github.com/suyeq/personalblog/blob/master/image/5.png)
+
 
 
 # 运行
